@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+	<li [ngClass]="{'active': (appService.selectedTab=='exotic-vegetables')}" (click)="openTab($event, 'exotic-vegetables')"><a>exotic-vegetables</a></li>
+	<li [ngClass]="{'active': (appService.selectedTab=='leafy-green-vegetables')}" (click)="openTab($event, 'leafy-green-vegetables')"><a>leafy-vegetables</a></li>
+	<li [ngClass]="{'active': (appService.selectedTab=='fresh-fruits')}" (click)="openTab($event, 'fresh-fruits')"><a>fresh-fruits</a></li>
+	<li [ngClass]="{'active': (appService.selectedTab=='fresh-vegetables')}" (click)="openTab($event, 'fresh-vegetables')"><a>fresh-vegetables</a></li>
+</ul>
+<router-outlet></router-outlet>
