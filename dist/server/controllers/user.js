@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var jwt = require("jsonwebtoken");
 var user_1 = require("../models/user");
 var base_1 = require("./base");
-var sha512 = require("js-sha512");
+// import * as sha512 from 'js-sha512';
 var UserCtrl = (function (_super) {
     __extends(UserCtrl, _super);
     function UserCtrl() {
@@ -35,8 +35,9 @@ var UserCtrl = (function (_super) {
         };
         _this.createHash = function (req, res) {
             var salt = 'eCwWELxi';
-            var hash = sha512(req.body.preHashString + salt);
-            console.log(hash);
+            var hash = {};
+            // var hash = sha512(req.body.preHashString + salt);
+            // console.log(hash);
             res.send({ success: true, hash: hash });
         };
         _this.PaymentStatus = function (req, res) {

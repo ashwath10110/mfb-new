@@ -6,6 +6,7 @@ var express = require("express");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
 var path = require("path");
+// import sha512 from 'js-sha512';
 var routes_1 = require("./routes");
 var app = express();
 exports.app = app;
