@@ -10,6 +10,7 @@ import { CartService } from '../cart.service';
 export class ShowcaseComponent implements OnInit {
 
   @Input() products: Product[]
+  @Input() itemType: String;
 
   constructor(private cartService: CartService) {
 

@@ -17,10 +17,12 @@ function setRoutes(app) {
     router.route('/cat/:id').put(catCtrl.update);
     router.route('/cat/:id').delete(catCtrl.delete);
     // Items
+    // itemsCtrl.getByType('');
     router.route('/items').get(itemsCtrl.getAll);
     router.route('/items/count').get(itemsCtrl.count);
     router.route('/items').post(itemsCtrl.insert);
     router.route('/items/:id').get(itemsCtrl.get);
+    // router.route('/items/:type').get(itemsCtrl.getByType);
     router.route('/items/:id').put(itemsCtrl.update);
     router.route('/items/:id').delete(itemsCtrl.delete);
     // Users

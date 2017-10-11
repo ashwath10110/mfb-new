@@ -19,8 +19,11 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(morgan('dev'));
 var mongoDB = 'mongodb://admin:admin@ds111895.mlab.com:11895/mfb-db';
+// var mongoDB = 'mongodb://localhost:27017/angularfullstack';
 // var mongoDB = '';
+console.log(mongoDB);
 if (process.env.NODE_ENV === 'test') {
+    // mongoDB = localMongoDb;
     // mongoDB = 'mongodb://admin:admin@ds111895.mlab.com:11895/mfb-db';
 }
 else {

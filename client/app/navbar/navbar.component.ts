@@ -13,7 +13,9 @@ export class NavbarComponent implements OnInit {
   constructor(public router: Router,
     public auth: AuthService
     // public _cartService: CartService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
   }

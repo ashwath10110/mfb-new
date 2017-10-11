@@ -11,6 +11,32 @@ export class AppService {
 		tokenForLocalStorage: 'mfb-storage'
 	};
 
-	constructor() { }
+	state = {
+    'isInitialised': false,
+    'data': {
+      'exotic-vegetables': {
+        'items': [],
+        'isInitialised': false
+      },
+      'leafy-green-vegetables': {
+        'items': [],
+        'isInitialised': false
+      },
+      'fresh-fruits': {
+        'items': [],
+        'isInitialised': false
+      },
+      'fresh-vegetables': {
+        'items': [],
+        'isInitialised': false
+      }
+    }
+  };
+
+	constructor() { 
+
+		
+
+	}
 
 }

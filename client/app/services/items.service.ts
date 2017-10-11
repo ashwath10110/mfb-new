@@ -7,10 +7,50 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ItemsService {
 
+  isLoading = false;
+
   private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
 
-  constructor(private http: Http) { }
+  products=[];
+
+  state = {
+    'isInitialised': false,
+    'data': {
+      'exotic-vegetables': {
+        'items': []
+      },
+      'leafy-green-vegetables': {
+        'items': []
+      },
+      'fresh-fruits': {
+        'items': []
+      },
+      'fresh-vegetables': {
+        'items': []
+      }
+    }
+  };
+
+  constructor(private http: Http) {
+    // this.getItems_();
+  }
+
+  processItems(items) {
+    for (var i = 0; i < items.length; i++) {
+      var currentItem = items[i];
+      var type = currentItem.type;
+      this.state.data[type].push(currentItem);
+    }
+  }
+
+  getItems(): Observable<any> {
+    return this.http.get('/api/items').map(res => res.json());
+  }
+
+  getItemsByType(type): Observable<any> {
+    return this.http.get('/api/items/' + type).map(res => res.json());
+  }
 
   getLeafyGreenVegetables(): Observable<any> {
     return this.http.get('/api/items').map(res => res.json());

@@ -9,6 +9,7 @@ import { DataService } from './data.service';
 import { CartService } from './cart.service';
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { ItemsService } from './../services/items.service';
+import { AppService } from './../app.service';
 import { TabsComponent } from './../tabs/tabs.component';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -20,7 +21,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class ItemsComponent implements OnInit {
 
-  products: Product[]
+  products = []
 
   isLoading = true;
   isEditing = false;
@@ -31,12 +32,43 @@ export class ItemsComponent implements OnInit {
   originalData: any = [];
 
   id: number;
-  typeOfVegetables:any;
+  typeOfVegetables: any;
   private sub: any;
 
-  constructor(private dataService: DataService, private cartService: CartService,
+  constructor(private dataService: DataService,
+    private cartService: CartService,
     private exoticVegetablesService: ItemsService,
-    private route: ActivatedRoute){  }
+    private route: ActivatedRoute,
+    private appService: AppService) {
+  }
+
+  getItems(type) {
+    if (this.exoticVegetablesService.state['isInitialised']) {
+      this.products = this.exoticVegetablesService.state['data'][type]['items'];
+      this.isLoading = false;
+    } else {
+      this.isLoading = true;
+      this.exoticVegetablesService.getItems().subscribe(
+        data => {
+          this.processItems(data, this.exoticVegetablesService.state);
+          this.products = this.exoticVegetablesService.state['data'][type]['items'];
+          this.isLoading = false;
+          this.exoticVegetablesService.state['isInitialised'] = true;
+        },
+        error => console.log(error),
+        () => this.isLoading = false
+      );
+    }
+  }
+
+  processItems(items, state) {
+    for (var i = 0; i < items.length; i++) {
+      var currentItem = items[i];
+      var type = currentItem['type'];
+      debugger;
+      state.data[type]['items'].push(currentItem);
+    }
+  }
 
   getLeafyGreenVegetables() {
     this.exoticVegetablesService.getLeafyGreenVegetables().subscribe(
@@ -48,11 +80,24 @@ export class ItemsComponent implements OnInit {
     );
   }
 
-  ngOnInit(){
+  // getItems(type) {
+  //   this.products = [];
+  //   this.isLoading = true;
+
+  //   this.products = this.exoticVegetablesService.getItems_(type);
+  // }
+
+  ngOnInit() {
+    console.log(this.appService);
 
     this.sub = this.route.params.subscribe(params => {
       this.typeOfVegetables = params['id'];
-        this.getLeafyGreenVegetables();
+      console.log(this.typeOfVegetables);
+
+      if (this.typeOfVegetables) {
+        this.getItems(this.typeOfVegetables);
+      }
+
     });
   }
 }

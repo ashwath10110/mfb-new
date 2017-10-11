@@ -18,6 +18,14 @@ var ItemsCtrl = (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.model = item_1.default;
         return _this;
+        // console.log(this);
+        // getByType = (req, res) => {
+        // console.log(req.params.type);
+        // this.model.find({ 'type': 'req.params.type' }, (err, docs) => {
+        // 	if (err) { return console.error(err); }
+        // 	res.json(docs);
+        // });
+        // }
     }
     return ItemsCtrl;
 }(base_1.default));

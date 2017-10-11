@@ -1,5 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
@@ -32,6 +32,8 @@ import { HomeComponent } from './home/home.component';
 import { CarousalComponent } from './carousal/carousal.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
+import { LocationComponent } from './location/location.component';
+
 import { ShowcaseComponent } from './items/showcase/showcase.component';
 import { CartComponent } from './items/cart/cart.component';
 import { ProductComponent } from './items/product/product.component';
@@ -41,59 +43,61 @@ import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.co
 
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
+import { TabsService } from './services/tabs.service';
 
-import {AccordionModule} from 'primeng/primeng';
+import { AccordionModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    RegisterComponent,
-    LoginComponent,
-    LogoutComponent,
-    AccountComponent,
-    AdminComponent,
-    NotFoundComponent,
-    TabsComponent,
-    NavbarComponent,
-    FooterComponent,
-    ShowcaseComponent,
-    CartComponent,
-    ProductComponent,
-    ProductThumbnailComponent,
-    CartPreviewComponent,
-    CheckoutComponent,
-    CarousalComponent,
-    CatsComponent,
-    HomeComponent,
-    ItemsComponent,
-    AddItemsComponent,
-    PaymentCheckoutComponent
-
-  ],
-  imports: [
-    RoutingModule,
-    SharedModule,
-    FormsModule,
-    CommonModule,
-    BrowserModule,
-    AccordionModule,
-    BrowserAnimationsModule
-  ],
-  providers: [
-    AuthService,
-    AuthGuardLogin,
-    AuthGuardAdmin,
-    UserService,
-    AppService,
-    DataService,
-    CatService,
-    CartService,
-    ItemsService
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AboutComponent,
+        RegisterComponent,
+        LoginComponent,
+        LogoutComponent,
+        AccountComponent,
+        AdminComponent,
+        NotFoundComponent,
+        TabsComponent,
+        NavbarComponent,
+        FooterComponent,
+        ShowcaseComponent,
+        CartComponent,
+        ProductComponent,
+        ProductThumbnailComponent,
+        CartPreviewComponent,
+        CheckoutComponent,
+        CarousalComponent,
+        CatsComponent,
+        HomeComponent,
+        ItemsComponent,
+        AddItemsComponent,
+        PaymentCheckoutComponent,
+        LocationComponent
+    ],
+    imports: [
+        RoutingModule,
+        SharedModule,
+        FormsModule,
+        CommonModule,
+        BrowserModule,
+        AccordionModule,
+        BrowserAnimationsModule
+    ],
+    providers: [
+        AuthService,
+        AuthGuardLogin,
+        AuthGuardAdmin,
+        UserService,
+        AppService,
+        DataService,
+        CatService,
+        CartService,
+        ItemsService,
+        TabsService
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule { }
