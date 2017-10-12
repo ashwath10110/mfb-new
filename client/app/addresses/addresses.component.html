@@ -2,6 +2,8 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
+<button class="btn btn-sm btn-warning" (click)="locationInit()">Use My Current Location</button>
+
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Current Addresses ({{cats.length}})</h4>
   <div class="card-block">

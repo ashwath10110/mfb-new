@@ -17,6 +17,7 @@ export class AddressesComponent implements OnInit {
   cats = [];
   isLoading = true;
   isEditing = false;
+  geolocationPosition: any;
 
   addCatForm: FormGroup;
   name = new FormControl('', Validators.required);
@@ -24,10 +25,10 @@ export class AddressesComponent implements OnInit {
   weight = new FormControl('', Validators.required);
 
   constructor(private catService: CatService,
-              private formBuilder: FormBuilder,
-              private http: Http,
-              public toast: ToastComponent,
-              public router: Router) { }
+    private formBuilder: FormBuilder,
+    private http: Http,
+    public toast: ToastComponent,
+    public router: Router) { }
 
   ngOnInit() {
     this.getCats();
@@ -36,6 +37,33 @@ export class AddressesComponent implements OnInit {
       age: this.age,
       weight: this.weight
     });
+
+    this.locationInit();
+
+  }
+
+  locationInit() {
+    if (window.navigator && window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          this.geolocationPosition = position,
+            console.log(position)
+        },
+        error => {
+          switch (error.code) {
+            case 1:
+              console.log('Permission Denied');
+              break;
+            case 2:
+              console.log('Position Unavailable');
+              break;
+            case 3:
+              console.log('Timeout');
+              break;
+          }
+        }
+      );
+    };
   }
 
   getCats() {
@@ -95,7 +123,7 @@ export class AddressesComponent implements OnInit {
     }
   }
 
-  proceedToPay(){
+  proceedToPay() {
     this.router.navigate(['/checkout']);
   }
 

@@ -81,7 +81,7 @@ export class AddItemsComponent implements OnInit {
   addLeafyGreenVegetable() {
 
     let cat = this.addCatForm.value;
-    cat.available = cat.available ? true : false;
+    cat.available = cat.available == 'true' ? true : false;
     cat.imageForShowCase = this.imageHolder[1];
     cat.imageForCart = this.imageHolder[2];
 
@@ -110,7 +110,7 @@ export class AddItemsComponent implements OnInit {
 
   editLeafyGreenVegetable(cat) {
 
-    cat.available = cat.available ? true : false;
+    cat.available = cat.available == 'true' ? true : false;
     cat.imageForShowCase = this.imageHolder[1];
     cat.imageForCart = this.imageHolder[2];
 
