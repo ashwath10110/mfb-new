@@ -40,6 +40,7 @@ import { ProductComponent } from './items/product/product.component';
 import { ProductThumbnailComponent } from './items/product-thumbnail/product-thumbnail.component';
 import { CartPreviewComponent } from './items/cart-preview/cart-preview.component';
 import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
+import { AddressesComponent } from './addresses/addresses.component';
 
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
@@ -73,7 +74,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ItemsComponent,
         AddItemsComponent,
         PaymentCheckoutComponent,
-        LocationComponent
+        LocationComponent,
+        AddressesComponent
     ],
     imports: [
         RoutingModule,

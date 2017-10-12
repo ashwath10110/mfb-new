@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 const OFFSET_HEIGHT: number = 170
 const PRODUCT_HEIGHT: number = 48
@@ -22,7 +23,10 @@ export class CartComponent implements OnInit {
 
   changeDetectorRef: ChangeDetectorRef
 
-  constructor(private cartService: CartService, changeDetectorRef: ChangeDetectorRef) {
+  constructor(private cartService: CartService,
+    changeDetectorRef: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    public router: Router) {
     this.changeDetectorRef = changeDetectorRef
   }
 
@@ -32,39 +36,42 @@ export class CartComponent implements OnInit {
       this.products = data.products;
       this.cartTotal = data.cartTotal;
       this.numProducts = data.products.reduce((acc, product) => {
-        acc+=product.quantity;
+        acc += product.quantity;
         return acc;
       }, 0)
 
       //Make a plop animation
-      if(this.numProducts > 1){
+      if (this.numProducts > 1) {
         this.animatePlop = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.animatePlop = false;
-        },160)
-      }else if(this.numProducts == 1){
+        }, 160)
+      } else if (this.numProducts == 1) {
         this.animatePopout = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.animatePopout = false;
-        },300)
+        }, 300)
       }
-      this.expandedHeight = (this.products.length*PRODUCT_HEIGHT+OFFSET_HEIGHT) + 'px';
-      if(!this.products.length){
+      this.expandedHeight = (this.products.length * PRODUCT_HEIGHT + OFFSET_HEIGHT) + 'px';
+      if (!this.products.length) {
         this.expanded = false
       }
       this.changeDetectorRef.detectChanges()
     })
   }
 
-  deleteProduct(product){
+  deleteProduct(product) {
     this.cartService.deleteProductFromCart(product)
   }
 
-  checkout(){
+  checkout() {
+    this.expanded = false;
+    this.router.navigate(['/addresses']);
+
     console.log("To Checkout");
   }
 
-  onCartClick(){
-    this.expanded = !this.expanded
+  onCartClick() {
+    this.expanded = !this.expanded;
   }
 }
