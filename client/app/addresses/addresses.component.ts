@@ -50,8 +50,13 @@ export class AddressesComponent implements OnInit {
 
   getLocationData() {
     this.appService.locationInit().subscribe((data) => {
-      this.addresses.push({ name: JSON.parse(data["_body"]).results[0].formatted_address });
+      let address = JSON.parse(data["_body"]).results[0].formatted_address;
+      this.addresses.push({ name: address });
       this.showLocationButton = false;
+      this.appService.currentUser.locationInfo = {
+        status: true,
+        value: address
+      };
       this.locationLoading = false;
     }, () => {
       this.locationLoading = false;
@@ -61,7 +66,6 @@ export class AddressesComponent implements OnInit {
   getAddresses() {
     this.addressService.getAddresses().subscribe(
       data => {
-        console.log(data);
         this.addresses = data;
       },
       error => console.log(error),
@@ -129,8 +133,8 @@ export class AddressesComponent implements OnInit {
   }
 
   proceedToPay() {
-    if (this.locationDataObj) {
-      this.addCurrentAddress(this.locationDataObj.locationInfo.value);
+    if (this.appService.currentUser.locationInfo.status) {
+      this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
     }
     this.router.navigate(['/checkout']);
   }

@@ -37,6 +37,13 @@ export class AppService {
     isLocationValid: {
       status: false,
       value: {}
+    },
+    cartValue: {
+      status: false,
+      value: {
+        products: [],
+        cartTotal: 0
+      }
     }
   };
 

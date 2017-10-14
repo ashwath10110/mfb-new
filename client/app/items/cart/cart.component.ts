@@ -3,6 +3,8 @@ import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { AppService } from './../../app.service';
+
 const OFFSET_HEIGHT: number = 170;
 const PRODUCT_HEIGHT: number = 48;
 
@@ -23,15 +25,19 @@ export class CartComponent implements OnInit {
 
   changeDetectorRef: ChangeDetectorRef;
 
-  constructor(private cartService: CartService,
+  constructor(
+    private cartService: CartService,
     changeDetectorRef: ChangeDetectorRef,
     private route: ActivatedRoute,
-    public router: Router) {
-    this.changeDetectorRef = changeDetectorRef
+    public router: Router,
+    public appService: AppService
+  ) {
+    this.changeDetectorRef = changeDetectorRef;
   }
 
   ngOnInit() {
     this.expandedHeight = '0';
+    this.cartService.initCart();
     this.cartService.productAdded$.subscribe(data => {
       this.products = data.products;
       this.cartTotal = data.cartTotal;

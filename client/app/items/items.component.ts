@@ -43,7 +43,7 @@ export class ItemsComponent implements OnInit {
   }
 
   getItems(type) {
-    debugger;
+    
     if (this.exoticVegetablesService.state['isInitialised']) {
       this.products = this.exoticVegetablesService.state['data'][type]['items'];
       this.isLoading = false;
@@ -66,7 +66,6 @@ export class ItemsComponent implements OnInit {
     for (var i = 0; i < items.length; i++) {
       var currentItem = items[i];
       var type = currentItem['type'];
-      debugger;
       state.data[type]['items'].push(currentItem);
     }
   }
@@ -80,13 +79,6 @@ export class ItemsComponent implements OnInit {
       () => this.isLoading = false
     );
   }
-
-  // getItems(type) {
-  //   this.products = [];
-  //   this.isLoading = true;
-
-  //   this.products = this.exoticVegetablesService.getItems_(type);
-  // }
 
   ngOnInit() {
     console.log(this.appService);

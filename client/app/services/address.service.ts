@@ -17,7 +17,6 @@ export class AddressService {
   }
 
   addAddress(cat): Observable<any> {
-    debugger;
     return this.http.post('/api/address', JSON.stringify(cat), this.options);
   }
 
