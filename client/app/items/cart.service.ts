@@ -38,7 +38,6 @@ export class CartService {
   }
 
   deleteProductFromCart(product) {
-    debugger;
     for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].product._id == product._id) {
         this.cartTotal -= this.products[i].product.parsedPrice * this.products[i].quantity;

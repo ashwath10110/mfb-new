@@ -45,6 +45,7 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
 import { TabsService } from './services/tabs.service';
+import { AddressService } from './services/address.service';
 
 import { AccordionModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -96,7 +97,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CatService,
         CartService,
         ItemsService,
-        TabsService
+        TabsService,
+        AddressService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

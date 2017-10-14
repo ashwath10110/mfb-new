@@ -3,8 +3,8 @@ import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-const OFFSET_HEIGHT: number = 170
-const PRODUCT_HEIGHT: number = 48
+const OFFSET_HEIGHT: number = 170;
+const PRODUCT_HEIGHT: number = 48;
 
 @Component({
   selector: 'cart',
@@ -13,15 +13,15 @@ const PRODUCT_HEIGHT: number = 48
 })
 export class CartComponent implements OnInit {
 
-  products: any[] = []
-  numProducts: number = 0
-  animatePlop: boolean = false
-  animatePopout: boolean = false
-  expanded: boolean = false
-  expandedHeight: string
-  cartTotal: number = 0
+  products: any[] = [];
+  numProducts: number = 0;
+  animatePlop: boolean = false;
+  animatePopout: boolean = false;
+  expanded: boolean = false;
+  expandedHeight: string;
+  cartTotal: number = 0;
 
-  changeDetectorRef: ChangeDetectorRef
+  changeDetectorRef: ChangeDetectorRef;
 
   constructor(private cartService: CartService,
     changeDetectorRef: ChangeDetectorRef,
@@ -38,30 +38,30 @@ export class CartComponent implements OnInit {
       this.numProducts = data.products.reduce((acc, product) => {
         acc += product.quantity;
         return acc;
-      }, 0)
+      }, 0);
 
       //Make a plop animation
       if (this.numProducts > 1) {
         this.animatePlop = true;
         setTimeout(() => {
           this.animatePlop = false;
-        }, 160)
+        }, 160);
       } else if (this.numProducts == 1) {
         this.animatePopout = true;
         setTimeout(() => {
           this.animatePopout = false;
-        }, 300)
+        }, 300);
       }
       this.expandedHeight = (this.products.length * PRODUCT_HEIGHT + OFFSET_HEIGHT) + 'px';
       if (!this.products.length) {
-        this.expanded = false
+        this.expanded = false;
       }
-      this.changeDetectorRef.detectChanges()
-    })
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   deleteProduct(product) {
-    this.cartService.deleteProductFromCart(product)
+    this.cartService.deleteProductFromCart(product);
   }
 
   checkout() {

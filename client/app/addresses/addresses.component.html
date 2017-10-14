@@ -2,49 +2,43 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
-<button class="btn btn-sm btn-warning" (click)="locationInit()">Use My Current Location</button>
+<button class="btn btn-sm btn-warning" [disabled]="" (click)="getLocationData()">Use My Current Location</button>
 
 <div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Current Addresses ({{cats.length}})</h4>
+  <h4 class="card-header">Current Addresses ({{addresses.length}})</h4>
   <div class="card-block">
     <table class="table table-bordered table-striped">
       <thead class="thead-default">
         <tr>
+          <th>Select Address to use</th>
           <th>Name</th>
-          <th>Age</th>
-          <th>Weight</th>
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody *ngIf="cats.length === 0">
+      <tbody *ngIf="addresses.length === 0">
         <tr>
-          <td colspan="4">There are no cats in the DB. Add a new cat below.</td>
-        </tr>  
+          <td colspan="4">There are no addresses in the DB. Add a new address below.</td>
+        </tr>
       </tbody>
       <tbody *ngIf="!isEditing">
-        <tr *ngFor="let cat of cats">
-          <td>{{cat.name}}</td>
-          <td>{{cat.age}}</td>
-          <td>{{cat.weight}}</td>
+        <tr *ngFor="let address of addresses">
           <td>
-            <button class="btn btn-sm btn-warning" (click)="enableEditing(cat)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteCat(cat)"><i class="fa fa-trash"></i> Delete</button>
+            <input class="form-check-input" type="radio" name="address" [value]="address.name" [(ngModel)]="addressSelected">
+          </td>
+          <td>{{address.name}}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(address)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash"></i> Delete</button>
           </td>
         </tr>  
       </tbody>
       <tbody *ngIf="isEditing">
         <tr>
           <td colspan="4">
-            <form class="form-inline" #form="ngForm" (ngSubmit)="editCat(cat)" style="display:inline">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editAddress(address)" style="display:inline">
               <div class="form-group">
-                  <input class="form-control" type="text" name="name" [(ngModel)]="cat.name" placeholder="Name" required>
+                  <input class="form-control" type="text" name="name" [(ngModel)]="address.name" placeholder="Name" required>
               </div>
-              <div class="form-group">
-                <input class="form-control" type="number" name="age" [(ngModel)]="cat.age" placeholder="Age" min="0" required>
-              </div>
-              <div class="form-group">
-                <input class="form-control" type="number" name="weight" [(ngModel)]="cat.weight" placeholder="Weight" step="any" min="0" required>
-              </div>
-              <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
+               <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
             </form>
             <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
           </td>
@@ -55,21 +49,15 @@
 </div>
 
 <div class="card" *ngIf="!isEditing">
-  <h4 class="card-header">Add new cat</h4>
+  <h4 class="card-header">Add new address</h4>
   <div class="card-block">
-    <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
+    <form class="form-inline" [formGroup]="addAddressForm" (ngSubmit)="addAddress()" style="text-align:center">
       <div class="form-group">
           <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
       </div>
-      <div class="form-group">
-        <input class="form-control" type="number" name="age" formControlName="age" placeholder="Age" min="0">
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="number" name="weight" formControlName="weight" placeholder="Weight" step="any" min="0">
-      </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!addAddressForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
     </form>
   </div>
 </div>
 
-<button class="btn btn-primary" (click)="proceedToPay()">Proceed</button>
+<button class="btn btn-primary" (click)="proceedToPay()" [disabled]="addressSelected==''">Proceed to Pay {{cartService.cartTotal}}</button>

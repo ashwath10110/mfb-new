@@ -43,6 +43,7 @@ export class ItemsComponent implements OnInit {
   }
 
   getItems(type) {
+    debugger;
     if (this.exoticVegetablesService.state['isInitialised']) {
       this.products = this.exoticVegetablesService.state['data'][type]['items'];
       this.isLoading = false;
@@ -97,8 +98,6 @@ export class ItemsComponent implements OnInit {
       if (this.typeOfVegetables) {
         this.getItems(this.typeOfVegetables);
       }
-
     });
   }
 }
-

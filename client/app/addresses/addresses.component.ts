@@ -3,8 +3,10 @@ import { Http } from '@angular/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { CatService } from '../services/cat.service';
+import { AddressService } from '../services/address.service';
+import { AppService } from './../app.service';
 import { ToastComponent } from '../shared/toast/toast.component';
+import { CartService } from './../items/cart.service';
 
 @Component({
   selector: 'app-addresses',
@@ -13,110 +15,109 @@ import { ToastComponent } from '../shared/toast/toast.component';
 })
 export class AddressesComponent implements OnInit {
 
-  cat = {};
-  cats = [];
+  address = {};
+  addresses = [];
   isLoading = true;
   isEditing = false;
   geolocationPosition: any;
 
-  addCatForm: FormGroup;
+  addAddressForm: FormGroup;
   name = new FormControl('', Validators.required);
-  age = new FormControl('', Validators.required);
-  weight = new FormControl('', Validators.required);
+  locationDataFromCords: any;
+  showLocationDataFlag = false;
+  locationData = '';
+  addressSelected = '';
+  locationDataObj: any;
+  locationLoading = false;
 
-  constructor(private catService: CatService,
+  constructor(private addressService: AddressService,
+    private cartService: CartService,
+    public appService: AppService,
     private formBuilder: FormBuilder,
     private http: Http,
     public toast: ToastComponent,
     public router: Router) { }
 
   ngOnInit() {
-    this.getCats();
-    this.addCatForm = this.formBuilder.group({
-      name: this.name,
-      age: this.age,
-      weight: this.weight
+    this.getAddresses();
+    this.addAddressForm = this.formBuilder.group({
+      name: this.name
     });
-
-    this.locationInit();
-
+    this.getLocationData();
   }
 
-  locationInit() {
-    if (window.navigator && window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition(
-        position => {
-          this.geolocationPosition = position,
-            console.log(position)
-        },
-        error => {
-          switch (error.code) {
-            case 1:
-              console.log('Permission Denied');
-              break;
-            case 2:
-              console.log('Position Unavailable');
-              break;
-            case 3:
-              console.log('Timeout');
-              break;
-          }
-        }
-      );
-    };
+  getLocationData() {
+
+    this.locationLoading = true;
+
+    this.appService.locationInit().then(
+      (data) => {
+        console.log(data);
+
+        this.addresses.push({ name: data });
+        this.locationLoading = false;
+
+      },
+      () => {
+        this.locationLoading = false;
+        console.log("Task Errored!");
+      },
+    );
   }
 
-  getCats() {
-    this.catService.getCats().subscribe(
-      data => this.cats = data,
+  getAddresses() {
+    this.addressService.getAddresses().subscribe(
+      data => {
+        this.addresses = data;
+      },
       error => console.log(error),
       () => this.isLoading = false
     );
   }
 
-  addCat() {
-    this.catService.addCat(this.addCatForm.value).subscribe(
+  addAddress(address) {
+    this.addressService.addAddress({ name: address }).subscribe(
       res => {
-        const newCat = res.json();
-        this.cats.push(newCat);
-        this.addCatForm.reset();
-        this.toast.setMessage('item added successfully.', 'success');
+        const newAddress = res.json();
+        this.addresses.push(newAddress);
+        this.addAddressForm.reset();
+        this.toast.setMessage('Address added successfully.', 'success');
       },
       error => console.log(error)
     );
   }
 
-  enableEditing(cat) {
+  enableEditing(address) {
     this.isEditing = true;
-    this.cat = cat;
+    this.address = address;
   }
 
   cancelEditing() {
     this.isEditing = false;
-    this.cat = {};
-    this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the cats to reset the editing
-    this.getCats();
+    this.address = {};
+    this.toast.setMessage('Address editing cancelled.', 'warning');
+    // reload the addresses to reset the editing
+    // this.getAddresses();
   }
 
-  editCat(cat) {
-    this.catService.editCat(cat).subscribe(
+  editAddress(address) {
+    this.addressService.editAddress(address).subscribe(
       res => {
         this.isEditing = false;
-        this.cat = cat;
-        this.toast.setMessage('item edited successfully.', 'success');
+        this.address = address;
+        this.toast.setMessage('Address edited successfully.', 'success');
       },
       error => console.log(error)
     );
   }
 
-  deleteCat(cat) {
+  deleteAddress(address) {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
-      this.catService.deleteCat(cat).subscribe(
+      this.addressService.deleteAddress(address).subscribe(
         res => {
-          const pos = this.cats.map(elem => elem._id).indexOf(cat._id);
-          this.cats.splice(pos, 1);
-          this.toast.setMessage('item deleted successfully.', 'success');
+          const pos = this.addresses.map(elem => elem._id).indexOf(address._id);
+          this.addresses.splice(pos, 1);
+          this.toast.setMessage('Address deleted successfully.', 'success');
         },
         error => console.log(error)
       );
@@ -124,6 +125,9 @@ export class AddressesComponent implements OnInit {
   }
 
   proceedToPay() {
+    if (this.locationDataObj) {
+      this.addAddress(this.locationDataObj.locationInfo.value);
+    }
     this.router.navigate(['/checkout']);
   }
 
