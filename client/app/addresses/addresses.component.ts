@@ -29,6 +29,7 @@ export class AddressesComponent implements OnInit {
   addressSelected = '';
   locationDataObj: any;
   locationLoading = false;
+  showLocationButton = true;
 
   constructor(private addressService: AddressService,
     private cartService: CartService,
@@ -39,35 +40,28 @@ export class AddressesComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit() {
-    this.getAddresses();
     this.addAddressForm = this.formBuilder.group({
       name: this.name
     });
-    this.getLocationData();
+    this.getAddresses();
+
+    // this.getLocationData();
   }
 
   getLocationData() {
-
-    this.locationLoading = true;
-
-    this.appService.locationInit().then(
-      (data) => {
-        console.log(data);
-
-        this.addresses.push({ name: data });
-        this.locationLoading = false;
-
-      },
-      () => {
-        this.locationLoading = false;
-        console.log("Task Errored!");
-      },
-    );
+    this.appService.locationInit().subscribe((data) => {
+      this.addresses.push({ name: JSON.parse(data["_body"]).results[0].formatted_address });
+      this.showLocationButton = false;
+      this.locationLoading = false;
+    }, () => {
+      this.locationLoading = false;
+    });
   }
 
   getAddresses() {
     this.addressService.getAddresses().subscribe(
       data => {
+        console.log(data);
         this.addresses = data;
       },
       error => console.log(error),
@@ -75,8 +69,20 @@ export class AddressesComponent implements OnInit {
     );
   }
 
-  addAddress(address) {
-    this.addressService.addAddress({ name: address }).subscribe(
+  addAddress() {
+    this.addressService.addAddress(this.addAddressForm.value).subscribe(
+      res => {
+        const newAddress = res.json();
+        this.addresses.push(newAddress);
+        this.addAddressForm.reset();
+        this.toast.setMessage('Address added successfully.', 'success');
+      },
+      error => console.log(error)
+    );
+  }
+
+  addCurrentAddress(address) {
+    this.addressService.addAddress(address).subscribe(
       res => {
         const newAddress = res.json();
         this.addresses.push(newAddress);
@@ -96,8 +102,6 @@ export class AddressesComponent implements OnInit {
     this.isEditing = false;
     this.address = {};
     this.toast.setMessage('Address editing cancelled.', 'warning');
-    // reload the addresses to reset the editing
-    // this.getAddresses();
   }
 
   editAddress(address) {
@@ -126,7 +130,7 @@ export class AddressesComponent implements OnInit {
 
   proceedToPay() {
     if (this.locationDataObj) {
-      this.addAddress(this.locationDataObj.locationInfo.value);
+      this.addCurrentAddress(this.locationDataObj.locationInfo.value);
     }
     this.router.navigate(['/checkout']);
   }

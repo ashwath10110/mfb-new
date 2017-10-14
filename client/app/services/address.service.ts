@@ -13,19 +13,20 @@ export class AddressService {
   constructor(private http: Http) { }
 
   getAddresses(): Observable<any> {
-    return this.http.get('/api/cats').map(res => res.json());
+    return this.http.get('/api/address').map(res => res.json());
   }
 
   addAddress(cat): Observable<any> {
-    return this.http.post('/api/cat', JSON.stringify(cat), this.options);
+    debugger;
+    return this.http.post('/api/address', JSON.stringify(cat), this.options);
   }
 
   editAddress(cat): Observable<any> {
-    return this.http.put(`/api/cat/${cat._id}`, JSON.stringify(cat), this.options);
+    return this.http.put(`/api/address/${cat._id}`, JSON.stringify(cat), this.options);
   }
 
   deleteAddress(cat): Observable<any> {
-    return this.http.delete(`/api/cat/${cat._id}`, this.options);
+    return this.http.delete(`/api/address/${cat._id}`, this.options);
   }
 
 }

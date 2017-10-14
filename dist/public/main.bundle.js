@@ -326,7 +326,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/addresses/addresses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<button class=\"btn btn-sm btn-warning\" [disabled]=\"\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Select Address to use</th>\n          <th>Name</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"addresses.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let address of addresses\">\n          <td>\n            <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n          </td>\n          <td>{{address.name}}</td>\n          <td>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button> <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n              </div>\n               <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new address</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>\n\n<button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Select Address to use</th>\n          <th>Name</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"addresses.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let address of addresses\">\n          <td>\n            <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n          </td>\n          <td>{{address.name}}</td>\n          <td *ngIf=\"address._id\">\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n          <td *ngIf=\"!address._id\"></td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n              </div>\n               <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new address</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>\n\n<button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>"
 
 /***/ }),
 
@@ -396,35 +396,44 @@ var AddressesComponent = (function () {
         this.locationData = '';
         this.addressSelected = '';
         this.locationLoading = false;
+        this.showLocationButton = true;
     }
     AddressesComponent.prototype.ngOnInit = function () {
-        this.getAddresses();
         this.addAddressForm = this.formBuilder.group({
             name: this.name
         });
-        this.getLocationData();
+        this.getAddresses();
+        // this.getLocationData();
     };
     AddressesComponent.prototype.getLocationData = function () {
         var _this = this;
-        this.locationLoading = true;
-        this.appService.locationInit().then(function (data) {
-            console.log(data);
-            _this.addresses.push({ name: data });
+        this.appService.locationInit().subscribe(function (data) {
+            _this.addresses.push({ name: JSON.parse(data["_body"]).results[0].formatted_address });
+            _this.showLocationButton = false;
             _this.locationLoading = false;
         }, function () {
             _this.locationLoading = false;
-            console.log("Task Errored!");
         });
     };
     AddressesComponent.prototype.getAddresses = function () {
         var _this = this;
         this.addressService.getAddresses().subscribe(function (data) {
+            console.log(data);
             _this.addresses = data;
         }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
-    AddressesComponent.prototype.addAddress = function (address) {
+    AddressesComponent.prototype.addAddress = function () {
         var _this = this;
-        this.addressService.addAddress({ name: address }).subscribe(function (res) {
+        this.addressService.addAddress(this.addAddressForm.value).subscribe(function (res) {
+            var newAddress = res.json();
+            _this.addresses.push(newAddress);
+            _this.addAddressForm.reset();
+            _this.toast.setMessage('Address added successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    AddressesComponent.prototype.addCurrentAddress = function (address) {
+        var _this = this;
+        this.addressService.addAddress(address).subscribe(function (res) {
             var newAddress = res.json();
             _this.addresses.push(newAddress);
             _this.addAddressForm.reset();
@@ -439,8 +448,6 @@ var AddressesComponent = (function () {
         this.isEditing = false;
         this.address = {};
         this.toast.setMessage('Address editing cancelled.', 'warning');
-        // reload the addresses to reset the editing
-        // this.getAddresses();
     };
     AddressesComponent.prototype.editAddress = function (address) {
         var _this = this;
@@ -462,7 +469,7 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.proceedToPay = function () {
         if (this.locationDataObj) {
-            this.addAddress(this.locationDataObj.locationInfo.value);
+            this.addCurrentAddress(this.locationDataObj.locationInfo.value);
         }
         this.router.navigate(['/checkout']);
     };
@@ -799,9 +806,13 @@ AppModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -814,6 +825,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+// import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/map';
 
 var AppService = (function () {
     function AppService(http, toast) {
@@ -877,55 +892,24 @@ var AppService = (function () {
                 }
             }
         };
-        this.locationInit();
-        console.log(this.currentUser);
     }
-    AppService.prototype.getPosition = function (options) {
-        return new Promise(function (resolve, reject) {
-            navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    AppService.prototype.getLocation = function () {
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create(function (observer) {
+            if (window.navigator && window.navigator.geolocation) {
+                window.navigator.geolocation.getCurrentPosition(function (position) {
+                    observer.next(position);
+                    observer.complete();
+                }, function (error) { return observer.error(error); });
+            }
+            else {
+                observer.error('Unsupported Browser');
+            }
         });
     };
     AppService.prototype.locationInit = function () {
         var _this = this;
-        return new Promise(function (resolve) {
-            if (!_this.currentUser.locationData.status) {
-                resolve(_this.currentUser.locationInfo.value);
-            }
-            _this.getPosition({})
-                .then(function (position) {
-                _this.currentUser.locationData = {
-                    status: true,
-                    value: position
-                };
-                _this.currentUser.isLocationValid = {
-                    status: true,
-                    value: _this.isDistanceValid(_this.shopDetails.locationChords, position['coords'], _this.shopDetails.validDistanceAllowedInKm * 1000)
-                };
-                _this.getLocationFromCords(position['coords'].latitude, position['coords'].longitude).subscribe(function (res) {
-                    console.log(res);
-                    _this.currentUser.locationInfo = {
-                        status: true,
-                        value: res.results[0].formatted_address
-                    };
-                    resolve(_this.currentUser.locationInfo.value);
-                }, function (error) {
-                    switch (error.code) {
-                        case 1:
-                            console.log('Permission Denied');
-                            break;
-                        case 2:
-                            console.log('Position Unavailable');
-                            break;
-                        case 3:
-                            console.log('Timeout');
-                            break;
-                    }
-                    _this.toast.setMessage('Unable to get Location', 'error');
-                });
-            })
-                .catch(function (err) {
-                console.error(err.message);
-            });
+        return this.getLocation().flatMap(function (data) {
+            return _this.getLocationFromCords(data.coords.latitude, data.coords.longitude);
         });
     };
     AppService.prototype.isDistanceValid = function (shop, customer, radiusValid) {
@@ -947,13 +931,13 @@ var AppService = (function () {
     AppService.prototype.getLocationFromCords = function (lat, lon) {
         var apiKey = this.googleApiKey;
         var getLocationFromCordsUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&key=' + apiKey;
-        return this.http.get(getLocationFromCordsUrl).map(function (res) { return res.json(); });
+        return this.http.get(getLocationFromCordsUrl);
     };
     return AppService;
 }());
 AppService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__app_shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object])
 ], AppService);
 
 var _a, _b;
@@ -2823,16 +2807,17 @@ var AddressService = (function () {
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
     }
     AddressService.prototype.getAddresses = function () {
-        return this.http.get('/api/cats').map(function (res) { return res.json(); });
+        return this.http.get('/api/address').map(function (res) { return res.json(); });
     };
     AddressService.prototype.addAddress = function (cat) {
-        return this.http.post('/api/cat', JSON.stringify(cat), this.options);
+        debugger;
+        return this.http.post('/api/address', JSON.stringify(cat), this.options);
     };
     AddressService.prototype.editAddress = function (cat) {
-        return this.http.put("/api/cat/" + cat._id, JSON.stringify(cat), this.options);
+        return this.http.put("/api/address/" + cat._id, JSON.stringify(cat), this.options);
     };
     AddressService.prototype.deleteAddress = function (cat) {
-        return this.http.delete("/api/cat/" + cat._id, this.options);
+        return this.http.delete("/api/address/" + cat._id, this.options);
     };
     return AddressService;
 }());

@@ -2,7 +2,7 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
-<button class="btn btn-sm btn-warning" [disabled]="" (click)="getLocationData()">Use My Current Location</button>
+<button class="btn btn-sm btn-warning" [disabled]="!showLocationButton" (click)="getLocationData()">Use My Current Location</button>
 
 <div class="card" *ngIf="!isLoading">
   <h4 class="card-header">Current Addresses ({{addresses.length}})</h4>
@@ -26,9 +26,11 @@
             <input class="form-check-input" type="radio" name="address" [value]="address.name" [(ngModel)]="addressSelected">
           </td>
           <td>{{address.name}}</td>
-          <td>
-            <button class="btn btn-sm btn-warning" (click)="enableEditing(address)"><i class="fa fa-pencil"></i> Edit</button> <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash"></i> Delete</button>
+          <td *ngIf="address._id">
+            <button class="btn btn-sm btn-warning" (click)="enableEditing(address)"><i class="fa fa-pencil"></i> Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash"></i> Delete</button>
           </td>
+          <td *ngIf="!address._id"></td>
         </tr>  
       </tbody>
       <tbody *ngIf="isEditing">

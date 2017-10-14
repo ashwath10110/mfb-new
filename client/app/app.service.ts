@@ -3,6 +3,9 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+// import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/map';
 import { ToastComponent } from './../app/shared/toast/toast.component';
 
 @Injectable()
@@ -75,66 +78,27 @@ export class AppService {
 
   constructor(private http: Http,
     public toast: ToastComponent) {
-    this.locationInit();
-    console.log(this.currentUser);
   }
 
-  getPosition(options) {
-    return new Promise(function(resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  getLocation(): Observable<any> {
+    return Observable.create(observer => {
+      if (window.navigator && window.navigator.geolocation) {
+        window.navigator.geolocation.getCurrentPosition(
+          (position) => {
+            observer.next(position);
+            observer.complete();
+          },
+          (error) => observer.error(error)
+        );
+      } else {
+        observer.error('Unsupported Browser');
+      }
     });
   }
 
   locationInit() {
-    
-    return new Promise(resolve => {
-
-      if (!this.currentUser.locationData.status) {
-        resolve(this.currentUser.locationInfo.value);
-      }
-
-      this.getPosition({})
-        .then((position) => {
-
-          this.currentUser.locationData = {
-            status: true,
-            value: position
-          };
-
-          this.currentUser.isLocationValid = {
-            status: true,
-            value: this.isDistanceValid(this.shopDetails.locationChords, position['coords'], this.shopDetails.validDistanceAllowedInKm * 1000)
-          };
-
-          this.getLocationFromCords(position['coords'].latitude, position['coords'].longitude).subscribe(
-            res => {
-              console.log(res);
-              this.currentUser.locationInfo = {
-                status: true,
-                value: res.results[0].formatted_address
-              };
-              resolve(this.currentUser.locationInfo.value);
-            },
-            error => {
-              switch (error.code) {
-                case 1:
-                  console.log('Permission Denied');
-                  break;
-                case 2:
-                  console.log('Position Unavailable');
-                  break;
-                case 3:
-                  console.log('Timeout');
-                  break;
-              }
-              this.toast.setMessage('Unable to get Location', 'error');
-            }
-          );
-        })
-        .catch((err) => {
-          console.error(err.message);
-        });
-      
+    return this.getLocation().flatMap(data => {
+      return this.getLocationFromCords(data.coords.latitude, data.coords.longitude)
     });
   }
 
@@ -154,10 +118,10 @@ export class AppService {
     return (distance <= radiusValid); // returns the distance in meter
   };
 
-  getLocationFromCords(lat, lon): Observable<any> {
+  getLocationFromCords(lat, lon) {
     let apiKey = this.googleApiKey;
     let getLocationFromCordsUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lon + '&key=' + apiKey;
-    return this.http.get(getLocationFromCordsUrl).map(res => res.json());
+    return this.http.get(getLocationFromCordsUrl);
   }
 
 }
