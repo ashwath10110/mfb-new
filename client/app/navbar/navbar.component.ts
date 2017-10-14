@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { CartService } from './../items/cart.service';
+import { CartComponent } from './../items/cart/cart.component';
 
 @Component({
   selector: 'app-navbar',
