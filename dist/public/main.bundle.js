@@ -1217,7 +1217,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-bottom\">\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse\">\n</nav>"
 
 /***/ }),
 
