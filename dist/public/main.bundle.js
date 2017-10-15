@@ -414,6 +414,7 @@ var AddressesComponent = (function () {
         this.isLoading = true;
         this.showLocationButton = false;
         this.appService.locationInit().subscribe(function (data) {
+            debugger;
             var address = JSON.parse(data["_body"]).results[0].formatted_address;
             _this.addresses.push({ name: address });
             _this.showLocationButton = false;
@@ -421,7 +422,8 @@ var AddressesComponent = (function () {
                 status: true,
                 value: address
             };
-            if (_this.appService.currentUser.distanceFromShop.status) {
+            debugger;
+            if (_this.appService.currentUser.distanceFromShop.status == 1) {
                 _this.isAddressValidInDistance = true;
             }
             _this.isLoading = false;
@@ -905,7 +907,7 @@ var AppService = (function () {
             },
             distanceFromShop: {
                 status: 0,
-                value: {}
+                value: 0
             },
             isLocationValid: {
                 status: false,
@@ -928,7 +930,7 @@ var AppService = (function () {
             locationInfo: {
                 value: "Shop is in Secunderabad"
             },
-            validDistanceAllowedInKm: 10
+            validDistanceAllowedInKm: 20
         };
         this.googleApiKey = 'AIzaSyAkL6AxoO5S7ACBqvO-A2eMstnbx8pU9oE';
         this.state = {
@@ -973,8 +975,13 @@ var AppService = (function () {
                 status: true,
                 value: data
             };
+            debugger;
             var lat = _this.currentUser.locationData.value['coords'].latitude;
             var long = _this.currentUser.locationData.value['coords'].longitude;
+            _this.currentUser.distanceFromShop = {
+                status: -1,
+                value: data
+            };
             if (_this.isDistanceValid(_this.shopDetails.locationChords, _this.currentUser.locationData.value['coords'], _this.shopDetails.validDistanceAllowedInKm * 1000)) {
                 _this.currentUser.distanceFromShop = {
                     status: 1,
@@ -985,6 +992,7 @@ var AppService = (function () {
         });
     };
     AppService.prototype.isDistanceValid = function (shop, customer, radiusValid) {
+        debugger;
         var rad = function (x) {
             return x * Math.PI / 180;
         };

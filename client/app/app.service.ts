@@ -32,7 +32,7 @@ export class AppService {
     },
     distanceFromShop: {
       status: 0,
-      value: {}
+      value: 0
     },
     isLocationValid: {
       status: false,
@@ -56,7 +56,7 @@ export class AppService {
     locationInfo: {
       value: "Shop is in Secunderabad"
     },
-    validDistanceAllowedInKm: 10
+    validDistanceAllowedInKm: 20
   }
 
   googleApiKey = 'AIzaSyAkL6AxoO5S7ACBqvO-A2eMstnbx8pU9oE';
@@ -83,7 +83,8 @@ export class AppService {
     }
   };
 
-  constructor(private http: Http,
+  constructor(
+    private http: Http,
     public toast: ToastComponent) {
   }
 
@@ -104,16 +105,21 @@ export class AppService {
   }
 
   locationInit() {
-
     return this.getLocation().flatMap(data => {
-
       this.currentUser.locationData = {
         status: true,
         value: data
       };
 
+      debugger;
+
       var lat = this.currentUser.locationData.value['coords'].latitude;
       var long = this.currentUser.locationData.value['coords'].longitude;
+
+      this.currentUser.distanceFromShop = {
+        status: -1,
+        value: data
+      };
 
       if (this.isDistanceValid(this.shopDetails.locationChords, this.currentUser.locationData.value['coords'], this.shopDetails.validDistanceAllowedInKm * 1000)) {
         this.currentUser.distanceFromShop = {
@@ -126,6 +132,7 @@ export class AppService {
   }
 
   isDistanceValid(shop, customer, radiusValid) {
+    debugger;
     var rad = function(x) {
       return x * Math.PI / 180;
     };
