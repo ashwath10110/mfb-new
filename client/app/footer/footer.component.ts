@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 import { CartComponent } from './../items/cart/cart.component';
+import { CartService } from './../items/cart.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
 	selector: 'app-footer',
@@ -8,7 +12,9 @@ import { CartComponent } from './../items/cart/cart.component';
 })
 export class FooterComponent implements OnInit {
 
-	constructor() { }
+	constructor(private CartService: CartService,
+		public auth: AuthService,
+		public router: Router) { }
 
 	ngOnInit() {
 	}
