@@ -1231,7 +1231,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <nav class=\"navbar navbar-inverse navbar-fixed-bottom\">\n<div *ngIf=\"authService.loggedIn\">\n  <cart></cart>  \n</div>\n<div>\n\tHi{{user}}\n</div>\n\n</nav>\n -->\n<nav id=\"nav-main\" class=\"navbar navbar-inverse navbar-fixed-bottom\">\n  <div class=\"container-fluid\">\n\n      <!-- <a *ngIf=\"auth.loggedIn\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\"><cart></cart></a> -->\n\n    <div class=\"\" id=\"myNavbar\">\n      <ul class=\"\">\n      </ul>\n      <ul class=\"\">\n        <li *ngIf=\"auth.loggedIn\">\n          <!-- <cart></cart>   -->\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = ""
 
 /***/ }),
 
@@ -1522,7 +1522,7 @@ var _a, _b;
 /***/ "../../../../../client/app/items/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency:'USD':true:'1.0-0' }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>\n    </div>\n    <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button>\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
+module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency:'USD':true:'1.0-0' }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>\n    </div>\n    <!-- <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button> -->\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
 
 /***/ }),
 
@@ -1617,6 +1617,7 @@ var CartComponent = (function () {
         this.cartService.deleteProductFromCart(product);
     };
     CartComponent.prototype.checkout = function () {
+        debugger;
         this.expanded = false;
         this.router.navigate(['/addresses']);
         console.log("To Checkout");

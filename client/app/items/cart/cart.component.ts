@@ -71,6 +71,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
+    debugger;
     this.expanded = false;
     this.router.navigate(['/addresses']);
 
