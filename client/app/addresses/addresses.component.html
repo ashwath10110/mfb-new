@@ -22,15 +22,28 @@
       </tbody>
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let address of addresses">
-          <td>
+          <td *ngIf="address._id">
             <input class="form-check-input" type="radio" name="address" [value]="address.name" [(ngModel)]="addressSelected">
+          </td>
+          <td *ngIf="!address._id">
+            <div *ngIf="isAddressValidInDistance">
+              <input class="form-check-input" type="radio" name="address" [value]="address.name" [(ngModel)]="addressSelected">              
+            </div>
           </td>
           <td>{{address.name}}</td>
           <td *ngIf="address._id">
             <button class="btn btn-sm btn-warning" (click)="enableEditing(address)"><i class="fa fa-pencil"></i> Edit</button>
             <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash"></i> Delete</button>
           </td>
-          <td *ngIf="!address._id"></td>
+          <td *ngIf="!address._id">
+            <div *ngIf="isAddressValidInDistance">
+              <button class="btn btn-sm btn-warning" (click)="enableEditing(address)"><i class="fa fa-pencil"></i> Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteAddress(address)"><i class="fa fa-trash"></i> Delete</button>
+            </div>
+            <div *ngIf="!isAddressValidInDistance">
+              <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>
+            </div>
+          </td>
         </tr>  
       </tbody>
       <tbody *ngIf="isEditing">

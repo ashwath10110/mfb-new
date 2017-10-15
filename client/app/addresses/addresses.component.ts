@@ -30,6 +30,7 @@ export class AddressesComponent implements OnInit {
   locationDataObj: any;
   locationLoading = false;
   showLocationButton = true;
+  isAddressValidInDistance = false;
 
   constructor(private addressService: AddressService,
     private cartService: CartService,
@@ -44,11 +45,11 @@ export class AddressesComponent implements OnInit {
       name: this.name
     });
     this.getAddresses();
-
-    // this.getLocationData();
   }
 
   getLocationData() {
+    this.isLoading = true;
+    this.showLocationButton = false;
     this.appService.locationInit().subscribe((data) => {
       let address = JSON.parse(data["_body"]).results[0].formatted_address;
       this.addresses.push({ name: address });
@@ -57,9 +58,14 @@ export class AddressesComponent implements OnInit {
         status: true,
         value: address
       };
-      this.locationLoading = false;
+
+      if (this.appService.currentUser.distanceFromShop.status) {
+        this.isAddressValidInDistance = true;
+      }
+
+      this.isLoading = false;
     }, () => {
-      this.locationLoading = false;
+      this.isLoading = false;
     });
   }
 

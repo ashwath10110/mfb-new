@@ -31,7 +31,7 @@ export class AppService {
       value: {}
     },
     distanceFromShop: {
-      status: false,
+      status: 0,
       value: {}
     },
     isLocationValid: {
@@ -105,6 +105,22 @@ export class AppService {
 
   locationInit() {
     return this.getLocation().flatMap(data => {
+
+      debugger;
+      this.currentUser.locationData = {
+        status: true,
+        value: data
+      };
+
+      var lat = this.currentUser.locationData.value['coords'].latitude;
+      var long = this.currentUser.locationData.value['coords'].longitude;
+
+      if (this.isDistanceValid(this.shopDetails.locationChords, this.currentUser.locationData.value['coords'], this.shopDetails.validDistanceAllowedInKm * 1000)) {
+        this.currentUser.distanceFromShop = {
+          status: 1,
+          value: data
+        };
+      }
       return this.getLocationFromCords(data.coords.latitude, data.coords.longitude)
     });
   }
