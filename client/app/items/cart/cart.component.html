@@ -19,7 +19,7 @@
       </div>
       <button type="button" class="pay-btn" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>
     </div>
-    <!-- <button type="button" class="close-btn" *ngIf='expanded' (click)="onCartClick()">Close</button> -->
+    <button type="button" class="close-btn" *ngIf='expanded' (click)="onCartClick()">Close</button>
   </div>
 </div>
 <div class="overlay" [class.shown]='expanded'>

@@ -42,6 +42,11 @@
           </a>
         </li>
         <li>
+          <a routerLink="/orders" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <i class="fa fa-user"></i> Orders
+          </a>
+        </li>
+        <li>
           <a routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-sign-out"></i> Logout
           </a>

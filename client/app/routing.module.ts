@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { CatsComponent } from './cats/cats.component';
 import { ItemsComponent } from './items/items.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { OrdersComponent } from './orders/orders.component';
 
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
@@ -22,27 +23,8 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'about', component: AboutComponent },
   { path: 'items', component: ItemsComponent },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardAdmin] },
   { path: 'items/:id', component: ItemsComponent },
-  // { path: 'items', component: ItemsComponent ,
-  // children: [
-  //            {
-  //              path: 'leafy-green-vegetables',
-  //              component: CatsComponent
-  //             },
-  //             {
-  //              path: 'fresh-fruits',
-  //              component: CatsComponent
-  //             },
-  //             {
-  //              path: 'exotic-vegetables',
-  //              component: CatsComponent
-  //             },
-  //             {
-  //              path: 'fresh-vegetables',
-  //              component: CatsComponent
-  //             }
-  //           ]
-  // },
   { path: 'cats', component: CatsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

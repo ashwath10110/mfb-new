@@ -7,6 +7,7 @@ import { AddressService } from '../services/address.service';
 import { AppService } from './../app.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { CartService } from './../items/cart.service';
+import { ItemsService } from './../services/items.service';
 
 @Component({
   selector: 'app-addresses',
@@ -31,10 +32,12 @@ export class AddressesComponent implements OnInit {
   locationLoading = false;
   showLocationButton = true;
   isAddressValidInDistance = false;
+  loadWholeScreen = false;
 
   constructor(private addressService: AddressService,
     private cartService: CartService,
     public appService: AppService,
+    public itemsService: ItemsService,
     private formBuilder: FormBuilder,
     private http: Http,
     public toast: ToastComponent,
@@ -139,10 +142,32 @@ export class AddressesComponent implements OnInit {
   }
 
   proceedToPay() {
-    if (this.appService.currentUser.locationInfo.status) {
-      this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
-    }
-    this.router.navigate(['/checkout']);
+    let cartProducts = {
+      products: this.cartService.products
+    };
+    this.loadWholeScreen = true;
+    this.itemsService.isCartValid(cartProducts).subscribe(
+      res => {
+        this.loadWholeScreen = false;
+        if (res['status']) {
+          if (res['data']['value']) {
+            if (this.appService.currentUser.locationInfo.status) {
+              this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
+            }
+            this.router.navigate(['/checkout']);
+          }
+          else {
+            alert('Some items might not be available. Your cart has been refreshed.');
+            this.toast.setMessage('Some items might not be available Your cart has been refreshed.', 'warning');
+            this.cartService.refreshCart();
+          }
+        }
+      },
+      error => {
+        this.loadWholeScreen = false;
+        console.log(error);
+      }
+    );
   }
 
 }

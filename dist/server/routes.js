@@ -4,7 +4,7 @@ var express = require("express");
 var user_1 = require("./controllers/user");
 var cat_1 = require("./controllers/cat");
 var address_1 = require("./controllers/address");
-console.log(address_1.default);
+var orders_1 = require("./controllers/orders");
 var items_1 = require("./controllers/items");
 function setRoutes(app) {
     var router = express.Router();
@@ -12,6 +12,7 @@ function setRoutes(app) {
     var userCtrl = new user_1.default();
     var itemsCtrl = new items_1.default();
     var addressCtrl = new address_1.default();
+    var orderCtrl = new orders_1.default();
     // Cats
     router.route('/cats').get(catCtrl.getAll);
     router.route('/cats/count').get(catCtrl.count);
@@ -25,16 +26,22 @@ function setRoutes(app) {
     router.route('/items/count').get(itemsCtrl.count);
     router.route('/items').post(itemsCtrl.insert);
     router.route('/items/:id').get(itemsCtrl.get);
-    // router.route('/items/:type').get(itemsCtrl.getByType);
     router.route('/items/:id').put(itemsCtrl.update);
     router.route('/items/:id').delete(itemsCtrl.delete);
+    router.route('/items/isCartValid').post(itemsCtrl.isCartValid);
     //Address
     router.route('/address').get(addressCtrl.getAll);
     router.route('/address').post(addressCtrl.insert);
     router.route('/address/:id').get(addressCtrl.get);
-    // router.route('/items/:type').get(itemsCtrl.getByType);
     router.route('/address/:id').put(addressCtrl.update);
     router.route('/address/:id').delete(addressCtrl.delete);
+    //Orders
+    router.route('/order').get(orderCtrl.getAll);
+    router.route('/order').post(orderCtrl.insert);
+    router.route('/order/count').get(orderCtrl.count);
+    router.route('/order/:id').get(orderCtrl.get);
+    router.route('/order/:id').put(orderCtrl.update);
+    router.route('/order/:id').delete(orderCtrl.delete);
     // Users
     router.route('/login').post(userCtrl.login);
     router.route('/users').get(userCtrl.getAll);

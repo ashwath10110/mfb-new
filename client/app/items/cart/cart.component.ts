@@ -71,7 +71,6 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    debugger;
     this.expanded = false;
     this.router.navigate(['/addresses']);
 
@@ -81,4 +80,5 @@ export class CartComponent implements OnInit {
   onCartClick() {
     this.expanded = !this.expanded;
   }
+
 }

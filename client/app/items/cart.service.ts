@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Product } from './shared/product.model';
 import { Subject } from 'rxjs/Subject';
 import { LocalStorageService } from './../services/local-storage/local-storage.service';
+import { ItemsService } from './../services/items.service';
 import { AppService } from './../app.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Injectable()
 export class CartService {
@@ -15,7 +17,9 @@ export class CartService {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private appService: AppService
+    private appService: AppService,
+    private itemsService: ItemsService,
+    public router: Router
   ) {
   }
 
@@ -38,6 +42,15 @@ export class CartService {
       }
     }
     this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal })
+  }
+
+  refreshCart() {
+    this.products = [];
+    this.cartTotal = 0;
+    this.itemsService.state['isInitialised'] = false;
+    this.updateLocalStorage();
+    this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
+    this.router.navigate(['/items']);
   }
 
   addProductToCart(product) {
@@ -84,13 +97,13 @@ export class CartService {
       }
     }
     this.updateLocalStorage();
-    this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal })
+    this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
   }
 
   flushCart() {
     this.products = [];
     this.cartTotal = 0;
     this.updateLocalStorage();
-    this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal })
+    this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
   }
 }

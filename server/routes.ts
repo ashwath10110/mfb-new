@@ -7,8 +7,10 @@ import CatCtrl from './controllers/cat';
 import Cat from './models/cat';
 
 import AddressCtrl from './controllers/address';
-console.log(AddressCtrl);
 import address from './models/address';
+
+import OrderCtrl from './controllers/orders';
+import order from './models/orders';
 
 import ItemsCtrl from './controllers/items';
 import item from './models/item';
@@ -21,6 +23,7 @@ export default function setRoutes(app) {
   const userCtrl = new UserCtrl();
   const itemsCtrl = new ItemsCtrl();
   const addressCtrl = new AddressCtrl();
+  const orderCtrl = new OrderCtrl();
 
   // Cats
   router.route('/cats').get(catCtrl.getAll);
@@ -36,17 +39,24 @@ export default function setRoutes(app) {
   router.route('/items/count').get(itemsCtrl.count);
   router.route('/items').post(itemsCtrl.insert);
   router.route('/items/:id').get(itemsCtrl.get);
-  // router.route('/items/:type').get(itemsCtrl.getByType);
   router.route('/items/:id').put(itemsCtrl.update);
   router.route('/items/:id').delete(itemsCtrl.delete);
+  router.route('/items/isCartValid').post(itemsCtrl.isCartValid);
 
   //Address
   router.route('/address').get(addressCtrl.getAll);
   router.route('/address').post(addressCtrl.insert);
   router.route('/address/:id').get(addressCtrl.get);
-  // router.route('/items/:type').get(itemsCtrl.getByType);
   router.route('/address/:id').put(addressCtrl.update);
   router.route('/address/:id').delete(addressCtrl.delete);
+
+  //Orders
+  router.route('/order').get(orderCtrl.getAll);
+  router.route('/order').post(orderCtrl.insert);
+  router.route('/order/count').get(orderCtrl.count);
+  router.route('/order/:id').get(orderCtrl.get);
+  router.route('/order/:id').put(orderCtrl.update);
+  router.route('/order/:id').delete(orderCtrl.delete);
 
   // Users
   router.route('/login').post(userCtrl.login);

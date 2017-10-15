@@ -13,6 +13,14 @@ import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.co
 })
 export class AppComponent {
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService) {
+if (window["Worker"]) {
+
+ console.log('available');
+
+}else{
+	console.log("NA");
+   }
+}
 
 }

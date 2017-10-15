@@ -104,9 +104,9 @@ export class AppService {
   }
 
   locationInit() {
+
     return this.getLocation().flatMap(data => {
 
-      debugger;
       this.currentUser.locationData = {
         status: true,
         value: data

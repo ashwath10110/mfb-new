@@ -326,7 +326,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/addresses/addresses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Select Address to use</th>\n          <th>Name</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"addresses.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let address of addresses\">\n          <td *ngIf=\"address._id\">\n            <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              NA\n            </div>\n          </td>\n          <td>{{address.name}}</td>\n          <td *ngIf=\"address._id\">\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n            </div>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n              </div>\n               <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new address</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>\n\n<button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Select Address to use</th>\n          <th>Name</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"addresses.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let address of addresses\">\n          <td *ngIf=\"address._id\">\n            <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              NA\n            </div>\n          </td>\n          <td>{{address.name}}</td>\n          <td *ngIf=\"address._id\">\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n            </div>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n              </div>\n               <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new address</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>\n\n<button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n<div *ngIf=\"loadWholeScreen\">\n  \n</div>\n\n"
 
 /***/ }),
 
@@ -361,6 +361,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_items_service__ = __webpack_require__("../../../../../client/app/services/items.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -378,11 +379,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AddressesComponent = (function () {
-    function AddressesComponent(addressService, cartService, appService, formBuilder, http, toast, router) {
+    function AddressesComponent(addressService, cartService, appService, itemsService, formBuilder, http, toast, router) {
         this.addressService = addressService;
         this.cartService = cartService;
         this.appService = appService;
+        this.itemsService = itemsService;
         this.formBuilder = formBuilder;
         this.http = http;
         this.toast = toast;
@@ -398,6 +401,7 @@ var AddressesComponent = (function () {
         this.locationLoading = false;
         this.showLocationButton = true;
         this.isAddressValidInDistance = false;
+        this.loadWholeScreen = false;
     }
     AddressesComponent.prototype.ngOnInit = function () {
         this.addAddressForm = this.formBuilder.group({
@@ -477,10 +481,30 @@ var AddressesComponent = (function () {
         }
     };
     AddressesComponent.prototype.proceedToPay = function () {
-        if (this.appService.currentUser.locationInfo.status) {
-            this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
-        }
-        this.router.navigate(['/checkout']);
+        var _this = this;
+        var cartProducts = {
+            products: this.cartService.products
+        };
+        this.loadWholeScreen = true;
+        this.itemsService.isCartValid(cartProducts).subscribe(function (res) {
+            _this.loadWholeScreen = false;
+            if (res['status']) {
+                if (res['data']['value']) {
+                    if (_this.appService.currentUser.locationInfo.status) {
+                        _this.addCurrentAddress({ name: _this.appService.currentUser.locationInfo.value });
+                    }
+                    _this.router.navigate(['/checkout']);
+                }
+                else {
+                    alert('Some items might not be available. Your cart has been refreshed.');
+                    _this.toast.setMessage('Some items might not be available Your cart has been refreshed.', 'warning');
+                    _this.cartService.refreshCart();
+                }
+            }
+        }, function (error) {
+            _this.loadWholeScreen = false;
+            console.log(error);
+        });
     };
     return AddressesComponent;
 }());
@@ -490,10 +514,10 @@ AddressesComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/addresses/addresses.component.html"),
         styles: [__webpack_require__("../../../../../client/app/addresses/addresses.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _h || Object])
 ], AddressesComponent);
 
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=addresses.component.js.map
 
 /***/ }),
@@ -626,6 +650,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppComponent = (function () {
     function AppComponent(auth) {
         this.auth = auth;
+        if (window["Worker"]) {
+            console.log('available');
+        }
+        else {
+            console.log("NA");
+        }
     }
     return AppComponent;
 }());
@@ -686,20 +716,24 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__items_cart_preview_cart_preview_component__ = __webpack_require__("../../../../../client/app/items/cart-preview/cart-preview.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_primeng_primeng__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45_primeng_primeng__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -777,7 +811,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_22__add_items_add_items_component__["a" /* AddItemsComponent */],
             __WEBPACK_IMPORTED_MODULE_36__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */],
             __WEBPACK_IMPORTED_MODULE_30__location_location_component__["a" /* LocationComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__addresses_addresses_component__["a" /* AddressesComponent */]
+            __WEBPACK_IMPORTED_MODULE_37__addresses_addresses_component__["a" /* AddressesComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__orders_orders_component__["a" /* OrdersComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__routing_module__["a" /* RoutingModule */],
@@ -785,8 +820,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_3__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_43_primeng_primeng__["AccordionModule"],
-            __WEBPACK_IMPORTED_MODULE_44__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
+            __WEBPACK_IMPORTED_MODULE_45_primeng_primeng__["AccordionModule"],
+            __WEBPACK_IMPORTED_MODULE_46__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_10__services_auth_service__["a" /* AuthService */],
@@ -794,13 +829,14 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */],
             __WEBPACK_IMPORTED_MODULE_8__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_9__app_service__["a" /* AppService */],
-            __WEBPACK_IMPORTED_MODULE_38__items_data_service__["a" /* DataService */],
+            __WEBPACK_IMPORTED_MODULE_39__items_data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_7__services_cat_service__["a" /* CatService */],
-            __WEBPACK_IMPORTED_MODULE_39__items_cart_service__["a" /* CartService */],
+            __WEBPACK_IMPORTED_MODULE_40__items_cart_service__["a" /* CartService */],
             __WEBPACK_IMPORTED_MODULE_6__services_items_service__["a" /* ItemsService */],
-            __WEBPACK_IMPORTED_MODULE_40__services_tabs_service__["a" /* TabsService */],
-            __WEBPACK_IMPORTED_MODULE_41__services_address_service__["a" /* AddressService */],
-            __WEBPACK_IMPORTED_MODULE_42__services_local_storage_local_storage_service__["a" /* LocalStorageService */]
+            __WEBPACK_IMPORTED_MODULE_41__services_tabs_service__["a" /* TabsService */],
+            __WEBPACK_IMPORTED_MODULE_42__services_address_service__["a" /* AddressService */],
+            __WEBPACK_IMPORTED_MODULE_44__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
+            __WEBPACK_IMPORTED_MODULE_43__services_orders_service__["a" /* OrderService */]
         ],
         schemas: [__WEBPACK_IMPORTED_MODULE_0__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */]]
@@ -928,7 +964,6 @@ var AppService = (function () {
     AppService.prototype.locationInit = function () {
         var _this = this;
         return this.getLocation().flatMap(function (data) {
-            debugger;
             _this.currentUser.locationData = {
                 status: true,
                 value: data
@@ -1432,7 +1467,9 @@ CartPreviewComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_items_service__ = __webpack_require__("../../../../../client/app/services/items.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1446,10 +1483,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var CartService = (function () {
-    function CartService(localStorageService, appService) {
+    function CartService(localStorageService, appService, itemsService, router) {
         this.localStorageService = localStorageService;
         this.appService = appService;
+        this.itemsService = itemsService;
+        this.router = router;
         this.products = [];
         this.cartTotal = 0;
         this.productAddedSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
@@ -1475,6 +1516,14 @@ var CartService = (function () {
             }
         }
         this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
+    };
+    CartService.prototype.refreshCart = function () {
+        this.products = [];
+        this.cartTotal = 0;
+        this.itemsService.state['isInitialised'] = false;
+        this.updateLocalStorage();
+        this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
+        this.router.navigate(['/items']);
     };
     CartService.prototype.addProductToCart = function (product) {
         var exists = false;
@@ -1529,10 +1578,10 @@ var CartService = (function () {
 }());
 CartService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_local_storage_local_storage_service__["a" /* LocalStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_local_storage_local_storage_service__["a" /* LocalStorageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_local_storage_local_storage_service__["a" /* LocalStorageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_local_storage_local_storage_service__["a" /* LocalStorageService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_items_service__["a" /* ItemsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_items_service__["a" /* ItemsService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["Router"]) === "function" && _d || Object])
 ], CartService);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=cart.service.js.map
 
 /***/ }),
@@ -1540,7 +1589,7 @@ var _a, _b;
 /***/ "../../../../../client/app/items/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency:'USD':true:'1.0-0' }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>\n    </div>\n    <!-- <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button> -->\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
+module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency:'USD':true:'1.0-0' }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>\n    </div>\n    <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button>\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
 
 /***/ }),
 
@@ -1635,7 +1684,6 @@ var CartComponent = (function () {
         this.cartService.deleteProductFromCart(product);
     };
     CartComponent.prototype.checkout = function () {
-        debugger;
         this.expanded = false;
         this.router.navigate(['/addresses']);
         console.log("To Checkout");
@@ -1761,32 +1809,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ItemsComponent = (function () {
-    function ItemsComponent(dataService, cartService, exoticVegetablesService, route, appService) {
+    function ItemsComponent(dataService, cartService, itemsService, route, appService) {
         this.dataService = dataService;
         this.cartService = cartService;
-        this.exoticVegetablesService = exoticVegetablesService;
+        this.itemsService = itemsService;
         this.route = route;
         this.appService = appService;
         this.products = [];
-        this.isLoading = true;
-        this.isEditing = false;
         this.leafyGreenVegetable = {};
         this.leafyGreenVegetables = [];
+        this.isLoading = true;
+        this.isEditing = false;
         this.originalData = [];
     }
     ItemsComponent.prototype.getItems = function (type) {
         var _this = this;
-        if (this.exoticVegetablesService.state['isInitialised']) {
-            this.products = this.exoticVegetablesService.state['data'][type]['items'];
+        if (this.itemsService.state['isInitialised']) {
+            this.products = this.itemsService.state['data'][type]['items'];
             this.isLoading = false;
         }
         else {
             this.isLoading = true;
-            this.exoticVegetablesService.getItems().subscribe(function (data) {
-                _this.processItems(data, _this.exoticVegetablesService.state);
-                _this.products = _this.exoticVegetablesService.state['data'][type]['items'];
+            this.itemsService.getItems().subscribe(function (data) {
+                _this.processItems(data, _this.itemsService.state);
+                _this.products = _this.itemsService.state['data'][type]['items'];
                 _this.isLoading = false;
-                _this.exoticVegetablesService.state['isInitialised'] = true;
+                _this.itemsService.state['isInitialised'] = true;
             }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
         }
     };
@@ -1799,20 +1847,21 @@ var ItemsComponent = (function () {
     };
     ItemsComponent.prototype.getLeafyGreenVegetables = function () {
         var _this = this;
-        this.exoticVegetablesService.getLeafyGreenVegetables().subscribe(function (data) {
+        this.itemsService.getLeafyGreenVegetables().subscribe(function (data) {
             _this.products = data;
         }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
-    ItemsComponent.prototype.ngOnInit = function () {
+    ItemsComponent.prototype.initCart = function () {
         var _this = this;
-        console.log(this.appService);
         this.sub = this.route.params.subscribe(function (params) {
             _this.typeOfVegetables = params['id'];
-            console.log(_this.typeOfVegetables);
             if (_this.typeOfVegetables) {
                 _this.getItems(_this.typeOfVegetables);
             }
         });
+    };
+    ItemsComponent.prototype.ngOnInit = function () {
+        this.initCart();
     };
     return ItemsComponent;
 }());
@@ -2453,7 +2502,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"!showCart\">\n          <cart></cart>\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"!showCart\">\n          <cart></cart>\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -2544,6 +2593,159 @@ NotFoundComponent = __decorate([
 ], NotFoundComponent);
 
 //# sourceMappingURL=not-found.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/orders/orders.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../client/app/orders/orders.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Select Address to use</th>\n          <th>Name</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"addresses.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let address of addresses\">\n          <td *ngIf=\"address._id\">\n            <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              NA\n            </div>\n          </td>\n          <td>{{address.name}}</td>\n          <td *ngIf=\"address._id\">\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n          <td *ngIf=\"!address._id\">\n            <div *ngIf=\"isAddressValidInDistance\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </div>\n            <div *ngIf=\"!isAddressValidInDistance\">\n              <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n            </div>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n              </div>\n               <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new address</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../client/app/orders/orders.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var OrdersComponent = (function () {
+    function OrdersComponent(addressService, orderService, appService, formBuilder, http, toast, router) {
+        this.addressService = addressService;
+        this.orderService = orderService;
+        this.appService = appService;
+        this.formBuilder = formBuilder;
+        this.http = http;
+        this.toast = toast;
+        this.router = router;
+        this.address = {};
+        this.addresses = [];
+        this.isLoading = true;
+        this.isEditing = false;
+        this.name = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required);
+        this.showLocationDataFlag = false;
+        this.locationData = '';
+        this.addressSelected = '';
+        this.locationLoading = false;
+        this.showLocationButton = true;
+        this.isAddressValidInDistance = false;
+    }
+    OrdersComponent.prototype.ngOnInit = function () {
+        this.addAddressForm = this.formBuilder.group({
+            name: this.name,
+            customerDetails: this.customerDetails,
+            items: this.items,
+            cartTotal: this.cartTotal,
+            deliveryDetails: this.deliveryDetails
+        });
+        this.getAddresses();
+    };
+    OrdersComponent.prototype.getAddresses = function () {
+        var _this = this;
+        this.addressService.getAddresses().subscribe(function (data) {
+            _this.addresses = data;
+        }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+    };
+    OrdersComponent.prototype.addAddress = function () {
+        var _this = this;
+        this.addressService.addAddress(this.addAddressForm.value).subscribe(function (res) {
+            var newAddress = res.json();
+            _this.addresses.push(newAddress);
+            _this.addAddressForm.reset();
+            _this.toast.setMessage('Address added successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    OrdersComponent.prototype.addCurrentAddress = function (address) {
+        var _this = this;
+        this.addressService.addAddress(address).subscribe(function (res) {
+            var newAddress = res.json();
+            _this.addresses.push(newAddress);
+            _this.addAddressForm.reset();
+            _this.toast.setMessage('Address added successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    OrdersComponent.prototype.enableEditing = function (address) {
+        this.isEditing = true;
+        this.address = address;
+    };
+    OrdersComponent.prototype.cancelEditing = function () {
+        this.isEditing = false;
+        this.address = {};
+        this.toast.setMessage('Address editing cancelled.', 'warning');
+    };
+    OrdersComponent.prototype.editAddress = function (address) {
+        var _this = this;
+        this.addressService.editAddress(address).subscribe(function (res) {
+            _this.isEditing = false;
+            _this.address = address;
+            _this.toast.setMessage('Address edited successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    OrdersComponent.prototype.deleteAddress = function (address) {
+        var _this = this;
+        if (window.confirm('Are you sure you want to permanently delete this item?')) {
+            this.addressService.deleteAddress(address).subscribe(function (res) {
+                var pos = _this.addresses.map(function (elem) { return elem._id; }).indexOf(address._id);
+                _this.addresses.splice(pos, 1);
+                _this.toast.setMessage('Address deleted successfully.', 'success');
+            }, function (error) { return console.log(error); });
+        }
+    };
+    return OrdersComponent;
+}());
+OrdersComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-orders',
+        template: __webpack_require__("../../../../../client/app/orders/orders.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/orders/orders.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__services_orders_service__["a" /* OrderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_orders_service__["a" /* OrderService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _g || Object])
+], OrdersComponent);
+
+var _a, _b, _c, _d, _e, _f, _g;
+//# sourceMappingURL=orders.component.js.map
 
 /***/ }),
 
@@ -2785,8 +2987,9 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__ = __webpack_require__("../../../../../client/app/cats/cats.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__items_items_component__ = __webpack_require__("../../../../../client/app/items/items.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_auth_guard_login_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-login.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_auth_guard_admin_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-admin.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-admin.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2809,39 +3012,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
     { path: 'checkout', component: __WEBPACK_IMPORTED_MODULE_9__checkout_checkout_component__["a" /* CheckoutComponent */] },
     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_2__about_about_component__["a" /* AboutComponent */] },
     { path: 'items', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
+    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__["a" /* OrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
     { path: 'items/:id', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
-    // { path: 'items', component: ItemsComponent ,
-    // children: [
-    //            {
-    //              path: 'leafy-green-vegetables',
-    //              component: CatsComponent
-    //             },
-    //             {
-    //              path: 'fresh-fruits',
-    //              component: CatsComponent
-    //             },
-    //             {
-    //              path: 'exotic-vegetables',
-    //              component: CatsComponent
-    //             },
-    //             {
-    //              path: 'fresh-vegetables',
-    //              component: CatsComponent
-    //             }
-    //           ]
-    // },
     { path: 'cats', component: __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__["a" /* CatsComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__register_register_component__["a" /* RegisterComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
     { path: 'logout', component: __WEBPACK_IMPORTED_MODULE_5__logout_logout_component__["a" /* LogoutComponent */] },
     { path: 'addresses', component: __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__["a" /* AddressesComponent */] },
-    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_6__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_14__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
-    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__["a" /* AdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
+    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_6__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
+    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__["a" /* AdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
     { path: 'notfound', component: __WEBPACK_IMPORTED_MODULE_8__not_found_not_found_component__["a" /* NotFoundComponent */] },
     { path: '**', redirectTo: '/notfound' }
 ];
@@ -3170,7 +3355,6 @@ var ItemsService = (function () {
                 }
             }
         };
-        // this.getItems_();
     }
     ItemsService.prototype.processItems = function (items) {
         for (var i = 0; i < items.length; i++) {
@@ -3179,11 +3363,14 @@ var ItemsService = (function () {
             this.state.data[type].push(currentItem);
         }
     };
+    ItemsService.prototype.isCartValid = function (leafyGreenVegetables) {
+        return this.http.post('/api/items/isCartValid', JSON.stringify(leafyGreenVegetables), this.options).map(function (res) { return res.json(); });
+    };
     ItemsService.prototype.getItems = function () {
         return this.http.get('/api/items').map(function (res) { return res.json(); });
     };
     ItemsService.prototype.getItemsByType = function (type) {
-        return this.http.get('/api/items/' + type).map(function (res) { return res.json(); });
+        return this.http.get('/api/items' + type).map(function (res) { return res.json(); });
     };
     ItemsService.prototype.getLeafyGreenVegetables = function () {
         return this.http.get('/api/items').map(function (res) { return res.json(); });
@@ -3260,6 +3447,63 @@ LocalStorageService = __decorate([
 
 var _a;
 //# sourceMappingURL=local-storage.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/services/orders.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var OrderService = (function () {
+    function OrderService(http) {
+        this.http = http;
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
+    }
+    OrderService.prototype.getOrders = function () {
+        return this.http.get('/api/order').map(function (res) { return res.json(); });
+    };
+    OrderService.prototype.countOrders = function () {
+        return this.http.get('/api/order/count').map(function (res) { return res.json(); });
+    };
+    OrderService.prototype.addOrder = function (leafyGreenVegetables) {
+        return this.http.post('/api/order', JSON.stringify(leafyGreenVegetables), this.options);
+    };
+    OrderService.prototype.getOrder = function (leafyGreenVegetables) {
+        return this.http.get("/api/order/" + leafyGreenVegetables._id).map(function (res) { return res.json(); });
+    };
+    OrderService.prototype.editOrder = function (leafyGreenVegetables) {
+        return this.http.put("/api/order/" + leafyGreenVegetables._id, JSON.stringify(leafyGreenVegetables), this.options);
+    };
+    OrderService.prototype.deleteOrder = function (leafyGreenVegetables) {
+        return this.http.delete("/api/order/" + leafyGreenVegetables._id, this.options);
+    };
+    return OrderService;
+}());
+OrderService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
+], OrderService);
+
+var _a;
+//# sourceMappingURL=orders.service.js.map
 
 /***/ }),
 

@@ -41,11 +41,13 @@ import { ProductThumbnailComponent } from './items/product-thumbnail/product-thu
 import { CartPreviewComponent } from './items/cart-preview/cart-preview.component';
 import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
 import { AddressesComponent } from './addresses/addresses.component';
+import { OrdersComponent } from './orders/orders.component';
 
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
 import { TabsService } from './services/tabs.service';
 import { AddressService } from './services/address.service';
+import { OrderService } from './services/orders.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 
 import { AccordionModule } from 'primeng/primeng';
@@ -77,7 +79,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AddItemsComponent,
         PaymentCheckoutComponent,
         LocationComponent,
-        AddressesComponent
+        AddressesComponent,
+        OrdersComponent
     ],
     imports: [
         RoutingModule,
@@ -100,7 +103,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         ItemsService,
         TabsService,
         AddressService,
-        LocalStorageService
+        LocalStorageService,
+        OrderService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

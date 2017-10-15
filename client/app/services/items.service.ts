@@ -12,7 +12,7 @@ export class ItemsService {
   private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
 
-  products=[];
+  products = [];
 
   state = {
     'isInitialised': false,
@@ -33,7 +33,6 @@ export class ItemsService {
   };
 
   constructor(private http: Http) {
-    // this.getItems_();
   }
 
   processItems(items) {
@@ -44,12 +43,16 @@ export class ItemsService {
     }
   }
 
+  isCartValid(leafyGreenVegetables) {
+    return this.http.post('/api/items/isCartValid', JSON.stringify(leafyGreenVegetables), this.options).map(res => res.json());
+  }
+
   getItems(): Observable<any> {
     return this.http.get('/api/items').map(res => res.json());
   }
 
   getItemsByType(type): Observable<any> {
-    return this.http.get('/api/items/' + type).map(res => res.json());
+    return this.http.get('/api/items' + type).map(res => res.json());
   }
 
   getLeafyGreenVegetables(): Observable<any> {

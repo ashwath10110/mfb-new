@@ -22,39 +22,37 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class ItemsComponent implements OnInit {
 
   products = []
+  leafyGreenVegetable = {};
+  leafyGreenVegetables = [];
 
   isLoading = true;
   isEditing = false;
 
-  leafyGreenVegetable = {};
-  leafyGreenVegetables = [];
-
   originalData: any = [];
-
   id: number;
   typeOfVegetables: any;
+
   private sub: any;
 
   constructor(private dataService: DataService,
     private cartService: CartService,
-    private exoticVegetablesService: ItemsService,
+    private itemsService: ItemsService,
     private route: ActivatedRoute,
     private appService: AppService) {
   }
 
   getItems(type) {
-    
-    if (this.exoticVegetablesService.state['isInitialised']) {
-      this.products = this.exoticVegetablesService.state['data'][type]['items'];
+    if (this.itemsService.state['isInitialised']) {
+      this.products = this.itemsService.state['data'][type]['items'];
       this.isLoading = false;
     } else {
       this.isLoading = true;
-      this.exoticVegetablesService.getItems().subscribe(
+      this.itemsService.getItems().subscribe(
         data => {
-          this.processItems(data, this.exoticVegetablesService.state);
-          this.products = this.exoticVegetablesService.state['data'][type]['items'];
+          this.processItems(data, this.itemsService.state);
+          this.products = this.itemsService.state['data'][type]['items'];
           this.isLoading = false;
-          this.exoticVegetablesService.state['isInitialised'] = true;
+          this.itemsService.state['isInitialised'] = true;
         },
         error => console.log(error),
         () => this.isLoading = false
@@ -71,7 +69,7 @@ export class ItemsComponent implements OnInit {
   }
 
   getLeafyGreenVegetables() {
-    this.exoticVegetablesService.getLeafyGreenVegetables().subscribe(
+    this.itemsService.getLeafyGreenVegetables().subscribe(
       data => {
         this.products = data;
       },
@@ -80,16 +78,16 @@ export class ItemsComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    console.log(this.appService);
-
+  initCart() {
     this.sub = this.route.params.subscribe(params => {
       this.typeOfVegetables = params['id'];
-      console.log(this.typeOfVegetables);
-
       if (this.typeOfVegetables) {
         this.getItems(this.typeOfVegetables);
       }
     });
+  }
+
+  ngOnInit() {
+    this.initCart();
   }
 }
