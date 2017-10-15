@@ -11,6 +11,8 @@ import { CartComponent } from './../items/cart/cart.component';
 })
 export class NavbarComponent implements OnInit {
 
+  showCart = false;
+
   constructor(
     public router: Router,
     public auth: AuthService,

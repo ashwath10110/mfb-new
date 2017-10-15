@@ -29,6 +29,9 @@
             <div *ngIf="isAddressValidInDistance">
               <input class="form-check-input" type="radio" name="address" [value]="address.name" [(ngModel)]="addressSelected">              
             </div>
+            <div *ngIf="!isAddressValidInDistance">
+              NA
+            </div>
           </td>
           <td>{{address.name}}</td>
           <td *ngIf="address._id">
