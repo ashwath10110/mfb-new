@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 
-<cart></cart>
+<div *ngIf="auth.loggedIn">
+	<cart></cart>
+</div>
 
 <div class="container-fluid">
 	<router-outlet></router-outlet>

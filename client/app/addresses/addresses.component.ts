@@ -54,15 +54,13 @@ export class AddressesComponent implements OnInit {
     this.isLoading = true;
     this.showLocationButton = false;
     this.appService.locationInit().subscribe((data) => {
-      debugger;
       let address = JSON.parse(data["_body"]).results[0].formatted_address;
       this.addresses.push({ name: address });
       this.showLocationButton = false;
       this.appService.currentUser.locationInfo = {
         status: true,
         value: address
-      };
-      debugger;
+      };  
       if (this.appService.currentUser.distanceFromShop.status == 1) {
         this.isAddressValidInDistance = true;
       }

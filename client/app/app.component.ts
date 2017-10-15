@@ -7,20 +7,20 @@ import { CartComponent } from './items//cart/cart.component';
 import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  constructor(public auth: AuthService) {
-if (window["Worker"]) {
+	constructor(public auth: AuthService) {
+		if (window["Worker"]) {
 
- console.log('available');
+			console.log('available');
 
-}else{
-	console.log("NA");
-   }
-}
+		} else {
+			console.log("NA");
+		}
+	}
 
 }

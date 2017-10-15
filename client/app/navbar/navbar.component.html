@@ -33,7 +33,7 @@
             <i class="fa fa-sign-in"></i> Login
           </a>  
         </li>
-        <li *ngIf="!showCart">
+        <li *ngIf="auth.loggedIn">
           <cart></cart>
         </li>
         <li>
