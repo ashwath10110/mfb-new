@@ -491,13 +491,13 @@ var AddressesComponent = (function () {
             products: newProd
         };
         this.loadWholeScreen = true;
+        if (this.appService.currentUser.locationInfo.status) {
+            this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
+        }
         this.itemsService.isCartValid(cartProducts).subscribe(function (res) {
             _this.loadWholeScreen = false;
             if (res['status']) {
                 if (res['data']['value']) {
-                    if (_this.appService.currentUser.locationInfo.status) {
-                        _this.addCurrentAddress({ name: _this.appService.currentUser.locationInfo.value });
-                    }
                     _this.router.navigate(['/checkout']);
                 }
                 else {

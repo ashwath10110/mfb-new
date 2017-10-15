@@ -33,7 +33,6 @@ var ItemsCtrl = (function (_super) {
                 var j = 0;
                 for (i = 0; i < products.length; i++) {
                     for (j = 0; j < docs.length; j++) {
-                        console.log("Hi");
                         if (products[i]._id == docs[j]._id) {
                             if (docs[j].available == 'false') {
                                 flag = false;

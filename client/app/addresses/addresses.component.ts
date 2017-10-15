@@ -146,21 +146,24 @@ export class AddressesComponent implements OnInit {
     let newProd = [];
 
     for (var i = 0; i < prod.length; i++) {
-      newProd.push({ '_id': prod[i]['product']['_id']});
+      newProd.push({ '_id': prod[i]['product']['_id'] });
     }
 
     let cartProducts = {
       products: newProd
     };
+
     this.loadWholeScreen = true;
+    
+    if (this.appService.currentUser.locationInfo.status) {
+      this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
+    }
+    
     this.itemsService.isCartValid(cartProducts).subscribe(
       res => {
         this.loadWholeScreen = false;
         if (res['status']) {
           if (res['data']['value']) {
-            if (this.appService.currentUser.locationInfo.status) {
-              this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
-            }
             this.router.navigate(['/checkout']);
           }
           else {
