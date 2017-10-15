@@ -142,8 +142,15 @@ export class AddressesComponent implements OnInit {
   }
 
   proceedToPay() {
+    let prod = this.cartService.products;
+    let newProd = [];
+
+    for (var i = 0; i < prod.length; i++) {
+      newProd.push({ '_id': prod[i]['product']['_id']});
+    }
+
     let cartProducts = {
-      products: this.cartService.products
+      products: newProd
     };
     this.loadWholeScreen = true;
     this.itemsService.isCartValid(cartProducts).subscribe(

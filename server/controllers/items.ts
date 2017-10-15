@@ -24,7 +24,7 @@ export default class ItemsCtrl extends BaseCtrl {
 			for (i = 0; i < products.length; i++) {
 				for (j = 0; j < docs.length; j++) {
 					console.log("Hi");
-					if (products[i]['product']._id == docs[j]._id) {
+					if (products[i]._id == docs[j]._id) {
 						if (docs[j].available == 'false') {
 							flag = false;
 						}

@@ -482,8 +482,13 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.proceedToPay = function () {
         var _this = this;
+        var prod = this.cartService.products;
+        var newProd = [];
+        for (var i = 0; i < prod.length; i++) {
+            newProd.push({ '_id': prod[i]['product']['_id'] });
+        }
         var cartProducts = {
-            products: this.cartService.products
+            products: newProd
         };
         this.loadWholeScreen = true;
         this.itemsService.isCartValid(cartProducts).subscribe(function (res) {
