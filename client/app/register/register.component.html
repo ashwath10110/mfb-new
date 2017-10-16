@@ -3,7 +3,7 @@
 <div class="card">
   <h4 class="card-header">Register</h4>
   <div class="card-block">
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <form [formGroup]="registerForm">
       <div class="input-group" [ngClass]="setClassUsername()">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
         <input class="form-control" type="text" name="username" formControlName="username" placeholder="Username" autofocus>
@@ -32,7 +32,7 @@
         required
         [siteKey]="appService.googleCaptchaKey"
       ></re-captcha>
-      <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid"><i class="fa fa-user-plus"></i> Register</button>
+      <button class="btn btn-primary" type="submit" (click)="prepareForRegister()" [disabled]="!((registerForm.valid)&&(captchaValid==true))"><i class="fa fa-user-plus"></i> Register</button>
     </form>
 
   </div>

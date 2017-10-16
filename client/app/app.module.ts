@@ -111,7 +111,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         TabsService,
         AddressService,
         LocalStorageService,
-        OrderService, {
+        OrderService,
+        {
             provide: RECAPTCHA_SETTINGS,
             useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' } as RecaptchaSettings,
         },

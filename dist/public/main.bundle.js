@@ -850,7 +850,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_43__services_tabs_service__["a" /* TabsService */],
             __WEBPACK_IMPORTED_MODULE_44__services_address_service__["a" /* AddressService */],
             __WEBPACK_IMPORTED_MODULE_46__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
-            __WEBPACK_IMPORTED_MODULE_45__services_orders_service__["a" /* OrderService */], {
+            __WEBPACK_IMPORTED_MODULE_45__services_orders_service__["a" /* OrderService */],
+            {
                 provide: __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RECAPTCHA_SETTINGS"],
                 useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' },
             },
@@ -2894,7 +2895,7 @@ var _a;
 /***/ "../../../../../client/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Register</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"registerForm\" (ngSubmit)=\"register()\">\n      <div class=\"input-group\" [ngClass]=\"setClassUsername()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-user\"></i></span>\n        <input class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-black-tie\"></i></span>\n        <select class=\"form-control\" name=\"role\" formControlName=\"role\">\n          <option value=\"\" selected disabled>Role</option>\n          <option value=\"user\">User</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n      <re-captcha\n        [(ngModel)]=\"captchaFlag\"\n        name=\"captcha\"\n        [ngModelOptions]=\"{standalone: true}\"\n        (resolved)=\"resolved($event)\"\n        required\n        [siteKey]=\"appService.googleCaptchaKey\"\n      ></re-captcha>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!registerForm.valid\"><i class=\"fa fa-user-plus\"></i> Register</button>\n    </form>\n\n  </div>\n</div>"
+module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Register</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"registerForm\">\n      <div class=\"input-group\" [ngClass]=\"setClassUsername()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-user\"></i></span>\n        <input class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-black-tie\"></i></span>\n        <select class=\"form-control\" name=\"role\" formControlName=\"role\">\n          <option value=\"\" selected disabled>Role</option>\n          <option value=\"user\">User</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n      <re-captcha\n        [(ngModel)]=\"captchaFlag\"\n        name=\"captcha\"\n        [ngModelOptions]=\"{standalone: true}\"\n        (resolved)=\"resolved($event)\"\n        required\n        [siteKey]=\"appService.googleCaptchaKey\"\n      ></re-captcha>\n      <button class=\"btn btn-primary\" type=\"submit\" (click)=\"prepareForRegister()\" [disabled]=\"!((registerForm.valid)&&(captchaValid==true))\"><i class=\"fa fa-user-plus\"></i> Register</button>\n    </form>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2959,7 +2960,8 @@ var RegisterComponent = (function () {
         this.password = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(6)]);
         this.role = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required]);
-        this.captchaFlag = false;
+        this.captchaFlag = '';
+        this.captchaValid = false;
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.registerForm = this.formBuilder.group({
@@ -2979,15 +2981,31 @@ var RegisterComponent = (function () {
         return { 'has-danger': !this.password.pristine && !this.password.valid };
     };
     RegisterComponent.prototype.resolved = function (event) {
-        console.log(event);
-        this.captchaFlag = true;
+        this.captchaFlag = event;
+        this.captchaValid = true;
+    };
+    RegisterComponent.prototype.prepareForRegister = function () {
+        if (this.captchaValid) {
+            this.register();
+        }
+        else {
+            this.toast.setMessage('Press the captcha!', 'warning');
+        }
+    };
+    RegisterComponent.prototype.refresh = function () {
+        window.location.reload();
     };
     RegisterComponent.prototype.register = function () {
         var _this = this;
         this.userService.register(this.registerForm.value).subscribe(function (res) {
             _this.toast.setMessage('you successfully registered!', 'success');
             _this.router.navigate(['/login']);
-        }, function (error) { return _this.toast.setMessage('email already exists', 'danger'); });
+        }, function (error) {
+            _this.toast.setMessage('email already exists', 'danger');
+            if (_this.captchaFlag) {
+                _this.refresh();
+            }
+        });
     };
     return RegisterComponent;
 }());
