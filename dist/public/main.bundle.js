@@ -790,6 +790,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -849,7 +850,10 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_43__services_tabs_service__["a" /* TabsService */],
             __WEBPACK_IMPORTED_MODULE_44__services_address_service__["a" /* AddressService */],
             __WEBPACK_IMPORTED_MODULE_46__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
-            __WEBPACK_IMPORTED_MODULE_45__services_orders_service__["a" /* OrderService */]
+            __WEBPACK_IMPORTED_MODULE_45__services_orders_service__["a" /* OrderService */], {
+                provide: __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RECAPTCHA_SETTINGS"],
+                useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' },
+            },
         ],
         schemas: [__WEBPACK_IMPORTED_MODULE_0__angular_core__["CUSTOM_ELEMENTS_SCHEMA"]],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_15__app_component__["a" /* AppComponent */]]
@@ -983,7 +987,6 @@ var AppService = (function () {
                 status: true,
                 value: data
             };
-            debugger;
             var lat = _this.currentUser.locationData.value['coords'].latitude;
             var long = _this.currentUser.locationData.value['coords'].longitude;
             _this.currentUser.distanceFromShop = {
@@ -1000,7 +1003,6 @@ var AppService = (function () {
         });
     };
     AppService.prototype.isDistanceValid = function (shop, customer, radiusValid) {
-        debugger;
         var rad = function (x) {
             return x * Math.PI / 180;
         };
@@ -2368,7 +2370,7 @@ LocationComponent = __decorate([
 /***/ "../../../../../client/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n<re-captcha (resolved)=\"resolved($event)\" siteKey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></re-captcha>\n<div class=\"card\">\n  <h4 class=\"card-header\">Login</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"g-recaptcha\" data-sitekey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!loginForm.valid\"><i class=\"fa fa-sign-in\"></i> Login</button>\n    </form>\n  </div>\n</div>"
+module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Login</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\" autofocus required>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\" required>\n      </div>\n      <!-- <re-captcha (resolved)=\"resolved($event)\" siteKey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></re-captcha> -->\n      \n      <!-- <div class=\"g-recaptcha\" data-sitekey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></div> -->\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!loginForm.valid\"><i class=\"fa fa-sign-in\"></i> Login</button>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2399,7 +2401,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2414,9 +2417,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
-    function LoginComponent(auth, formBuilder, router, toast) {
+    function LoginComponent(auth, appService, formBuilder, router, toast) {
         this.auth = auth;
+        this.appService = appService;
         this.formBuilder = formBuilder;
         this.router = router;
         this.toast = toast;
@@ -2425,15 +2430,18 @@ var LoginComponent = (function () {
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].maxLength(100)]);
         this.password = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(6)]);
+        this.captchaFlag = false;
     }
     LoginComponent.prototype.ngOnInit = function () {
         if (this.auth.loggedIn) {
             this.router.navigate(['/']);
         }
-        this.loginForm = this.formBuilder.group({
-            email: this.email,
-            password: this.password
-        });
+        else {
+            this.loginForm = this.formBuilder.group({
+                email: this.email,
+                password: this.password
+            });
+        }
     };
     LoginComponent.prototype.setClassEmail = function () {
         return { 'has-danger': !this.email.pristine && !this.email.valid };
@@ -2453,10 +2461,10 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/login/login.component.html"),
         styles: [__webpack_require__("../../../../../client/app/login/login.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _e || Object])
 ], LoginComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -2886,7 +2894,7 @@ var _a;
 /***/ "../../../../../client/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Register</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"registerForm\" (ngSubmit)=\"register()\">\n      <div class=\"input-group\" [ngClass]=\"setClassUsername()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-user\"></i></span>\n        <input class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-black-tie\"></i></span>\n        <select class=\"form-control\" name=\"role\" formControlName=\"role\">\n          <option value=\"\" selected disabled>Role</option>\n          <option value=\"user\">User</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!registerForm.valid\"><i class=\"fa fa-user-plus\"></i> Register</button>\n    </form>\n  </div>\n</div>"
+module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Register</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"registerForm\" (ngSubmit)=\"register()\">\n      <div class=\"input-group\" [ngClass]=\"setClassUsername()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-user\"></i></span>\n        <input class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-black-tie\"></i></span>\n        <select class=\"form-control\" name=\"role\" formControlName=\"role\">\n          <option value=\"\" selected disabled>Role</option>\n          <option value=\"user\">User</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n      <re-captcha\n        [(ngModel)]=\"captchaFlag\"\n        name=\"captcha\"\n        [ngModelOptions]=\"{standalone: true}\"\n        (resolved)=\"resolved($event)\"\n        required\n        [siteKey]=\"appService.googleCaptchaKey\"\n      ></re-captcha>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!registerForm.valid\"><i class=\"fa fa-user-plus\"></i> Register</button>\n    </form>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2918,6 +2926,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2932,10 +2941,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var RegisterComponent = (function () {
-    function RegisterComponent(formBuilder, router, toast, userService) {
+    function RegisterComponent(formBuilder, router, appService, toast, userService) {
         this.formBuilder = formBuilder;
         this.router = router;
+        this.appService = appService;
         this.toast = toast;
         this.userService = userService;
         this.username = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
@@ -2948,6 +2959,7 @@ var RegisterComponent = (function () {
         this.password = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(6)]);
         this.role = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required]);
+        this.captchaFlag = false;
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.registerForm = this.formBuilder.group({
@@ -2966,6 +2978,10 @@ var RegisterComponent = (function () {
     RegisterComponent.prototype.setClassPassword = function () {
         return { 'has-danger': !this.password.pristine && !this.password.valid };
     };
+    RegisterComponent.prototype.resolved = function (event) {
+        console.log(event);
+        this.captchaFlag = true;
+    };
     RegisterComponent.prototype.register = function () {
         var _this = this;
         this.userService.register(this.registerForm.value).subscribe(function (res) {
@@ -2981,10 +2997,10 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/register/register.component.html"),
         styles: [__webpack_require__("../../../../../client/app/register/register.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _e || Object])
 ], RegisterComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),

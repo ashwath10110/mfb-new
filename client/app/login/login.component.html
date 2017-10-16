@@ -1,18 +1,20 @@
 <app-toast [message]="toast.message"></app-toast>
-<re-captcha (resolved)="resolved($event)" siteKey="6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK"></re-captcha>
+
 <div class="card">
   <h4 class="card-header">Login</h4>
   <div class="card-block">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="input-group" [ngClass]="setClassEmail()">
         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-        <input class="form-control" type="email" name="email" formControlName="email" placeholder="Email" autofocus>
+        <input class="form-control" type="email" name="email" formControlName="email" placeholder="Email" autofocus required>
       </div>
       <div class="input-group" [ngClass]="setClassPassword()">
         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-        <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
+        <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password" required>
       </div>
-      <div class="g-recaptcha" data-sitekey="6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK"></div>
+      <!-- <re-captcha (resolved)="resolved($event)" siteKey="6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK"></re-captcha> -->
+      
+      <!-- <div class="g-recaptcha" data-sitekey="6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK"></div> -->
       <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid"><i class="fa fa-sign-in"></i> Login</button>
     </form>
   </div>

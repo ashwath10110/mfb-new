@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { AuthService } from '../services/auth.service';
+import { AppService } from '../app.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
@@ -14,29 +15,35 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   email = new FormControl('', [Validators.required,
-                                       Validators.minLength(3),
-                                       Validators.maxLength(100)]);
+  Validators.minLength(3),
+  Validators.maxLength(100)]);
   password = new FormControl('', [Validators.required,
-                                          Validators.minLength(6)]);
+  Validators.minLength(6)]);
+
+  captchaFlag = false;
 
   constructor(private auth: AuthService,
-              private formBuilder: FormBuilder,
-              private router: Router,
-              public toast: ToastComponent) { }
+    private appService: AppService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public toast: ToastComponent) { }
 
   ngOnInit() {
     if (this.auth.loggedIn) {
       this.router.navigate(['/']);
+    } else {
+
+      this.loginForm = this.formBuilder.group({
+        email: this.email,
+        password: this.password
+      });
     }
-    this.loginForm = this.formBuilder.group({
-      email: this.email,
-      password: this.password
-    });
   }
 
   setClassEmail() {
     return { 'has-danger': !this.email.pristine && !this.email.valid };
   }
+
   setClassPassword() {
     return { 'has-danger': !this.password.pristine && !this.password.valid };
   }

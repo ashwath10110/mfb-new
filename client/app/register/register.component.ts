@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { ToastComponent } from '../shared/toast/toast.component';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-register',
@@ -24,8 +25,11 @@ export class RegisterComponent implements OnInit {
 
   role = new FormControl('', [Validators.required]);
 
+  captchaFlag = false;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router,
+              private appService: AppService,
               public toast: ToastComponent,
               private userService: UserService) { }
 
@@ -46,6 +50,11 @@ export class RegisterComponent implements OnInit {
   }
   setClassPassword() {
     return { 'has-danger': !this.password.pristine && !this.password.valid };
+  }
+
+  resolved(event) {
+    console.log(event);
+    this.captchaFlag = true;
   }
 
   register() {

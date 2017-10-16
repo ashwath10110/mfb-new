@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+
 import { FormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -109,7 +111,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         TabsService,
         AddressService,
         LocalStorageService,
-        OrderService
+        OrderService, {
+            provide: RECAPTCHA_SETTINGS,
+            useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' } as RecaptchaSettings,
+        },
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

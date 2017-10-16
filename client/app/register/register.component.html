@@ -24,7 +24,16 @@
           <option value="admin">Admin</option>
         </select>
       </div>
+      <re-captcha
+        [(ngModel)]="captchaFlag"
+        name="captcha"
+        [ngModelOptions]="{standalone: true}"
+        (resolved)="resolved($event)"
+        required
+        [siteKey]="appService.googleCaptchaKey"
+      ></re-captcha>
       <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid"><i class="fa fa-user-plus"></i> Register</button>
     </form>
+
   </div>
 </div>

@@ -115,8 +115,6 @@ export class AppService {
         value: data
       };
 
-      debugger;
-
       var lat = this.currentUser.locationData.value['coords'].latitude;
       var long = this.currentUser.locationData.value['coords'].longitude;
 
@@ -136,7 +134,6 @@ export class AppService {
   }
 
   isDistanceValid(shop, customer, radiusValid) {
-    debugger;
     var rad = function(x) {
       return x * Math.PI / 180;
     };
