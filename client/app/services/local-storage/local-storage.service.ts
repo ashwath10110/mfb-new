@@ -16,6 +16,10 @@ export class LocalStorageService {
 		localStorage.setItem(this.nameForLocalStorage, JSON.stringify(state));
 	}
 
+	clearLocalStorageItem() {
+		localStorage.removeItem(this.nameForLocalStorage);
+	}
+
 	getCartValue() {
 		if (localStorage.getItem(this.nameForLocalStorage) != null) {
 			return JSON.parse(localStorage.getItem(this.nameForLocalStorage));

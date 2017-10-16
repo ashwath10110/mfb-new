@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { AppService } from '../app.service';
 
@@ -33,7 +34,9 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private appService: AppService,
     public toast: ToastComponent,
-    private userService: UserService) { }
+    private userService: UserService,
+    private localStorageService: LocalStorageService,
+    ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -75,6 +78,7 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.registerForm.value).subscribe(
       res => {
         this.toast.setMessage('you successfully registered!', 'success');
+        this.localStorageService.clearLocalStorageItem();
         this.router.navigate(['/login']);
       },
       error => {
