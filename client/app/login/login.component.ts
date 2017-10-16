@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 import { AuthService } from '../services/auth.service';
 import { AppService } from '../app.service';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private appService: AppService,
     private formBuilder: FormBuilder,
     private router: Router,
-    public toast: ToastComponent) { }
+    public toast: ToastComponent,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     if (this.auth.loggedIn) {
@@ -50,7 +52,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
-      res => this.router.navigate(['/']),
+      res => {
+        this.localStorageService.clearLocalStorageItem();
+        this.router.navigate(['/']);
+      },
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );
   }
