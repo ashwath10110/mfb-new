@@ -61,6 +61,10 @@ export class AppService {
 
   googleApiKey = 'AIzaSyAkL6AxoO5S7ACBqvO-A2eMstnbx8pU9oE';
 
+  googleCaptchaKey = '6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK';
+
+  googleCaptchaSecretKey = '6Lf5pzQUAAAAAOHS4BtR1XDWKHUnvMZGM0t2iUeL';
+
   state = {
     'isInitialised': false,
     'data': {

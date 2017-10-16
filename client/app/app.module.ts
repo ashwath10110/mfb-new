@@ -2,6 +2,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+
 import { FormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -89,7 +92,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CommonModule,
         BrowserModule,
         AccordionModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RecaptchaFormsModule,
+        RecaptchaModule.forRoot()
     ],
     providers: [
         AuthService,
