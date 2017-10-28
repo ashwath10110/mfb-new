@@ -5,7 +5,7 @@
       <div class="img-placeholder"></div>
     </div>
     <h5 class="title">{{product.name}}</h5>
-    <p class="price">{{rupeeSymbol}}<span>{{product.price| currency: 'INR':true}}</span></p>
+    <p class="price"><span>{{product.price| currency: 'INR':true}}</span></p>
     <div class="details">
       <div class="available" *ngIf = 'product.available'>
         <hr>
@@ -28,7 +28,7 @@
       <div class="bg" [class.shown]='detailViewActive'></div>
       <div class="info-wrapper">
         <p class="d-holder d-title">{{product.name}}</p>
-        <p class="d-holder d-price">{{rupeeSymbol}} {{product.price}}</p>
+        <p class="d-holder d-price">{{product.price}}</p>
         <p class="d-holder d-description">{{product.type}}</p>
         <p class="d-holder d-description">{{product.nameForTelugu}}</p>
         <p class="d-holder d-description">{{product.nameForHindi}}</p>

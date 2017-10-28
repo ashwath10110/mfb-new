@@ -12,7 +12,7 @@
             <p>{{item.quantity}} x {{item.product.name}}</p>
           </div>
           <div class="col-6-sm price">
-            <p>{{item.quantity*item.product.parsedPrice | currency:'USD':true:'1.0-0' }}</p>
+            <p>{{item.quantity*item.product.parsedPrice | currency: 'INR':true }}</p>
           </div>
         </div>
         <button class="delete-btn" (click) = 'deleteProduct(item.product)'>x</button>
