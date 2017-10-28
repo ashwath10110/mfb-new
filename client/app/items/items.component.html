@@ -1,5 +1,4 @@
 <app-tabs></app-tabs>
-{{typeOfVegetables}}
-<!-- <cart></cart> -->
+<!-- {{typeOfVegetables}} -->
 <app-loading [condition]="isLoading"></app-loading>
-<showcase [products]='products'></showcase>
+<showcase *ngIf="!isLoading" [products]='products'></showcase>

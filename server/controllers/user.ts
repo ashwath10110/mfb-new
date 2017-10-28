@@ -3,7 +3,8 @@ import * as jwt from 'jsonwebtoken';
 
 import User from '../models/user';
 import BaseCtrl from './base';
-// import * as sha512 from 'js-sha512';
+import * as sha512 from 'js-sha512';
+import * as path from 'path';
 
 export default class UserCtrl extends BaseCtrl {
   model = User;
@@ -22,14 +23,15 @@ export default class UserCtrl extends BaseCtrl {
   createHash = (req, res) => {
     var salt = 'eCwWELxi';
     var hash = {};
-    // var hash = sha512(req.body.preHashString + salt);
-    // console.log(hash);
+    var hash = sha512(req.body.preHashString + salt);
+    console.log(hash);
     res.send({success : true, hash: hash});
   }
 
   PaymentStatus = (req, res) => {
     console.log(req.body);
-    res.send(req.body.status);
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+    // res.send({success : true, status: req.body.status});
   }
 
 }

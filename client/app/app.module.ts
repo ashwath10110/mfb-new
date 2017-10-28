@@ -44,7 +44,7 @@ import { CartComponent } from './items/cart/cart.component';
 import { ProductComponent } from './items/product/product.component';
 import { ProductThumbnailComponent } from './items/product-thumbnail/product-thumbnail.component';
 import { CartPreviewComponent } from './items/cart-preview/cart-preview.component';
-import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
+import { PaymentCheckoutComponent, SafePipe } from './payment-checkout/payment-checkout.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
 
@@ -85,7 +85,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         PaymentCheckoutComponent,
         LocationComponent,
         AddressesComponent,
-        OrdersComponent
+        OrdersComponent,
+        SafePipe
     ],
     imports: [
         RoutingModule,

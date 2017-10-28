@@ -26,6 +26,10 @@ export class AppService {
       status: false,
       value: {}
     },
+    toUseForRupeeSymbol: {
+      englishRupees: 'Rs.',
+      hindiRupees: '&#x20b9;'
+    },
     locationInfo: {
       status: false,
       value: {}

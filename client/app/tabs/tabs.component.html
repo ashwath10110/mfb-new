@@ -1,7 +1,26 @@
-<ul class="nav nav-tabs">
+<!-- <ul class="nav nav-tabs">
 	<li [ngClass]="{'active': (appService.selectedTab=='exotic-vegetables')}" (click)="openTab($event, 'exotic-vegetables')"><a>exotic-vegetables</a></li>
 	<li [ngClass]="{'active': (appService.selectedTab=='leafy-green-vegetables')}" (click)="openTab($event, 'leafy-green-vegetables')"><a>leafy-vegetables</a></li>
 	<li [ngClass]="{'active': (appService.selectedTab=='fresh-fruits')}" (click)="openTab($event, 'fresh-fruits')"><a>fresh-fruits</a></li>
 	<li [ngClass]="{'active': (appService.selectedTab=='fresh-vegetables')}" (click)="openTab($event, 'fresh-vegetables')"><a>fresh-vegetables</a></li>
 </ul>
 <router-outlet></router-outlet>
+ -->
+
+ <div class="wrapper">
+  <div class="">    
+    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+      <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+      	<li [ngClass]="{'active': (appService.selectedTab=='exotic-vegetables')}" (click)="openTab($event, 'exotic-vegetables')"><a>Exotic Vegetables</a></li>
+		<li [ngClass]="{'active': (appService.selectedTab=='leafy-green-vegetables')}" (click)="openTab($event, 'leafy-green-vegetables')"><a>Leafy Vegetables</a></li>
+		<li [ngClass]="{'active': (appService.selectedTab=='fresh-fruits')}" (click)="openTab($event, 'fresh-fruits')"><a>Fresh Fruits</a></li>
+		<li [ngClass]="{'active': (appService.selectedTab=='fresh-vegetables')}" (click)="openTab($event, 'fresh-vegetables')"><a>Fresh Vegetables</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

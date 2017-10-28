@@ -9,8 +9,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Injectable()
 export class CartService {
 
-  products: any[] = []
-  cartTotal: number = 0
+  products: any[] = [];
+  cartTotal: number = 0;
 
   private productAddedSource = new Subject<any>()
   productAdded$ = this.productAddedSource.asObservable()

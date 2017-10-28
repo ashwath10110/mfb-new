@@ -824,7 +824,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_38__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */],
             __WEBPACK_IMPORTED_MODULE_32__location_location_component__["a" /* LocationComponent */],
             __WEBPACK_IMPORTED_MODULE_39__addresses_addresses_component__["a" /* AddressesComponent */],
-            __WEBPACK_IMPORTED_MODULE_40__orders_orders_component__["a" /* OrdersComponent */]
+            __WEBPACK_IMPORTED_MODULE_40__orders_orders_component__["a" /* OrdersComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__payment_checkout_payment_checkout_component__["b" /* SafePipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_6__routing_module__["a" /* RoutingModule */],
@@ -911,6 +912,10 @@ var AppService = (function () {
             locationData: {
                 status: false,
                 value: {}
+            },
+            toUseForRupeeSymbol: {
+                englishRupees: 'Rs.',
+                hindiRupees: '&#x20b9;'
             },
             locationInfo: {
                 status: false,
@@ -1802,7 +1807,7 @@ var _a;
 /***/ "../../../../../client/app/items/items.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-tabs></app-tabs>\n{{typeOfVegetables}}\n<!-- <cart></cart> -->\n<app-loading [condition]=\"isLoading\"></app-loading>\n<showcase [products]='products'></showcase>"
+module.exports = "<app-tabs></app-tabs>\n<!-- {{typeOfVegetables}} -->\n<app-loading [condition]=\"isLoading\"></app-loading>\n<showcase *ngIf=\"!isLoading\" [products]='products'></showcase>"
 
 /***/ }),
 
@@ -2083,7 +2088,7 @@ var DATA = {
 /***/ "../../../../../client/app/items/product-thumbnail/product-thumbnail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\" [class.unavailable]='!product.available'>\n  <div class=\"info\" >\n    <div class=\"img-wrapper\">\n      <img class=\"img\" [src]=\"product.imageForShowCase\">\n      <div class=\"img-placeholder\"></div>\n    </div>\n    <h5 class=\"title\">{{product.name}}</h5>\n    <p class=\"price\">$<span>{{product.price}}</span></p>\n    <div class=\"details\">\n      <div class=\"available\" *ngIf = 'product.available'>\n        <hr>\n        <div class=\"row\">\n          <div class=\"col-8-sm view-details-wrapper\">\n            <button type=\"button\" class=\"view\" (click)='onProductClick()'>View details</button>\n          </div>\n          <div class=\"col-4-sm add-cart-wrapper\">\n            <button type=\"button\" class=\"cart\" (click)=\"onAddToCart()\"><img src=\"../../assets/cart_primary.svg\" alt=\"\" /></button>\n          </div>\n        </div>\n      </div>\n      <div class=\"not-available\" *ngIf = '!product.available'>\n        <hr>\n        <p>Not available</p>\n      </div>\n    </div>\n    <!--span class=\"category-name\" *ngFor='let category of product.categories'>{{category}}</span-->\n    <div class=\"detail-view\" [class.active]='detailViewActive'>\n      <div class=\"bg\" [class.shown]='detailViewActive'></div>\n      <div class=\"info-wrapper\">\n        <p class=\"d-holder d-title\">{{product.name}}</p>\n        <p class=\"d-holder d-price\">$ {{product.price}}</p>\n        <p class=\"d-holder d-description\">{{product.type}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForTelugu}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForHindi}}</p>\n        <p class=\"d-holder d-description\">{{product.countPerKg}}</p>\n        <p class=\"d-holder d-description\">{{product.averageWeightPerPiece}}</p>\n        <p class=\"d-holder d-description\">{{product.description}}</p>\n      </div>\n      <button type=\"button\" class=\"hide-detail-btn\" (click)='onProductClick()'>Click to hide</button>\n    </div>\n  </div>\n  <div class=\"bestseller-badge\" [class.in-detailed]='detailViewActive' *ngIf = 'product.best_seller'>\n    <span class=\"star left\">&nbsp;</span>\n    <span class=\"txt\">Bestseller</span>\n    <span class=\"star right\">&nbsp;</span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper\" [class.unavailable]='!product.available'>\n  <div class=\"info\" >\n    <div class=\"img-wrapper\">\n      <img class=\"img\" [src]=\"product.imageForShowCase\">\n      <div class=\"img-placeholder\"></div>\n    </div>\n    <h5 class=\"title\">{{product.name}}</h5>\n    <p class=\"price\">{{rupeeSymbol}}<span>{{product.price| currency: 'INR':true}}</span></p>\n    <div class=\"details\">\n      <div class=\"available\" *ngIf = 'product.available'>\n        <hr>\n        <div class=\"row\">\n          <div class=\"col-8-sm view-details-wrapper\">\n            <button type=\"button\" class=\"view\" (click)='onProductClick()'>View details</button>\n          </div>\n          <div class=\"col-4-sm add-cart-wrapper\">\n            <button type=\"button\" class=\"cart\" (click)=\"onAddToCart()\"><img src=\"../../assets/cart_primary.svg\" alt=\"\" /></button>\n          </div>\n        </div>\n      </div>\n      <div class=\"not-available\" *ngIf = '!product.available'>\n        <hr>\n        <p>Not available</p>\n      </div>\n    </div>\n    <!--span class=\"category-name\" *ngFor='let category of product.categories'>{{category}}</span-->\n    <div class=\"detail-view\" [class.active]='detailViewActive'>\n      <div class=\"bg\" [class.shown]='detailViewActive'></div>\n      <div class=\"info-wrapper\">\n        <p class=\"d-holder d-title\">{{product.name}}</p>\n        <p class=\"d-holder d-price\">{{rupeeSymbol}} {{product.price}}</p>\n        <p class=\"d-holder d-description\">{{product.type}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForTelugu}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForHindi}}</p>\n        <p class=\"d-holder d-description\">{{product.countPerKg}}</p>\n        <p class=\"d-holder d-description\">{{product.averageWeightPerPiece}}</p>\n        <p class=\"d-holder d-description\">{{product.description}}</p>\n      </div>\n      <button type=\"button\" class=\"hide-detail-btn\" (click)='onProductClick()'>Click to hide</button>\n    </div>\n  </div>\n  <div class=\"bestseller-badge\" [class.in-detailed]='detailViewActive' *ngIf = 'product.best_seller'>\n    <span class=\"star left\">&nbsp;</span>\n    <span class=\"txt\">Bestseller</span>\n    <span class=\"star right\">&nbsp;</span>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2113,6 +2118,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_product_model__ = __webpack_require__("../../../../../client/app/items/shared/product.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2125,12 +2131,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProductThumbnailComponent = (function () {
-    function ProductThumbnailComponent(cartService) {
+    function ProductThumbnailComponent(cartService, appService) {
         this.cartService = cartService;
+        this.appService = appService;
+        this.rupeeSymbol = 'Rs.';
+        // this.rupeeSymbol = this.appService.currentUser.toUseForRupeeSymbol.hindiRupees;
     }
     ProductThumbnailComponent.prototype.ngOnInit = function () {
         this.detailViewActive = false;
+        this.rupeeSymbol = this.appService.currentUser.toUseForRupeeSymbol.hindiRupees;
     };
     ProductThumbnailComponent.prototype.onProductClick = function () {
         this.detailViewActive = !this.detailViewActive;
@@ -2150,10 +2161,10 @@ ProductThumbnailComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.html"),
         styles: [__webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _c || Object])
 ], ProductThumbnailComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=product-thumbnail.component.js.map
 
 /***/ }),
@@ -2806,7 +2817,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/payment-checkout/payment-checkout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\n    <h1>Payumoney Payment Gateway</h1>\n    <h3> Rs {{amount}}</h3>\n    <form id=\"paymentForm\" action='https://test.payu.in/_payment' method='post'>\n        <input type=\"hidden\" name=\"key\" value=\"{{mkey}}\" />\n        <input type=\"hidden\" name=\"txnid\" value=\"{{txnid}}\" />\n        <input type=\"hidden\" name=\"amount\" value=\"{{amount}}\" />\n        <input type=\"hidden\" name=\"productinfo\" value=\"{{productInfo}}\" />\n        <input type=\"hidden\" name=\"firstname\" value=\"{{firstName}}\" />\n        <input type=\"hidden\" name=\"udf1\" value={{id}} />\n        <input type=\"hidden\" name=\"email\" value=\"{{email}}\" />\n        <input type=\"hidden\" name=\"phone\" value=\"{{phone}}\" />\n        <input type=\"hidden\" name=\"lastname\" value=\"{{lastName}}\" />\n        <input type=\"hidden\" name=\"surl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"furl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"hash\" id=\"hash\" value=\"{{hash}}\">\n        <div class=\"pay-now-button-outer\">\n            <button class=\"btn btn-primary fontBold\" (click)=\"presubmit()\" type=\"button\">PAY NOW</button>\n        </div>\n    </form>\n</div>"
+module.exports = "<!-- <iframe src=\"https://test.payu.in/_payment\"></iframe> -->\n<div class=\"jumbotron text-center\">\n    <h1>Payumoney Payment Gateway</h1>\n    <h3> Rs {{amount}}</h3>\n    <form id=\"paymentForm\" action='https://test.payu.in/_payment' method='post'>\n        <input type=\"hidden\" name=\"key\" value=\"{{mkey}}\" />\n        <input type=\"hidden\" name=\"txnid\" value=\"{{txnid}}\" />\n        <input type=\"hidden\" name=\"amount\" value=\"{{amount}}\" />\n        <input type=\"hidden\" name=\"productinfo\" value=\"{{productInfo}}\" />\n        <input type=\"hidden\" name=\"firstname\" value=\"{{firstName}}\" />\n        <input type=\"hidden\" name=\"udf1\" value={{id}} />\n        <input type=\"hidden\" name=\"email\" value=\"{{email}}\" />\n        <input type=\"hidden\" name=\"phone\" value=\"{{phone}}\" />\n        <input type=\"hidden\" name=\"lastname\" value=\"{{lastName}}\" />\n        <input type=\"hidden\" name=\"surl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"furl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"hash\" id=\"hash\" value=\"{{hash}}\">\n        <div class=\"pay-now-button-outer\">\n            <button class=\"btn btn-primary fontBold\" (click)=\"presubmit()\" type=\"button\">PAY NOW</button>\n        </div>\n    </form>\n</div>\n\n<!-- <iframe width=\"100%\" height=\"300\" [src]=\"url | safe\"></iframe> -->\n\n<!-- <button (click)=\"doSth()\">Do sth</button>\n<div class=\"embed-responsive embed-responsive-16by9\">\n  <iframe [srcdoc]=\"pageTest\"></iframe>\n</div>\n -->\n"
 
 /***/ }),
 
@@ -2814,6 +2825,7 @@ module.exports = "<div class=\"jumbotron text-center\">\n    <h1>Payumoney Payme
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SafePipe; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentCheckoutComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
@@ -2823,6 +2835,7 @@ module.exports = "<div class=\"jumbotron text-center\">\n    <h1>Payumoney Payme
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2838,6 +2851,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+var SafePipe = (function () {
+    function SafePipe(sanitizer) {
+        this.sanitizer = sanitizer;
+    }
+    SafePipe.prototype.transform = function (url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    };
+    return SafePipe;
+}());
+SafePipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'safe' }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__["DomSanitizer"]) === "function" && _a || Object])
+], SafePipe);
+
 var PaymentCheckoutComponent = (function () {
     function PaymentCheckoutComponent(http) {
         this.http = http;
@@ -2851,9 +2880,10 @@ var PaymentCheckoutComponent = (function () {
         this.phone = 9999999999;
         this.lastName = 'test';
         this.firstName = 'fname';
-        this.surl = "http://localhost:3000/api/PaymentStatus";
+        this.surl = "http://localhost:4200/api/PaymentStatus";
         this.hash = '';
         this.isLoading = false;
+        this.pageTest = "<div class=\"jumbotron text-center\">\n    <h1>Payumoney Payment Gateway</h1>\n    <h3> Rs {{amount}}</h3>\n    <form id=\"paymentForm\" action='https://test.payu.in/_payment' method='post'>\n        <input type=\"hidden\" name=\"key\" value=\"{{mkey}}\" />\n        <input type=\"hidden\" name=\"txnid\" value=\"{{txnid}}\" />\n        <input type=\"hidden\" name=\"amount\" value=\"{{amount}}\" />\n        <input type=\"hidden\" name=\"productinfo\" value=\"{{productInfo}}\" />\n        <input type=\"hidden\" name=\"firstname\" value=\"{{firstName}}\" />\n        <input type=\"hidden\" name=\"udf1\" value={{id}} />\n        <input type=\"hidden\" name=\"email\" value=\"{{email}}\" />\n        <input type=\"hidden\" name=\"phone\" value=\"{{phone}}\" />\n        <input type=\"hidden\" name=\"lastname\" value=\"{{lastName}}\" />\n        <input type=\"hidden\" name=\"surl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"furl\" value=\"{{surl}}\" />\n        <input type=\"hidden\" name=\"hash\" id=\"hash\" value=\"{{hash}}\">\n        <div class=\"pay-now-button-outer\">\n            <button class=\"btn btn-primary fontBold\" (click)=\"presubmit()\" type=\"button\">PAY NOW</button>\n        </div>\n    </form>\n</div>";
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
     }
@@ -2890,10 +2920,10 @@ PaymentCheckoutComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.html"),
         styles: [__webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _b || Object])
 ], PaymentCheckoutComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=payment-checkout.component.js.map
 
 /***/ }),
@@ -3047,12 +3077,12 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__account_account_component__ = __webpack_require__("../../../../../client/app/account/account.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__ = __webpack_require__("../../../../../client/app/admin/admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__not_found_not_found_component__ = __webpack_require__("../../../../../client/app/not-found/not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__checkout_checkout_component__ = __webpack_require__("../../../../../client/app/checkout/checkout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home_component__ = __webpack_require__("../../../../../client/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__ = __webpack_require__("../../../../../client/app/cats/cats.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__items_items_component__ = __webpack_require__("../../../../../client/app/items/items.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__("../../../../../client/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cats_cats_component__ = __webpack_require__("../../../../../client/app/cats/cats.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__items_items_component__ = __webpack_require__("../../../../../client/app/items/items.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-admin.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3079,17 +3109,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
-    { path: 'checkout', component: __WEBPACK_IMPORTED_MODULE_9__checkout_checkout_component__["a" /* CheckoutComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */] },
+    { path: 'checkout', component: __WEBPACK_IMPORTED_MODULE_14__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */] },
     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_2__about_about_component__["a" /* AboutComponent */] },
-    { path: 'items', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
-    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__["a" /* OrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
-    { path: 'items/:id', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
-    { path: 'cats', component: __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__["a" /* CatsComponent */] },
+    { path: 'items', component: __WEBPACK_IMPORTED_MODULE_11__items_items_component__["a" /* ItemsComponent */] },
+    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__["a" /* OrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
+    { path: 'items/:id', component: __WEBPACK_IMPORTED_MODULE_11__items_items_component__["a" /* ItemsComponent */] },
+    { path: 'cats', component: __WEBPACK_IMPORTED_MODULE_10__cats_cats_component__["a" /* CatsComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__register_register_component__["a" /* RegisterComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
     { path: 'logout', component: __WEBPACK_IMPORTED_MODULE_5__logout_logout_component__["a" /* LogoutComponent */] },
-    { path: 'addresses', component: __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__["a" /* AddressesComponent */] },
+    { path: 'addresses', component: __WEBPACK_IMPORTED_MODULE_12__addresses_addresses_component__["a" /* AddressesComponent */] },
     { path: 'account', component: __WEBPACK_IMPORTED_MODULE_6__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
     { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__["a" /* AdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
     { path: 'notfound', component: __WEBPACK_IMPORTED_MODULE_8__not_found_not_found_component__["a" /* NotFoundComponent */] },
@@ -3671,7 +3701,7 @@ var _a;
 /***/ "../../../../../client/app/shared/loading/loading.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" *ngIf=\"condition\">\n  <h4 class=\"card-header\">Loading...</h4>\n  <div class=\"card-block text-xs-center\">\n    <i class=\"fa fa-circle-o-notch fa-spin fa-3x\"></i>\n  </div>\n</div>"
+module.exports = "\n<!-- \n<div class=\"card\" *ngIf=\"condition\">\n  <h4 class=\"card-header\">Loading...</h4>\n  <div class=\"card-block text-xs-center\">\n    <i class=\"fa fa-circle-o-notch fa-spin fa-3x\"></i>\n  </div>\n</div> -->\n\n<div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>"
 
 /***/ }),
 
@@ -3683,7 +3713,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".cssload-loader {\n  position: fixed;\n  top: 50%;\n  left: calc(50% - 31px);\n  width: 62px;\n  height: 62px;\n  margin: 0px auto;\n  -webkit-animation: rotation .6s infinite linear;\n  animation: rotation .6s infinite linear;\n  border-radius: 50%;\n  -o-border-radius: 50%;\n  -ms-border-radius: 50%;\n  -webkit-border-radius: 50%;\n  -moz-border-radius: 50%;\n  -webkit-perspective: 780px;\n          perspective: 780px; }\n\n.cssload-inner {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  -o-box-sizing: border-box;\n  -ms-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  border-radius: 50%;\n  -o-border-radius: 50%;\n  -ms-border-radius: 50%;\n  -webkit-border-radius: 50%;\n  -moz-border-radius: 50%; }\n\n.cssload-inner.cssload-one {\n  left: 0%;\n  top: 0%;\n  animation: cssload-rotate-one 1.15s linear infinite;\n  -o-animation: cssload-rotate-one 1.15s linear infinite;\n  -ms-animation: cssload-rotate-one 1.15s linear infinite;\n  -webkit-animation: cssload-rotate-one 1.15s linear infinite;\n  -moz-animation: cssload-rotate-one 1.15s linear infinite;\n  border-bottom: 3px solid red; }\n\n.cssload-inner.cssload-two {\n  right: 0%;\n  top: 0%;\n  animation: cssload-rotate-two 1.15s linear infinite;\n  -o-animation: cssload-rotate-two 1.15s linear infinite;\n  -ms-animation: cssload-rotate-two 1.15s linear infinite;\n  -webkit-animation: cssload-rotate-two 1.15s linear infinite;\n  -moz-animation: cssload-rotate-two 1.15s linear infinite;\n  border-right: 3px solid #ffb700; }\n\n.cssload-inner.cssload-three {\n  right: 0%;\n  bottom: 0%;\n  animation: cssload-rotate-three 1.15s linear infinite;\n  -o-animation: cssload-rotate-three 1.15s linear infinite;\n  -ms-animation: cssload-rotate-three 1.15s linear infinite;\n  -webkit-animation: cssload-rotate-three 1.15s linear infinite;\n  -moz-animation: cssload-rotate-three 1.15s linear infinite;\n  border-top: 3px solid #4bbf07; }\n\n@keyframes cssload-rotate-one {\n  0% {\n    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);\n            transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);\n            transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }\n\n@-webkit-keyframes cssload-rotate-one {\n  0% {\n    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }\n\n@keyframes cssload-rotate-two {\n  0% {\n    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);\n            transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);\n            transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); } }\n\n@-webkit-keyframes cssload-rotate-two {\n  0% {\n    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); } }\n\n@keyframes cssload-rotate-three {\n  0% {\n    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);\n            transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);\n            transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }\n\n@-webkit-keyframes cssload-rotate-three {\n  0% {\n    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }\n", ""]);
 
 // exports
 
@@ -3868,7 +3898,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "@mixin ellipsis(){\n    max-width: 100%;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    word-wrap: normal;\n    width: 100%;\n}\n\n@mixin icon-styles(){\n  position: relative;\n  top: 1px;\n  display: inline-block;\n  font-family: 'Glyphicons Halflings';\n  font-style: normal;\n  font-weight: 400;\n  line-height: 1;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n@mixin transform($transform){\n  -webkit-transform: $transform;\n  transform: $transform;\n}\n\n@media screen and (max-width: 479px) {\n  .nav-tabs-responsive {\n    > li {\n      display: none;\n      width: 23%;\n      > a {\n        @include ellipsis();\n        width: 100%;\n        text-align: center;\n        vertical-align: top;\n      }\n      &.active {\n        width: 54%;\n        &:first-child {\n          margin-left: 23%;\n        }\n      }\n      &.active,\n      &.prev,\n      &.next {\n        display: block;\n      }\n      &.prev,\n      &.next {\n        -webkit-transform: scale(0.9);\n        transform: scale(0.9);\n      }\n      &.next > a,\n      &.prev > a {\n        transition: none;\n        .text {\n          display: none;\n        }\n        &:after,\n        &:after {\n          @include icon-styles();\n        }\n      }\n      &.prev > a:after {\n        content: \"\\E079\";\n      }\n      &.next > a:after {\n        content: \"\\E080\";\n      }\n      &.dropdown {\n        > a > .caret {\n          display: none;\n        }\n        > a:after {\n          content: \"\\E114\";\n        }\n        &.active > a {\n          &:after {\n            display: none;\n          }\n          > .caret {\n            display: inline-block;\n          }\n        }\n\n        .dropdown-menu {\n          &.pull-xs-left {\n            left: 0;\n            right: auto;\n          }\n          &.pull-xs-center {\n            right: auto;\n            left: 50%;\n            @include transform(translateX(-50%));\n          }\n          &.pull-xs-right {\n            left: auto;\n            right: 0;\n          }\n        }\n      }\n    }\n  }\n}\n\n\n\n/**\n * Demo Styles\n */\n\n.wrapper {\n  padding: 15px 0;\n}\n\n.bs-example-tabs .nav-tabs {\n  margin-bottom: 15px;\n}\n\n@media (max-width: 300px) {\n  #narrow-browser-alert {\n    display: none;\n  }\n}", ""]);
 
 // exports
 
@@ -3881,7 +3911,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/tabs/tabs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"nav nav-tabs\">\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>exotic-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>leafy-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>fresh-fruits</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>fresh-vegetables</a></li>\n</ul>\n<router-outlet></router-outlet>\n"
+module.exports = "<!-- <ul class=\"nav nav-tabs\">\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>exotic-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>leafy-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>fresh-fruits</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>fresh-vegetables</a></li>\n</ul>\n<router-outlet></router-outlet>\n -->\n\n <div class=\"wrapper\">\n  <div class=\"\">    \n    <div class=\"bs-example bs-example-tabs\" role=\"tabpanel\" data-example-id=\"togglable-tabs\">\n      <ul id=\"myTab\" class=\"nav nav-tabs nav-tabs-responsive\" role=\"tablist\">\n      \t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>Exotic Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>Leafy Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>Fresh Fruits</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>Fresh Vegetables</a></li>\n      </ul>\n      <div id=\"myTabContent\" class=\"tab-content\">\n        <div class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n          <router-outlet></router-outlet>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 

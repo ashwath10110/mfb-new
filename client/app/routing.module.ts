@@ -14,13 +14,14 @@ import { CatsComponent } from './cats/cats.component';
 import { ItemsComponent } from './items/items.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
+import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
 
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: PaymentCheckoutComponent },
   { path: 'about', component: AboutComponent },
   { path: 'items', component: ItemsComponent },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardAdmin] },
