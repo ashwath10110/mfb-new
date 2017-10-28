@@ -79,7 +79,7 @@ export class CartService {
 
   addProductsToCart(products) {
     for (var i = 0; i < products.length; i++) {
-      this.addProductToCart(products[i].product.product);
+      this.addProductToCart(products[i].product);
     }
   }
 
