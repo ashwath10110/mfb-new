@@ -95,7 +95,6 @@ export class PaymentCheckoutComponent implements OnInit {
         console.log("Success");
         if (data.status == 200) {
           document.getElementById('hash')["value"] = JSON.parse(data["_body"])['hash'];
-          debugger;
           $('#paymentForm').submit();
         }
       },

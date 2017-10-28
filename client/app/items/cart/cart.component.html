@@ -17,7 +17,8 @@
         </div>
         <button class="delete-btn" (click) = 'deleteProduct(item.product)'>x</button>
       </div>
-      <button type="button" class="pay-btn" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>
+      <button type="button" class="pay-btn" (click) = 'checkout()'>Pay {{cartTotal | currency: 'INR':true }}</button>
+      <!-- <button type="button" class="pay-btn" (click) = 'flushCart()'>Flush Cart</button> -->
     </div>
     <button type="button" class="close-btn" *ngIf='expanded' (click)="onCartClick()">Close</button>
   </div>

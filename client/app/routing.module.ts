@@ -14,17 +14,23 @@ import { CatsComponent } from './cats/cats.component';
 import { ItemsComponent } from './items/items.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+
 import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'checkout', component: PaymentCheckoutComponent },
+  { path: 'checkout-payu', component: PaymentCheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'about', component: AboutComponent },
   { path: 'items', component: ItemsComponent },
+  { path: 'order-success', component: OrderSuccessComponent },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'user-orders', component: UserOrdersComponent, canActivate: [AuthGuardLogin] },
   { path: 'items/:id', component: ItemsComponent },
   { path: 'cats', component: CatsComponent },
   { path: 'register', component: RegisterComponent },
@@ -38,8 +44,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
-export class RoutingModule {}
+export class RoutingModule { }

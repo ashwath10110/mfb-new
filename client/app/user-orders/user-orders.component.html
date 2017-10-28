@@ -3,7 +3,41 @@
 <app-toast [message]="toast.message"></app-toast>
 
 <div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Current cats ({{cats.length}})</h4>
+  <h4 class="card-header">My Previous Orders ({{userOrders.length}})</h4>
+  <div class="card-block">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Order Time</th>
+          <th>Status</th>
+          <th>Mode Of Payment</th>
+          <th>Cart Total</th>
+          <th>Repeat Order</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="userOrders.length === 0">
+        <tr>
+          <td colspan="4">There are no userOrders in the DB.</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!isEditing">
+        <tr *ngFor="let order of userOrders">
+          <td>{{order.orderDetails.orderTime | date: 'dd/MM/yyyy'}}</td>
+          <td>{{order.orderDetails.orderStatus}}</td>
+          <td>{{order.orderDetails.modeOfPayment}}</td>
+          <td>{{order.cartDetails.cartTotal}}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="repeatOrder(order)"><i class="fa fa-pencil"></i> Repeat Order</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteCat(order)"><i class="fa fa-trash"></i> Delete</button>
+          </td>
+        </tr>  
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- <div class="card" *ngIf="!isLoading">
+  <h4 class="card-header">My Orders ({{cats.length}})</h4>
   <div class="card-block">
     <table class="table table-bordered table-striped">
       <thead class="thead-default">
@@ -51,9 +85,9 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->
 
-<div class="card" *ngIf="!isEditing">
+<!-- <div class="card" *ngIf="!isEditing">
   <h4 class="card-header">Add new cat</h4>
   <div class="card-block">
     <form class="form-inline" [formGroup]="addCatForm" (ngSubmit)="addCat()" style="text-align:center">
@@ -69,4 +103,4 @@
       <button class="btn btn-primary" type="submit" [disabled]="!addCatForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
     </form>
   </div>
-</div>
+</div> -->

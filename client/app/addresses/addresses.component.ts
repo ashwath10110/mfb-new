@@ -34,7 +34,8 @@ export class AddressesComponent implements OnInit {
   isAddressValidInDistance = false;
   loadWholeScreen = false;
 
-  constructor(private addressService: AddressService,
+  constructor(
+    private addressService: AddressService,
     private cartService: CartService,
     public appService: AppService,
     public itemsService: ItemsService,
@@ -60,7 +61,7 @@ export class AddressesComponent implements OnInit {
       this.appService.currentUser.locationInfo = {
         status: true,
         value: address
-      };  
+      };
       if (this.appService.currentUser.distanceFromShop.status == 1) {
         this.isAddressValidInDistance = true;
       }
@@ -152,11 +153,11 @@ export class AddressesComponent implements OnInit {
     };
 
     this.loadWholeScreen = true;
-    
+
     if (this.appService.currentUser.locationInfo.status) {
       this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
     }
-    
+
     this.itemsService.isCartValid(cartProducts).subscribe(
       res => {
         this.loadWholeScreen = false;

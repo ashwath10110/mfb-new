@@ -1,0 +1,1 @@
+{"version":3,"file":"user-orders.js","sourceRoot":"","sources":["../../../server/models/user-orders.ts"],"names":[],"mappings":";;AAAA,mCAAqC;AAErC,IAAM,gBAAgB,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IAC5C,YAAY,EAAE,EAAE;IAChB,WAAW,EAAE,EAAE;IACf,MAAM,EAAE,KAAK;CACb,CAAC,CAAC;AAEH,IAAM,UAAU,GAAG,QAAQ,CAAC,KAAK,CAAC,YAAY,EAAE,gBAAgB,CAAC,CAAC;AAElE,kBAAe,UAAU,CAAC"}

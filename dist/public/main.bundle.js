@@ -717,30 +717,36 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__home_home_component__ = __webpack_require__("../../../../../client/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__carousal_carousal_component__ = __webpack_require__("../../../../../client/app/carousal/carousal.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__checkout_checkout_component__ = __webpack_require__("../../../../../client/app/checkout/checkout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__location_location_component__ = __webpack_require__("../../../../../client/app/location/location.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__items_showcase_showcase_component__ = __webpack_require__("../../../../../client/app/items/showcase/showcase.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__items_cart_cart_component__ = __webpack_require__("../../../../../client/app/items/cart/cart.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__items_product_product_component__ = __webpack_require__("../../../../../client/app/items/product/product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__items_product_thumbnail_product_thumbnail_component__ = __webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__items_cart_preview_cart_preview_component__ = __webpack_require__("../../../../../client/app/items/cart-preview/cart-preview.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_47_primeng_primeng__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_order_success_order_success_component__ = __webpack_require__("../../../../../client/app/components/order-success/order-success.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__location_location_component__ = __webpack_require__("../../../../../client/app/location/location.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__items_showcase_showcase_component__ = __webpack_require__("../../../../../client/app/items/showcase/showcase.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__items_cart_cart_component__ = __webpack_require__("../../../../../client/app/items/cart/cart.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__items_product_product_component__ = __webpack_require__("../../../../../client/app/items/product/product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__items_product_thumbnail_product_thumbnail_component__ = __webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__items_cart_preview_cart_preview_component__ = __webpack_require__("../../../../../client/app/items/cart-preview/cart-preview.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__user_orders_user_orders_component__ = __webpack_require__("../../../../../client/app/user-orders/user-orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_50_primeng_primeng__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -810,22 +816,24 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_26__tabs_tabs_component__["a" /* TabsComponent */],
             __WEBPACK_IMPORTED_MODULE_27__navbar_navbar_component__["a" /* NavbarComponent */],
             __WEBPACK_IMPORTED_MODULE_28__footer_footer_component__["a" /* FooterComponent */],
-            __WEBPACK_IMPORTED_MODULE_33__items_showcase_showcase_component__["a" /* ShowcaseComponent */],
-            __WEBPACK_IMPORTED_MODULE_34__items_cart_cart_component__["a" /* CartComponent */],
-            __WEBPACK_IMPORTED_MODULE_35__items_product_product_component__["a" /* ProductComponent */],
-            __WEBPACK_IMPORTED_MODULE_36__items_product_thumbnail_product_thumbnail_component__["a" /* ProductThumbnailComponent */],
-            __WEBPACK_IMPORTED_MODULE_37__items_cart_preview_cart_preview_component__["a" /* CartPreviewComponent */],
+            __WEBPACK_IMPORTED_MODULE_34__items_showcase_showcase_component__["a" /* ShowcaseComponent */],
+            __WEBPACK_IMPORTED_MODULE_35__items_cart_cart_component__["a" /* CartComponent */],
+            __WEBPACK_IMPORTED_MODULE_36__items_product_product_component__["a" /* ProductComponent */],
+            __WEBPACK_IMPORTED_MODULE_37__items_product_thumbnail_product_thumbnail_component__["a" /* ProductThumbnailComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__items_cart_preview_cart_preview_component__["a" /* CartPreviewComponent */],
             __WEBPACK_IMPORTED_MODULE_31__checkout_checkout_component__["a" /* CheckoutComponent */],
             __WEBPACK_IMPORTED_MODULE_30__carousal_carousal_component__["a" /* CarousalComponent */],
             __WEBPACK_IMPORTED_MODULE_25__cats_cats_component__["a" /* CatsComponent */],
             __WEBPACK_IMPORTED_MODULE_29__home_home_component__["a" /* HomeComponent */],
             __WEBPACK_IMPORTED_MODULE_23__items_items_component__["a" /* ItemsComponent */],
             __WEBPACK_IMPORTED_MODULE_24__add_items_add_items_component__["a" /* AddItemsComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */],
-            __WEBPACK_IMPORTED_MODULE_32__location_location_component__["a" /* LocationComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__addresses_addresses_component__["a" /* AddressesComponent */],
-            __WEBPACK_IMPORTED_MODULE_40__orders_orders_component__["a" /* OrdersComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__payment_checkout_payment_checkout_component__["b" /* SafePipe */]
+            __WEBPACK_IMPORTED_MODULE_39__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */],
+            __WEBPACK_IMPORTED_MODULE_33__location_location_component__["a" /* LocationComponent */],
+            __WEBPACK_IMPORTED_MODULE_40__addresses_addresses_component__["a" /* AddressesComponent */],
+            __WEBPACK_IMPORTED_MODULE_41__orders_orders_component__["a" /* OrdersComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__payment_checkout_payment_checkout_component__["b" /* SafePipe */],
+            __WEBPACK_IMPORTED_MODULE_42__user_orders_user_orders_component__["a" /* UserOrdersComponent */],
+            __WEBPACK_IMPORTED_MODULE_32__components_order_success_order_success_component__["a" /* OrderSuccessComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_6__routing_module__["a" /* RoutingModule */],
@@ -833,8 +841,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_47_primeng_primeng__["AccordionModule"],
-            __WEBPACK_IMPORTED_MODULE_48__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_50_primeng_primeng__["AccordionModule"],
+            __WEBPACK_IMPORTED_MODULE_51__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_4_ng_recaptcha_forms__["RecaptchaFormsModule"],
             __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RecaptchaModule"].forRoot()
         ],
@@ -844,14 +852,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */],
             __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_11__app_service__["a" /* AppService */],
-            __WEBPACK_IMPORTED_MODULE_41__items_data_service__["a" /* DataService */],
+            __WEBPACK_IMPORTED_MODULE_43__items_data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_9__services_cat_service__["a" /* CatService */],
-            __WEBPACK_IMPORTED_MODULE_42__items_cart_service__["a" /* CartService */],
+            __WEBPACK_IMPORTED_MODULE_44__items_cart_service__["a" /* CartService */],
             __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */],
-            __WEBPACK_IMPORTED_MODULE_43__services_tabs_service__["a" /* TabsService */],
-            __WEBPACK_IMPORTED_MODULE_44__services_address_service__["a" /* AddressService */],
-            __WEBPACK_IMPORTED_MODULE_46__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
-            __WEBPACK_IMPORTED_MODULE_45__services_orders_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_45__services_tabs_service__["a" /* TabsService */],
+            __WEBPACK_IMPORTED_MODULE_46__services_address_service__["a" /* AddressService */],
+            __WEBPACK_IMPORTED_MODULE_49__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
+            __WEBPACK_IMPORTED_MODULE_48__services_orders_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_47__services_user_orders_service__["a" /* UserOrdersService */],
             {
                 provide: __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RECAPTCHA_SETTINGS"],
                 useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' },
@@ -1105,7 +1114,7 @@ CarousalComponent = __decorate([
 /***/ "../../../../../client/app/cats/cats.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current cats ({{cats.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Name</th>\n          <th>Age</th>\n          <th>Weight</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"cats.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no cats in the DB. Add a new cat below.</td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let cat of cats\">\n          <td>{{cat.name}}</td>\n          <td>{{cat.age}}</td>\n          <td>{{cat.weight}}</td>\n          <td>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(cat)\"><i class=\"fa fa-pencil\"></i> Edit</button> <button class=\"btn btn-sm btn-danger\" (click)=\"deleteCat(cat)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editCat(cat)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                  <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"cat.name\" placeholder=\"Name\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"age\" [(ngModel)]=\"cat.age\" placeholder=\"Age\" min=\"0\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"weight\" [(ngModel)]=\"cat.weight\" placeholder=\"Weight\" step=\"any\" min=\"0\" required>\n              </div>\n              <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new cat</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addCatForm\" (ngSubmit)=\"addCat()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n          <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"age\" formControlName=\"age\" placeholder=\"Age\" min=\"0\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"weight\" formControlName=\"weight\" placeholder=\"Weight\" step=\"any\" min=\"0\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addCatForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">Current cats ({{cats.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Name</th>\n          <th>Age</th>\n          <th>Weight</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"cats.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no cats in the DB. Add a new cat below.</td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let cat of cats\">\n          <td>{{cat.name}}</td>\n          <td>{{cat.age}}</td>\n          <td>{{cat.weight}}</td>\n          <td>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(cat)\"><i class=\"fa fa-pencil\"></i> Edit</button> \n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteCat(cat)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editCat(cat)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"cat.name\" placeholder=\"Name\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"age\" [(ngModel)]=\"cat.age\" placeholder=\"Age\" min=\"0\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"weight\" [(ngModel)]=\"cat.weight\" placeholder=\"Weight\" step=\"any\" min=\"0\" required>\n              </div>\n              <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new cat</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addCatForm\" (ngSubmit)=\"addCat()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"age\" formControlName=\"age\" placeholder=\"Age\" min=\"0\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"weight\" formControlName=\"weight\" placeholder=\"Weight\" step=\"any\" min=\"0\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addCatForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1133,10 +1142,9 @@ module.exports = module.exports.toString();
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CatsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_cat_service__ = __webpack_require__("../../../../../client/app/services/cat.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_cat_service__ = __webpack_require__("../../../../../client/app/services/cat.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1150,20 +1158,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var CatsComponent = (function () {
-    function CatsComponent(catService, formBuilder, http, toast) {
+    function CatsComponent(catService, formBuilder, toast) {
         this.catService = catService;
         this.formBuilder = formBuilder;
-        this.http = http;
         this.toast = toast;
         this.cat = {};
         this.cats = [];
         this.isLoading = true;
         this.isEditing = false;
-        this.name = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required);
-        this.age = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required);
-        this.weight = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required);
+        this.name = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
+        this.age = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
+        this.weight = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
     }
     CatsComponent.prototype.ngOnInit = function () {
         this.getCats();
@@ -1223,10 +1229,10 @@ CatsComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/cats/cats.component.html"),
         styles: [__webpack_require__("../../../../../client/app/cats/cats.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_cat_service__["a" /* CatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_cat_service__["a" /* CatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_cat_service__["a" /* CatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_cat_service__["a" /* CatService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object])
 ], CatsComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c;
 //# sourceMappingURL=cats.component.js.map
 
 /***/ }),
@@ -1252,7 +1258,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/checkout/checkout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\">\n\t<h1>PayU Screen</h1>\n</div>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"jumbotron\">\n\t<h1>PayU Screen</h1>\n\t<button class=\"btn btn-primary fontBold\" (click)=\"submitOrder()\" type=\"button\">Submit Order</button>\n</div>"
 
 /***/ }),
 
@@ -1261,6 +1267,117 @@ module.exports = "<div class=\"jumbotron\">\n\t<h1>PayU Screen</h1>\n</div>"
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var CheckoutComponent = (function () {
+    function CheckoutComponent(userOrdersService, toast, cartService, router) {
+        this.userOrdersService = userOrdersService;
+        this.toast = toast;
+        this.cartService = cartService;
+        this.router = router;
+    }
+    CheckoutComponent.prototype.ngOnInit = function () {
+    };
+    //1-orderBooked
+    //2-orderAccepted
+    //3-orderDelivered
+    CheckoutComponent.prototype.submitOrder = function () {
+        var items = this.cartService.products;
+        for (var i = 0; i < items.length; i++) {
+            delete items[i].product.imageForCart;
+            delete items[i].product.imageForShowCase;
+        }
+        var order = {
+            orderDetails: {
+                orderTime: new Date(),
+                modeOfPayment: 'COD',
+                paymentId: '1234',
+                orderAcceptedTime: new Date(),
+                orderDeliveryTime: new Date(),
+                orderStatus: 1
+            },
+            cartDetails: {
+                items: items,
+                cartTotal: this.cartService.cartTotal
+            },
+            status: true
+        };
+        debugger;
+        this.addOrder(order);
+    };
+    CheckoutComponent.prototype.addOrder = function (order) {
+        var _this = this;
+        this.userOrdersService.addUserOrder(order).subscribe(function (res) {
+            if (res.status == 200) {
+                _this.toast.setMessage('Order added successfully.', 'success');
+                _this.cartService.flushCart();
+                _this.router.navigate(['/order-success']);
+            }
+        }, function (error) { return console.log(error); });
+    };
+    return CheckoutComponent;
+}());
+CheckoutComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-checkout',
+        template: __webpack_require__("../../../../../client/app/checkout/checkout.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/checkout/checkout.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _d || Object])
+], CheckoutComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=checkout.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/components/order-success/order-success.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../client/app/components/order-success/order-success.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  Thanks For buying fresh fruits and Vegetables.\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../client/app/components/order-success/order-success.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderSuccessComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1272,23 +1389,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var CheckoutComponent = (function () {
-    function CheckoutComponent() {
+var OrderSuccessComponent = (function () {
+    function OrderSuccessComponent() {
     }
-    CheckoutComponent.prototype.ngOnInit = function () {
+    OrderSuccessComponent.prototype.ngOnInit = function () {
     };
-    return CheckoutComponent;
+    return OrderSuccessComponent;
 }());
-CheckoutComponent = __decorate([
+OrderSuccessComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-checkout',
-        template: __webpack_require__("../../../../../client/app/checkout/checkout.component.html"),
-        styles: [__webpack_require__("../../../../../client/app/checkout/checkout.component.css")]
+        selector: 'app-order-success',
+        template: __webpack_require__("../../../../../client/app/components/order-success/order-success.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/components/order-success/order-success.component.css")]
     }),
     __metadata("design:paramtypes", [])
-], CheckoutComponent);
+], OrderSuccessComponent);
 
-//# sourceMappingURL=checkout.component.js.map
+//# sourceMappingURL=order-success.component.js.map
 
 /***/ }),
 
@@ -1576,6 +1693,11 @@ var CartService = (function () {
         this.updateLocalStorage();
         this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
     };
+    CartService.prototype.addProductsToCart = function (products) {
+        for (var i = 0; i < products.length; i++) {
+            this.addProductToCart(products[i].product.product);
+        }
+    };
     CartService.prototype.updateLocalStorage = function () {
         this.appService.currentUser.cartValue = {
             status: true,
@@ -1618,7 +1740,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../client/app/items/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency: 'INR':true }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency:'USD':true:'1.0-0'}}</button>\n    </div>\n    <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button>\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
+module.exports = "<div class=\"preview\" [class.expanded]='expanded'>\n  <button [class.not-shown]='!products.length || expanded' type=\"button\" class=\"circle\" (click)=\"onCartClick()\">\n    <img src=\"../../assets/cart_white.svg\" alt=\"cart\" />\n    <div class=\"indicator\"><span>{{numProducts}}</span></div>\n  </button>\n  <div class=\"fill\" [style.height]=\"expanded ? expandedHeight : 'inherit'\" [class.not-shown]='!products.length' [class.animate-plop]='animatePlop' [class.shown]='animatePopout && !expanded'>\n    <div class=\"expanded-info\" [class.shown]='expanded'>\n      <h3>This is what you're gonna buy...</h3>\n      <div class=\"product\" *ngFor=\"let item of products\">\n        <div class=\"row\">\n          <div class=\"col-6-sm description\">\n            <p>{{item.quantity}} x {{item.product.name}}</p>\n          </div>\n          <div class=\"col-6-sm price\">\n            <p>{{item.quantity*item.product.parsedPrice | currency: 'INR':true }}</p>\n          </div>\n        </div>\n        <button class=\"delete-btn\" (click) = 'deleteProduct(item.product)'>x</button>\n      </div>\n      <button type=\"button\" class=\"pay-btn\" (click) = 'checkout()'>Pay {{cartTotal | currency: 'INR':true }}</button>\n      <!-- <button type=\"button\" class=\"pay-btn\" (click) = 'flushCart()'>Flush Cart</button> -->\n    </div>\n    <button type=\"button\" class=\"close-btn\" *ngIf='expanded' (click)=\"onCartClick()\">Close</button>\n  </div>\n</div>\n<div class=\"overlay\" [class.shown]='expanded'>\n\n</div>"
 
 /***/ }),
 
@@ -1711,6 +1833,10 @@ var CartComponent = (function () {
     };
     CartComponent.prototype.deleteProduct = function (product) {
         this.cartService.deleteProductFromCart(product);
+    };
+    CartComponent.prototype.flushCart = function () {
+        this.cartService.flushCart();
+        this.router.navigate(['/items']);
     };
     CartComponent.prototype.checkout = function () {
         this.expanded = false;
@@ -2549,7 +2675,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n          <cart></cart>\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/user-orders\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> User Orders\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n          <cart></cart>\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -2907,7 +3033,6 @@ var PaymentCheckoutComponent = (function () {
             console.log("Success");
             if (data.status == 200) {
                 document.getElementById('hash')["value"] = JSON.parse(data["_body"])['hash'];
-                debugger;
                 $('#paymentForm').submit();
             }
         }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
@@ -3077,14 +3202,17 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__account_account_component__ = __webpack_require__("../../../../../client/app/account/account.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__ = __webpack_require__("../../../../../client/app/admin/admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__not_found_not_found_component__ = __webpack_require__("../../../../../client/app/not-found/not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__home_home_component__ = __webpack_require__("../../../../../client/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cats_cats_component__ = __webpack_require__("../../../../../client/app/cats/cats.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__items_items_component__ = __webpack_require__("../../../../../client/app/items/items.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-login.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-admin.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__checkout_checkout_component__ = __webpack_require__("../../../../../client/app/checkout/checkout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home_component__ = __webpack_require__("../../../../../client/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__ = __webpack_require__("../../../../../client/app/cats/cats.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__items_items_component__ = __webpack_require__("../../../../../client/app/items/items.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__user_orders_user_orders_component__ = __webpack_require__("../../../../../client/app/user-orders/user-orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__payment_checkout_payment_checkout_component__ = __webpack_require__("../../../../../client/app/payment-checkout/payment-checkout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_order_success_order_success_component__ = __webpack_require__("../../../../../client/app/components/order-success/order-success.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_auth_guard_login_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_auth_guard_admin_service__ = __webpack_require__("../../../../../client/app/services/auth-guard-admin.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3108,20 +3236,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_9__home_home_component__["a" /* HomeComponent */] },
-    { path: 'checkout', component: __WEBPACK_IMPORTED_MODULE_14__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */] },
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
+    { path: 'checkout-payu', component: __WEBPACK_IMPORTED_MODULE_16__payment_checkout_payment_checkout_component__["a" /* PaymentCheckoutComponent */] },
+    { path: 'checkout', component: __WEBPACK_IMPORTED_MODULE_9__checkout_checkout_component__["a" /* CheckoutComponent */] },
     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_2__about_about_component__["a" /* AboutComponent */] },
-    { path: 'items', component: __WEBPACK_IMPORTED_MODULE_11__items_items_component__["a" /* ItemsComponent */] },
-    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_13__orders_orders_component__["a" /* OrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
-    { path: 'items/:id', component: __WEBPACK_IMPORTED_MODULE_11__items_items_component__["a" /* ItemsComponent */] },
-    { path: 'cats', component: __WEBPACK_IMPORTED_MODULE_10__cats_cats_component__["a" /* CatsComponent */] },
+    { path: 'items', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
+    { path: 'order-success', component: __WEBPACK_IMPORTED_MODULE_17__components_order_success_order_success_component__["a" /* OrderSuccessComponent */] },
+    { path: 'orders', component: __WEBPACK_IMPORTED_MODULE_14__orders_orders_component__["a" /* OrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
+    { path: 'user-orders', component: __WEBPACK_IMPORTED_MODULE_15__user_orders_user_orders_component__["a" /* UserOrdersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
+    { path: 'items/:id', component: __WEBPACK_IMPORTED_MODULE_12__items_items_component__["a" /* ItemsComponent */] },
+    { path: 'cats', component: __WEBPACK_IMPORTED_MODULE_11__cats_cats_component__["a" /* CatsComponent */] },
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__register_register_component__["a" /* RegisterComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */] },
     { path: 'logout', component: __WEBPACK_IMPORTED_MODULE_5__logout_logout_component__["a" /* LogoutComponent */] },
-    { path: 'addresses', component: __WEBPACK_IMPORTED_MODULE_12__addresses_addresses_component__["a" /* AddressesComponent */] },
-    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_6__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_15__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
-    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__["a" /* AdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
+    { path: 'addresses', component: __WEBPACK_IMPORTED_MODULE_13__addresses_addresses_component__["a" /* AddressesComponent */] },
+    { path: 'account', component: __WEBPACK_IMPORTED_MODULE_6__account_account_component__["a" /* AccountComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__services_auth_guard_login_service__["a" /* AuthGuardLogin */]] },
+    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_7__admin_admin_component__["a" /* AdminComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */]] },
     { path: 'notfound', component: __WEBPACK_IMPORTED_MODULE_8__not_found_not_found_component__["a" /* NotFoundComponent */] },
     { path: '**', redirectTo: '/notfound' }
 ];
@@ -3635,6 +3769,63 @@ TabsService = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../client/app/services/user-orders.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserOrdersService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserOrdersService = (function () {
+    function UserOrdersService(http) {
+        this.http = http;
+        this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
+        this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
+    }
+    UserOrdersService.prototype.getUserOrders = function () {
+        return this.http.get('/api/user-orders').map(function (res) { return res.json(); });
+    };
+    UserOrdersService.prototype.countUserOrders = function () {
+        return this.http.get('/api/user-orders/count').map(function (res) { return res.json(); });
+    };
+    UserOrdersService.prototype.addUserOrder = function (userOrder) {
+        return this.http.post('/api/user-orders', JSON.stringify(userOrder), this.options);
+    };
+    UserOrdersService.prototype.getUserOrder = function (userOrder) {
+        return this.http.get("/api/user-orders/" + userOrder._id).map(function (res) { return res.json(); });
+    };
+    UserOrdersService.prototype.editUserOrder = function (userOrder) {
+        return this.http.put("/api/user-orders/" + userOrder._id, JSON.stringify(userOrder), this.options);
+    };
+    UserOrdersService.prototype.deleteUserOrder = function (userOrder) {
+        return this.http.delete("/api/user-orders/" + userOrder._id, this.options);
+    };
+    return UserOrdersService;
+}());
+UserOrdersService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
+], UserOrdersService);
+
+var _a;
+//# sourceMappingURL=user-orders.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../client/app/services/user.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3962,6 +4153,144 @@ TabsComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=tabs.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/user-orders/user-orders.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">My Previous Orders ({{userOrders.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Order Time</th>\n          <th>Status</th>\n          <th>Mode Of Payment</th>\n          <th>Cart Total</th>\n          <th>Repeat Order</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"userOrders.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no userOrders in the DB.</td>\n        </tr>\n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let order of userOrders\">\n          <td>{{order.orderDetails.orderTime | date: 'dd/MM/yyyy'}}</td>\n          <td>{{order.orderDetails.orderStatus}}</td>\n          <td>{{order.orderDetails.modeOfPayment}}</td>\n          <td>{{order.cartDetails.cartTotal}}</td>\n          <td>\n            <button class=\"btn btn-sm btn-primary\" (click)=\"repeatOrder(order)\"><i class=\"fa fa-pencil\"></i> Repeat Order</button>\n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteCat(order)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n        </tr>  \n      </tbody>\n    </table>\n  </div>\n</div>\n\n<!-- <div class=\"card\" *ngIf=\"!isLoading\">\n  <h4 class=\"card-header\">My Orders ({{cats.length}})</h4>\n  <div class=\"card-block\">\n    <table class=\"table table-bordered table-striped\">\n      <thead class=\"thead-default\">\n        <tr>\n          <th>Name</th>\n          <th>Age</th>\n          <th>Weight</th>\n          <th>Actions</th>\n        </tr>\n      </thead>\n      <tbody *ngIf=\"cats.length === 0\">\n        <tr>\n          <td colspan=\"4\">There are no cats in the DB. Add a new cat below.</td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"!isEditing\">\n        <tr *ngFor=\"let cat of cats\">\n          <td>{{cat.name}}</td>\n          <td>{{cat.age}}</td>\n          <td>{{cat.weight}}</td>\n          <td>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(cat)\"><i class=\"fa fa-pencil\"></i> Edit</button> \n            <button class=\"btn btn-sm btn-danger\" (click)=\"deleteCat(cat)\"><i class=\"fa fa-trash\"></i> Delete</button>\n          </td>\n        </tr>  \n      </tbody>\n      <tbody *ngIf=\"isEditing\">\n        <tr>\n          <td colspan=\"4\">\n            <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editCat(cat)\" style=\"display:inline\">\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"cat.name\" placeholder=\"Name\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"age\" [(ngModel)]=\"cat.age\" placeholder=\"Age\" min=\"0\" required>\n              </div>\n              <div class=\"form-group\">\n                <input class=\"form-control\" type=\"number\" name=\"weight\" [(ngModel)]=\"cat.weight\" placeholder=\"Weight\" step=\"any\" min=\"0\" required>\n              </div>\n              <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n            </form>\n            <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div> -->\n\n<!-- <div class=\"card\" *ngIf=\"!isEditing\">\n  <h4 class=\"card-header\">Add new cat</h4>\n  <div class=\"card-block\">\n    <form class=\"form-inline\" [formGroup]=\"addCatForm\" (ngSubmit)=\"addCat()\" style=\"text-align:center\">\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"age\" formControlName=\"age\" placeholder=\"Age\" min=\"0\">\n      </div>\n      <div class=\"form-group\">\n        <input class=\"form-control\" type=\"number\" name=\"weight\" formControlName=\"weight\" placeholder=\"Weight\" step=\"any\" min=\"0\">\n      </div>\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addCatForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n    </form>\n  </div>\n</div> -->"
+
+/***/ }),
+
+/***/ "../../../../../client/app/user-orders/user-orders.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table td, .table th {\n  text-align: center;\n  width: 25%; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../client/app/user-orders/user-orders.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserOrdersComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var UserOrdersComponent = (function () {
+    function UserOrdersComponent(userOrdersService, formBuilder, toast, router, cartService) {
+        this.userOrdersService = userOrdersService;
+        this.formBuilder = formBuilder;
+        this.toast = toast;
+        this.router = router;
+        this.cartService = cartService;
+        this.isLoading = true;
+        this.isEditing = false;
+        this.name = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
+        this.age = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
+        this.weight = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
+        this.userOrders = [];
+        this.userOrder = {};
+    }
+    UserOrdersComponent.prototype.ngOnInit = function () {
+        this.getUserOrders();
+        this.addCatForm = this.formBuilder.group({
+            name: this.name,
+            age: this.age,
+            weight: this.weight
+        });
+    };
+    UserOrdersComponent.prototype.getUserOrders = function () {
+        var _this = this;
+        this.userOrdersService.getUserOrders().subscribe(function (data) {
+            _this.userOrders = data;
+        }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+    };
+    UserOrdersComponent.prototype.repeatOrder = function (order) {
+        this.cartService.flushCart();
+        this.cartService.addProductsToCart(order.cartDetails.items);
+        this.router.navigate(['/addresses']);
+    };
+    UserOrdersComponent.prototype.addCat = function () {
+        var _this = this;
+        this.userOrdersService.addUserOrder(this.addCatForm.value).subscribe(function (res) {
+            var newUserOrder = res.json();
+            _this.userOrders.push(newUserOrder);
+            _this.addCatForm.reset();
+            _this.toast.setMessage('Order added successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    UserOrdersComponent.prototype.enableEditing = function (userOrder) {
+        this.isEditing = true;
+        this.userOrder = userOrder;
+    };
+    UserOrdersComponent.prototype.cancelEditing = function () {
+        this.isEditing = false;
+        this.userOrder = {};
+        this.toast.setMessage('Order editing cancelled.', 'warning');
+        this.getUserOrders();
+    };
+    UserOrdersComponent.prototype.editCat = function (userOrder) {
+        var _this = this;
+        this.userOrdersService.editUserOrder(userOrder).subscribe(function (res) {
+            _this.isEditing = false;
+            _this.userOrder = userOrder;
+            _this.toast.setMessage('Order edited successfully.', 'success');
+        }, function (error) { return console.log(error); });
+    };
+    UserOrdersComponent.prototype.deleteCat = function (userOrder) {
+        var _this = this;
+        if (window.confirm('Are you sure you want to permanently delete this Order?')) {
+            this.userOrdersService.deleteUserOrder(userOrder).subscribe(function (res) {
+                var pos = _this.userOrders.map(function (elem) { return elem._id; }).indexOf(userOrder._id);
+                _this.userOrders.splice(pos, 1);
+                _this.toast.setMessage('Order deleted successfully.', 'success');
+            }, function (error) { return console.log(error); });
+        }
+    };
+    return UserOrdersComponent;
+}());
+UserOrdersComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-user-orders',
+        template: __webpack_require__("../../../../../client/app/user-orders/user-orders.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/user-orders/user-orders.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */]) === "function" && _e || Object])
+], UserOrdersComponent);
+
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=user-orders.component.js.map
 
 /***/ }),
 

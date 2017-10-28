@@ -70,6 +70,11 @@ export class CartComponent implements OnInit {
     this.cartService.deleteProductFromCart(product);
   }
 
+  flushCart(){
+    this.cartService.flushCart();
+    this.router.navigate(['/items']);
+  }
+
   checkout() {
     this.expanded = false;
     this.router.navigate(['/addresses']);

@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CarousalComponent } from './carousal/carousal.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 
 import { LocationComponent } from './location/location.component';
 
@@ -47,11 +48,13 @@ import { CartPreviewComponent } from './items/cart-preview/cart-preview.componen
 import { PaymentCheckoutComponent, SafePipe } from './payment-checkout/payment-checkout.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
 import { TabsService } from './services/tabs.service';
 import { AddressService } from './services/address.service';
+import { UserOrdersService } from './services/user-orders.service';
 import { OrderService } from './services/orders.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 
@@ -86,7 +89,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         LocationComponent,
         AddressesComponent,
         OrdersComponent,
-        SafePipe
+        SafePipe,
+        UserOrdersComponent,
+        OrderSuccessComponent
     ],
     imports: [
         RoutingModule,
@@ -113,6 +118,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AddressService,
         LocalStorageService,
         OrderService,
+        UserOrdersService,
         {
             provide: RECAPTCHA_SETTINGS,
             useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' } as RecaptchaSettings,

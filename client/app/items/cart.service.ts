@@ -77,6 +77,12 @@ export class CartService {
     this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal })
   }
 
+  addProductsToCart(products) {
+    for (var i = 0; i < products.length; i++) {
+      this.addProductToCart(products[i].product.product);
+    }
+  }
+
   updateLocalStorage() {
     this.appService.currentUser.cartValue = {
       status: true,
