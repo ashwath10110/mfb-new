@@ -612,7 +612,7 @@ var _a, _b, _c;
 /***/ "../../../../../client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n\n<div *ngIf=\"auth.loggedIn\">\n\t<cart></cart>\n</div>\n\n<div class=\"container-fluid\">\n\t<router-outlet></router-outlet>\n</div>\n\n<app-footer></app-footer>"
+module.exports = "<app-navbar></app-navbar>\n\n<div>\n\t<cart></cart>\n</div>\n\n<div class=\"container-fluid\">\n\t<router-outlet></router-outlet>\n</div>\n\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -662,6 +662,10 @@ var AppComponent = (function () {
             console.log("NA");
         }
     }
+    AppComponent.prototype.ngOnInit = function () {
+        // setTimeout(() => {
+        // });
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -1319,7 +1323,6 @@ var CheckoutComponent = (function () {
             },
             status: true
         };
-        debugger;
         this.addOrder(order);
     };
     CheckoutComponent.prototype.addOrder = function (order) {
@@ -2675,7 +2678,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/user-orders\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> User Orders\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n          <cart></cart>\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-inverse\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">WebSiteName</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/user-orders\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> User Orders\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n          <!-- <cart></cart> -->\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -3416,6 +3419,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt__ = __webpack_require__("../../../../angular2-jwt/angular2-jwt.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3429,10 +3433,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
-    function AuthService(userService, router) {
+    function AuthService(userService, router, cartService) {
         this.userService = userService;
         this.router = router;
+        this.cartService = cartService;
         this.loggedIn = false;
         this.isAdmin = false;
         this.jwtHelper = new __WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["JwtHelper"]();
@@ -3457,6 +3463,7 @@ var AuthService = (function () {
         this.loggedIn = false;
         this.isAdmin = false;
         this.currentUser = { _id: '', username: '', role: '' };
+        this.cartService.flushCart();
         this.router.navigate(['/']);
     };
     AuthService.prototype.decodeUserFromToken = function (token) {
@@ -3474,10 +3481,10 @@ var AuthService = (function () {
 }());
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */]) === "function" && _c || Object])
 ], AuthService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=auth.service.js.map
 
 /***/ }),
@@ -4102,7 +4109,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/tabs/tabs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ul class=\"nav nav-tabs\">\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>exotic-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>leafy-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>fresh-fruits</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>fresh-vegetables</a></li>\n</ul>\n<router-outlet></router-outlet>\n -->\n\n <div class=\"wrapper\">\n  <div class=\"\">    \n    <div class=\"bs-example bs-example-tabs\" role=\"tabpanel\" data-example-id=\"togglable-tabs\">\n      <ul id=\"myTab\" class=\"nav nav-tabs nav-tabs-responsive\" role=\"tablist\">\n      \t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>Exotic Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>Leafy Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>Fresh Fruits</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>Fresh Vegetables</a></li>\n      </ul>\n      <div id=\"myTabContent\" class=\"tab-content\">\n        <div class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n          <router-outlet></router-outlet>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<!-- <ul class=\"nav nav-tabs\">\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>exotic-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>leafy-vegetables</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>fresh-fruits</a></li>\n\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>fresh-vegetables</a></li>\n</ul>\n<router-outlet></router-outlet>\n -->\n\n <div class=\"wrapper\">\n  <div class=\"\">    \n    <div class=\"bs-example bs-example-tabs\" role=\"tabpanel\" data-example-id=\"togglable-tabs\">\n      <ul id=\"myTab\" class=\"nav nav-tabs nav-tabs-responsive\" role=\"tablist\">\n      \t<li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>Exotic Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>Leafy Vegetables</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>Fresh Fruits</a></li>\n\t\t<li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>Fresh Vegetables</a></li>\n      </ul>\n      <div id=\"myTabContent\" class=\"tab-content\">\n        <div class=\"tab-pane fade in active\" id=\"home\" aria-labelledby=\"home-tab\">\n          <!-- <router-outlet></router-outlet> -->\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 

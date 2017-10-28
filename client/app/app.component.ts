@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { TabsComponent } from './tabs/tabs.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -11,7 +11,7 @@ import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.co
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
 	constructor(public auth: AuthService) {
 		if (window["Worker"]) {
@@ -22,5 +22,11 @@ export class AppComponent {
 			console.log("NA");
 		}
 	}
+
+	ngOnInit() {
+		// setTimeout(() => {
+
+		// });
+  	}
 
 }

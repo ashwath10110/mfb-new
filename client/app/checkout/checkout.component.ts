@@ -47,7 +47,6 @@ export class CheckoutComponent implements OnInit {
 			},
 			status: true
 		};
-		debugger;
 		this.addOrder(order);
 	}
 

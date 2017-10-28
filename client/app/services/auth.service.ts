@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
 import { UserService } from '../services/user.service';
+import { CartService } from './../items/cart.service';
 
 @Injectable()
 export class AuthService {
@@ -13,8 +14,11 @@ export class AuthService {
 
   currentUser = { _id: '', username: '', role: '' };
 
-  constructor(private userService: UserService,
-              private router: Router) {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private cartService: CartService
+  ) {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedUser = this.decodeUserFromToken(token);
@@ -38,6 +42,7 @@ export class AuthService {
     this.loggedIn = false;
     this.isAdmin = false;
     this.currentUser = { _id: '', username: '', role: '' };
+    this.cartService.flushCart();
     this.router.navigate(['/']);
   }
 
