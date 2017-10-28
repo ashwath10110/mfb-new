@@ -663,8 +663,6 @@ var AppComponent = (function () {
         }
     }
     AppComponent.prototype.ngOnInit = function () {
-        // setTimeout(() => {
-        // });
     };
     return AppComponent;
 }());
@@ -950,6 +948,7 @@ var AppService = (function () {
                 }
             }
         };
+        this.isCartPrepared = false;
         this.shopDetails = {
             name: '',
             locationChords: {
@@ -1774,6 +1773,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1787,14 +1787,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OFFSET_HEIGHT = 170;
 var PRODUCT_HEIGHT = 48;
 var CartComponent = (function () {
-    function CartComponent(cartService, changeDetectorRef, route, router, appService) {
+    function CartComponent(cartService, changeDetectorRef, route, router, appService, auth) {
         this.cartService = cartService;
         this.route = route;
         this.router = router;
         this.appService = appService;
+        this.auth = auth;
         this.products = [];
         this.numProducts = 0;
         this.animatePlop = false;
@@ -1843,7 +1845,13 @@ var CartComponent = (function () {
     };
     CartComponent.prototype.checkout = function () {
         this.expanded = false;
-        this.router.navigate(['/addresses']);
+        if (this.auth.loggedIn) {
+            this.router.navigate(['/addresses']);
+        }
+        else {
+            this.appService.isCartPrepared = true;
+            this.router.navigate(['/login']);
+        }
         console.log("To Checkout");
     };
     CartComponent.prototype.onCartClick = function () {
@@ -1857,10 +1865,10 @@ CartComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/items/cart/cart.component.html"),
         styles: [__webpack_require__("../../../../../client/app/items/cart/cart.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === "function" && _f || Object])
 ], CartComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=cart.component.js.map
 
 /***/ }),
@@ -1980,6 +1988,9 @@ var ItemsComponent = (function () {
         this.isEditing = false;
         this.originalData = [];
     }
+    ItemsComponent.prototype.ngOnInit = function () {
+        this.initCart();
+    };
     ItemsComponent.prototype.getItems = function (type) {
         var _this = this;
         if (this.itemsService.state['isInitialised']) {
@@ -2017,9 +2028,6 @@ var ItemsComponent = (function () {
                 _this.getItems(_this.typeOfVegetables);
             }
         });
-    };
-    ItemsComponent.prototype.ngOnInit = function () {
-        this.initCart();
     };
     return ItemsComponent;
 }());
@@ -2597,7 +2605,12 @@ var LoginComponent = (function () {
         var _this = this;
         this.auth.login(this.loginForm.value).subscribe(function (res) {
             _this.localStorageService.clearLocalStorageItem();
-            _this.router.navigate(['/']);
+            if (_this.appService.isCartPrepared) {
+                _this.router.navigate(['/addresses']);
+            }
+            else {
+                _this.router.navigate(['/']);
+            }
         }, function (error) { return _this.toast.setMessage('invalid email or password!', 'danger'); });
     };
     return LoginComponent;
@@ -3420,6 +3433,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3434,11 +3448,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
-    function AuthService(userService, router, cartService) {
+    function AuthService(userService, router, cartService, appService) {
         this.userService = userService;
         this.router = router;
         this.cartService = cartService;
+        this.appService = appService;
         this.loggedIn = false;
         this.isAdmin = false;
         this.jwtHelper = new __WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["JwtHelper"]();
@@ -3464,6 +3480,7 @@ var AuthService = (function () {
         this.isAdmin = false;
         this.currentUser = { _id: '', username: '', role: '' };
         this.cartService.flushCart();
+        this.appService.isCartPrepared = false;
         this.router.navigate(['/']);
     };
     AuthService.prototype.decodeUserFromToken = function (token) {
@@ -3481,10 +3498,10 @@ var AuthService = (function () {
 }());
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _d || Object])
 ], AuthService);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=auth.service.js.map
 
 /***/ }),

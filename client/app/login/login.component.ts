@@ -54,7 +54,11 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(
       res => {
         this.localStorageService.clearLocalStorageItem();
-        this.router.navigate(['/']);
+        if (this.appService.isCartPrepared) {
+          this.router.navigate(['/addresses']);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );

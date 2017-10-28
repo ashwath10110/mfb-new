@@ -4,6 +4,7 @@ import { JwtHelper } from 'angular2-jwt';
 
 import { UserService } from '../services/user.service';
 import { CartService } from './../items/cart.service';
+import { AppService } from './../app.service';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,8 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private appService: AppService
   ) {
     const token = localStorage.getItem('token');
     if (token) {
@@ -43,6 +45,7 @@ export class AuthService {
     this.isAdmin = false;
     this.currentUser = { _id: '', username: '', role: '' };
     this.cartService.flushCart();
+    this.appService.isCartPrepared = false;
     this.router.navigate(['/']);
   }
 

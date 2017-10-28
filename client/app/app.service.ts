@@ -51,6 +51,8 @@ export class AppService {
     }
   };
 
+  isCartPrepared = false;
+
   public shopDetails = {
     name: '',
     locationChords: {

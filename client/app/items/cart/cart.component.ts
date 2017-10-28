@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AppService } from './../../app.service';
+import { AuthService } from './../../services/auth.service';
 
 const OFFSET_HEIGHT: number = 170;
 const PRODUCT_HEIGHT: number = 48;
@@ -30,7 +31,8 @@ export class CartComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef,
     private route: ActivatedRoute,
     public router: Router,
-    public appService: AppService
+    public appService: AppService,
+    public auth: AuthService,
   ) {
     this.changeDetectorRef = changeDetectorRef;
   }
@@ -77,8 +79,14 @@ export class CartComponent implements OnInit {
 
   checkout() {
     this.expanded = false;
-    this.router.navigate(['/addresses']);
 
+    if (this.auth.loggedIn) {
+      this.router.navigate(['/addresses']);
+    }else{
+      this.appService.isCartPrepared = true;
+      this.router.navigate(['/login']);
+    }
+    
     console.log("To Checkout");
   }
 

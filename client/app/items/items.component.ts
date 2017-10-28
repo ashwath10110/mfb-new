@@ -41,6 +41,10 @@ export class ItemsComponent implements OnInit {
     private appService: AppService) {
   }
 
+  ngOnInit() {
+    this.initCart();
+  }
+
   getItems(type) {
     if (this.itemsService.state['isInitialised']) {
       this.products = this.itemsService.state['data'][type]['items'];
@@ -87,7 +91,4 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.initCart();
-  }
 }
