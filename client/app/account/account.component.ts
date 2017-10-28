@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import { AppService } from './../app.service';
 
 @Component({
   selector: 'app-account',
@@ -13,9 +14,12 @@ export class AccountComponent implements OnInit {
   user = {};
   isLoading = true;
 
-  constructor(private auth: AuthService,
-              public toast: ToastComponent,
-              private userService: UserService) { }
+  constructor(
+    private auth: AuthService,
+    public toast: ToastComponent,
+    private userService: UserService,
+    private appService: AppService
+  ) { }
 
   ngOnInit() {
     this.getUser();
@@ -23,7 +27,10 @@ export class AccountComponent implements OnInit {
 
   getUser() {
     this.userService.getUser(this.auth.currentUser).subscribe(
-      data => this.user = data,
+      data => {
+        this.appService.currentUser.userDetails = data;
+        this.user = data;
+      },
       error => console.log(error),
       () => this.isLoading = false
     );

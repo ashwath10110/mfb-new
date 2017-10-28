@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     public toast: ToastComponent,
     private userService: UserService,
     private localStorageService: LocalStorageService,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -75,7 +75,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.userService.register(this.registerForm.value).subscribe(
+    let user = this.registerForm.value;
+    this.userService.register(user).subscribe(
       res => {
         this.toast.setMessage('you successfully registered!', 'success');
         this.localStorageService.clearLocalStorageItem();

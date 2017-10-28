@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UserOrdersService } from '../services/user-orders.service';
+import { UserService } from '../services/user.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { CartService } from './../items/cart.service';
+import { AuthService } from '../services/auth.service';
+import { AppService } from './../app.service';
 
 @Component({
 	selector: 'app-checkout',
@@ -14,9 +17,12 @@ export class CheckoutComponent implements OnInit {
 
 	constructor(
 		private userOrdersService: UserOrdersService,
+		private userService: UserService,
 		public toast: ToastComponent,
 		public cartService: CartService,
 		public router: Router,
+		private auth: AuthService,
+		private appService: AppService
 	) { }
 
 	ngOnInit() {
@@ -51,17 +57,29 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	addOrder(order) {
-		this.userOrdersService.addUserOrder(order).subscribe(
+		let user = this.auth.currentUser;
+		user.orders.push(order);
+		this.userService.editUser(user).subscribe(
 			res => {
 				if (res.status == 200) {
-
 					this.toast.setMessage('Order added successfully.', 'success');
 					this.cartService.flushCart();
+					this.appService.currentUser.userDetails.data['orders'].push(order);
 					this.router.navigate(['/order-success']);
 				}
 			},
 			error => console.log(error)
 		);
+		// this.userOrdersService.addUserOrder(order).subscribe(
+		// 	res => {
+		// 		if (res.status == 200) {
+		// 			this.toast.setMessage('Order added successfully.', 'success');
+		// 			this.cartService.flushCart();
+		// 			this.router.navigate(['/order-success']);
+		// 		}
+		// 	},
+		// 	error => console.log(error)
+		// );
 	}
 
 }

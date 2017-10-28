@@ -7,6 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 // import 'rxjs/add/operator/toPromise';
 // import 'rxjs/add/operator/map';
 import { ToastComponent } from './../app/shared/toast/toast.component';
+import { UserService } from './../app/services/user.service';
 
 @Injectable()
 export class AppService {
@@ -20,6 +21,10 @@ export class AppService {
 
   public currentUser = {
     name: 'Ashwath',
+    userDetails: {
+      status: false,
+      data: {}
+    },
     tokenId: '00110101100',
     tokenForLocalStorage: 'mfb-storage',
     locationData: {
@@ -95,7 +100,11 @@ export class AppService {
 
   constructor(
     private http: Http,
-    public toast: ToastComponent) {
+    public toast: ToastComponent,
+    private userService: UserService
+  ) {
+
+    // this.userService.getUser();
   }
 
   getLocation(): Observable<any> {

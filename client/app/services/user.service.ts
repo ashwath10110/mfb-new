@@ -13,6 +13,7 @@ export class UserService {
   constructor(private http: Http) { }
 
   register(user): Observable<any> {
+    debugger;
     return this.http.post('/api/user', JSON.stringify(user), this.options);
   }
 

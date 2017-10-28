@@ -110,6 +110,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -123,11 +124,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AccountComponent = (function () {
-    function AccountComponent(auth, toast, userService) {
+    function AccountComponent(auth, toast, userService, appService) {
         this.auth = auth;
         this.toast = toast;
         this.userService = userService;
+        this.appService = appService;
         this.user = {};
         this.isLoading = true;
     }
@@ -136,7 +139,10 @@ var AccountComponent = (function () {
     };
     AccountComponent.prototype.getUser = function () {
         var _this = this;
-        this.userService.getUser(this.auth.currentUser).subscribe(function (data) { return _this.user = data; }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+        this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
+            _this.appService.currentUser.userDetails = data;
+            _this.user = data;
+        }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
     };
     AccountComponent.prototype.save = function (user) {
         var _this = this;
@@ -150,10 +156,10 @@ AccountComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/account/account.component.html"),
         styles: [__webpack_require__("../../../../../client/app/account/account.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */]) === "function" && _d || Object])
 ], AccountComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=account.component.js.map
 
 /***/ }),
@@ -326,7 +332,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/addresses/addresses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div>\n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div> -->\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\"> \n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div> -->\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
 
 /***/ }),
 
@@ -362,6 +368,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_items_service__ = __webpack_require__("../../../../../client/app/services/items.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -380,8 +388,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AddressesComponent = (function () {
-    function AddressesComponent(addressService, cartService, appService, itemsService, formBuilder, http, toast, router) {
+    function AddressesComponent(addressService, cartService, appService, itemsService, formBuilder, http, toast, router, userService, auth) {
         this.addressService = addressService;
         this.cartService = cartService;
         this.appService = appService;
@@ -390,9 +400,11 @@ var AddressesComponent = (function () {
         this.http = http;
         this.toast = toast;
         this.router = router;
+        this.userService = userService;
+        this.auth = auth;
         this.address = {};
         this.addresses = [];
-        this.isLoading = true;
+        this.isLoading = false;
         this.isEditing = false;
         this.name = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required);
         this.showLocationDataFlag = false;
@@ -407,6 +419,7 @@ var AddressesComponent = (function () {
         this.addAddressForm = this.formBuilder.group({
             name: this.name
         });
+        debugger;
         this.getAddresses();
     };
     AddressesComponent.prototype.getLocationData = function () {
@@ -431,22 +444,47 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.getAddresses = function () {
         var _this = this;
-        this.addressService.getAddresses().subscribe(function (data) {
-            _this.addresses = data;
-        }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+        if (this.appService.currentUser.userDetails.status) {
+            this.addresses = this.appService.currentUser.userDetails.data['addresses'];
+        }
+        else {
+            this.isLoading = true;
+            this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
+                _this.appService.currentUser.userDetails.status = true;
+                _this.appService.currentUser.userDetails.data = data;
+                debugger;
+                _this.addresses = _this.appService.currentUser.userDetails.data['addresses'];
+                _this.isLoading = false;
+            }, function (error) { return console.log(error); }, function () {
+                _this.isLoading = false;
+            });
+        }
     };
     AddressesComponent.prototype.addAddress = function () {
         var _this = this;
-        this.addressService.addAddress(this.addAddressForm.value).subscribe(function (res) {
-            var newAddress = res.json();
-            _this.addresses.push(newAddress);
+        var address = {
+            name: this.addAddressForm.value.name,
+            value: {
+                HNo: 'dhdhdhdhh',
+                StreetNo: 'yyeueueueuueue',
+                AreaName: 'Bowenpally',
+                LandMark: 'assdsddjjdjdjdjdjjdjd'
+            }
+        };
+        var user = this.auth.currentUser;
+        user.addresses.push(address);
+        this.userService.editUser(user).subscribe(function (res) {
+            var newAddresses = res.json();
+            _this.addresses = newAddresses.addresses;
             _this.addAddressForm.reset();
             _this.toast.setMessage('Address added successfully.', 'success');
         }, function (error) { return console.log(error); });
     };
     AddressesComponent.prototype.addCurrentAddress = function (address) {
         var _this = this;
-        this.addressService.addAddress(address).subscribe(function (res) {
+        var user = this.auth.currentUser;
+        user.addresses.push(address);
+        this.userService.editUser(user).subscribe(function (res) {
             var newAddress = res.json();
             _this.addresses.push(newAddress);
             _this.addAddressForm.reset();
@@ -464,15 +502,35 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.editAddress = function (address) {
         var _this = this;
-        this.addressService.editAddress(address).subscribe(function (res) {
+        var user = this.auth.currentUser;
+        for (var i = 0; i < user.addresses.length; i++) {
+            if (user.addresses[i].name == address.name) {
+                user.addresses[i].value = address;
+            }
+        }
+        this.userService.editUser(user).subscribe(function (res) {
             _this.isEditing = false;
-            _this.address = address;
-            _this.toast.setMessage('Address edited successfully.', 'success');
+            _this.address = res;
+            _this.toast.setMessage('Address Edited successfully.', 'success');
         }, function (error) { return console.log(error); });
     };
     AddressesComponent.prototype.deleteAddress = function (address) {
         var _this = this;
         if (window.confirm('Are you sure you want to permanently delete this item?')) {
+            var user = this.auth.currentUser;
+            for (var i = 0; i < user.addresses.length; i++) {
+                if (user.addresses[i].name == address.name) {
+                    user.addresses.splice(i, 1);
+                    break;
+                }
+            }
+            this.userService.editUser(user).subscribe(function (res) {
+                var pos = _this.addresses.map(function (elem) { return elem._id; }).indexOf(address._id);
+                _this.isEditing = false;
+                debugger;
+                // this.addresses = res['']
+                _this.toast.setMessage('Address deleted successfully.', 'success');
+            }, function (error) { return console.log(error); });
             this.addressService.deleteAddress(address).subscribe(function (res) {
                 var pos = _this.addresses.map(function (elem) { return elem._id; }).indexOf(address._id);
                 _this.addresses.splice(pos, 1);
@@ -519,10 +577,10 @@ AddressesComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/addresses/addresses.component.html"),
         styles: [__webpack_require__("../../../../../client/app/addresses/addresses.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_address_service__["a" /* AddressService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__items_cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_9__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__services_auth_service__["a" /* AuthService */]) === "function" && _k || Object])
 ], AddressesComponent);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 //# sourceMappingURL=addresses.component.js.map
 
 /***/ }),
@@ -891,6 +949,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__ = __webpack_require__("../../../../rxjs/add/operator/mergeMap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_mergeMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -908,16 +967,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import 'rxjs/add/operator/toPromise';
 // import 'rxjs/add/operator/map';
 
+
 var AppService = (function () {
-    function AppService(http, toast) {
+    function AppService(http, toast, userService) {
         this.http = http;
         this.toast = toast;
+        this.userService = userService;
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
         this.selectedTab = 'Home';
         this.x_ = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAkL6AxoO5S7ACBqvO-A2eMstnbx8pU9oE";
         this.currentUser = {
             name: 'Ashwath',
+            userDetails: {
+                status: false,
+                data: {}
+            },
             tokenId: '00110101100',
             tokenForLocalStorage: 'mfb-storage',
             locationData: {
@@ -984,6 +1049,7 @@ var AppService = (function () {
                 }
             }
         };
+        // this.userService.getUser();
     }
     AppService.prototype.getLocation = function () {
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].create(function (observer) {
@@ -1045,10 +1111,10 @@ var AppService = (function () {
 }());
 AppService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_6__app_services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__app_services_user_service__["a" /* UserService */]) === "function" && _c || Object])
 ], AppService);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=app.service.js.map
 
 /***/ }),
@@ -1273,8 +1339,11 @@ module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1289,12 +1358,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var CheckoutComponent = (function () {
-    function CheckoutComponent(userOrdersService, toast, cartService, router) {
+    function CheckoutComponent(userOrdersService, userService, toast, cartService, router, auth, appService) {
         this.userOrdersService = userOrdersService;
+        this.userService = userService;
         this.toast = toast;
         this.cartService = cartService;
         this.router = router;
+        this.auth = auth;
+        this.appService = appService;
     }
     CheckoutComponent.prototype.ngOnInit = function () {
     };
@@ -1326,13 +1401,26 @@ var CheckoutComponent = (function () {
     };
     CheckoutComponent.prototype.addOrder = function (order) {
         var _this = this;
-        this.userOrdersService.addUserOrder(order).subscribe(function (res) {
+        var user = this.auth.currentUser;
+        user.orders.push(order);
+        this.userService.editUser(user).subscribe(function (res) {
             if (res.status == 200) {
                 _this.toast.setMessage('Order added successfully.', 'success');
                 _this.cartService.flushCart();
+                _this.appService.currentUser.userDetails.data['orders'].push(order);
                 _this.router.navigate(['/order-success']);
             }
         }, function (error) { return console.log(error); });
+        // this.userOrdersService.addUserOrder(order).subscribe(
+        // 	res => {
+        // 		if (res.status == 200) {
+        // 			this.toast.setMessage('Order added successfully.', 'success');
+        // 			this.cartService.flushCart();
+        // 			this.router.navigate(['/order-success']);
+        // 		}
+        // 	},
+        // 	error => console.log(error)
+        // );
     };
     return CheckoutComponent;
 }());
@@ -1342,10 +1430,10 @@ CheckoutComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/checkout/checkout.component.html"),
         styles: [__webpack_require__("../../../../../client/app/checkout/checkout.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__items_cart_service__["a" /* CartService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__app_service__["a" /* AppService */]) === "function" && _g || Object])
 ], CheckoutComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=checkout.component.js.map
 
 /***/ }),
@@ -3177,7 +3265,8 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.register = function () {
         var _this = this;
-        this.userService.register(this.registerForm.value).subscribe(function (res) {
+        var user = this.registerForm.value;
+        this.userService.register(user).subscribe(function (res) {
             _this.toast.setMessage('you successfully registered!', 'success');
             _this.localStorageService.clearLocalStorageItem();
             _this.router.navigate(['/login']);
@@ -3458,13 +3547,33 @@ var AuthService = (function () {
         this.loggedIn = false;
         this.isAdmin = false;
         this.jwtHelper = new __WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["JwtHelper"]();
-        this.currentUser = { _id: '', username: '', role: '' };
+        this.currentUser = {
+            _id: '',
+            username: '',
+            email: '',
+            role: '',
+            addresses: [],
+            orders: [],
+            contactDetails: {}
+        };
+        this.freshUser();
         var token = localStorage.getItem('token');
         if (token) {
             var decodedUser = this.decodeUserFromToken(token);
             this.setCurrentUser(decodedUser);
         }
     }
+    AuthService.prototype.freshUser = function () {
+        this.currentUser = {
+            _id: '',
+            username: '',
+            email: '',
+            role: '',
+            addresses: [],
+            orders: [],
+            contactDetails: {}
+        };
+    };
     AuthService.prototype.login = function (emailAndPassword) {
         var _this = this;
         return this.userService.login(emailAndPassword).map(function (res) { return res.json(); }).map(function (res) {
@@ -3478,7 +3587,7 @@ var AuthService = (function () {
         localStorage.removeItem('token');
         this.loggedIn = false;
         this.isAdmin = false;
-        this.currentUser = { _id: '', username: '', role: '' };
+        this.freshUser();
         this.cartService.flushCart();
         this.appService.isCartPrepared = false;
         this.router.navigate(['/']);
@@ -3487,10 +3596,9 @@ var AuthService = (function () {
         return this.jwtHelper.decodeToken(token).user;
     };
     AuthService.prototype.setCurrentUser = function (decodedUser) {
+        debugger;
         this.loggedIn = true;
-        this.currentUser._id = decodedUser._id;
-        this.currentUser.username = decodedUser.username;
-        this.currentUser.role = decodedUser.role;
+        this.currentUser = decodedUser;
         decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
         delete decodedUser.role;
     };
@@ -3878,6 +3986,7 @@ var UserService = (function () {
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: this.headers });
     }
     UserService.prototype.register = function (user) {
+        debugger;
         return this.http.post('/api/user', JSON.stringify(user), this.options);
     };
     UserService.prototype.login = function (credentials) {
@@ -4216,6 +4325,9 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_user_service__ = __webpack_require__("../../../../../client/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4231,14 +4343,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var UserOrdersComponent = (function () {
-    function UserOrdersComponent(userOrdersService, formBuilder, toast, router, cartService) {
+    function UserOrdersComponent(userOrdersService, formBuilder, toast, router, cartService, auth, appService, userService) {
         this.userOrdersService = userOrdersService;
         this.formBuilder = formBuilder;
         this.toast = toast;
         this.router = router;
         this.cartService = cartService;
-        this.isLoading = true;
+        this.auth = auth;
+        this.appService = appService;
+        this.userService = userService;
+        this.isLoading = false;
         this.isEditing = false;
         this.name = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
         this.age = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]('', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required);
@@ -4248,59 +4366,28 @@ var UserOrdersComponent = (function () {
     }
     UserOrdersComponent.prototype.ngOnInit = function () {
         this.getUserOrders();
-        this.addCatForm = this.formBuilder.group({
-            name: this.name,
-            age: this.age,
-            weight: this.weight
-        });
     };
     UserOrdersComponent.prototype.getUserOrders = function () {
         var _this = this;
-        this.userOrdersService.getUserOrders().subscribe(function (data) {
-            _this.userOrders = data;
-        }, function (error) { return console.log(error); }, function () { return _this.isLoading = false; });
+        if (this.appService.currentUser.userDetails.status) {
+            this.userOrders = this.appService.currentUser.userDetails.data['orders'];
+        }
+        else {
+            this.isLoading = true;
+            this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
+                _this.appService.currentUser.userDetails.status = true;
+                _this.appService.currentUser.userDetails.data = data;
+                _this.userOrders = _this.appService.currentUser.userDetails.data['orders'];
+                _this.isLoading = false;
+            }, function (error) { return console.log(error); }, function () {
+                _this.isLoading = false;
+            });
+        }
     };
     UserOrdersComponent.prototype.repeatOrder = function (order) {
         this.cartService.flushCart();
         this.cartService.addProductsToCart(order.cartDetails.items);
         this.router.navigate(['/addresses']);
-    };
-    UserOrdersComponent.prototype.addCat = function () {
-        var _this = this;
-        this.userOrdersService.addUserOrder(this.addCatForm.value).subscribe(function (res) {
-            var newUserOrder = res.json();
-            _this.userOrders.push(newUserOrder);
-            _this.addCatForm.reset();
-            _this.toast.setMessage('Order added successfully.', 'success');
-        }, function (error) { return console.log(error); });
-    };
-    UserOrdersComponent.prototype.enableEditing = function (userOrder) {
-        this.isEditing = true;
-        this.userOrder = userOrder;
-    };
-    UserOrdersComponent.prototype.cancelEditing = function () {
-        this.isEditing = false;
-        this.userOrder = {};
-        this.toast.setMessage('Order editing cancelled.', 'warning');
-        this.getUserOrders();
-    };
-    UserOrdersComponent.prototype.editCat = function (userOrder) {
-        var _this = this;
-        this.userOrdersService.editUserOrder(userOrder).subscribe(function (res) {
-            _this.isEditing = false;
-            _this.userOrder = userOrder;
-            _this.toast.setMessage('Order edited successfully.', 'success');
-        }, function (error) { return console.log(error); });
-    };
-    UserOrdersComponent.prototype.deleteCat = function (userOrder) {
-        var _this = this;
-        if (window.confirm('Are you sure you want to permanently delete this Order?')) {
-            this.userOrdersService.deleteUserOrder(userOrder).subscribe(function (res) {
-                var pos = _this.userOrders.map(function (elem) { return elem._id; }).indexOf(userOrder._id);
-                _this.userOrders.splice(pos, 1);
-                _this.toast.setMessage('Order deleted successfully.', 'success');
-            }, function (error) { return console.log(error); });
-        }
     };
     return UserOrdersComponent;
 }());
@@ -4310,10 +4397,10 @@ UserOrdersComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/user-orders/user-orders.component.html"),
         styles: [__webpack_require__("../../../../../client/app/user-orders/user-orders.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_user_orders_service__["a" /* UserOrdersService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__items_cart_service__["a" /* CartService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_auth_service__["a" /* AuthService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__app_service__["a" /* AppService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_user_service__["a" /* UserService */]) === "function" && _h || Object])
 ], UserOrdersComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=user-orders.component.js.map
 
 /***/ }),

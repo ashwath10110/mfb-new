@@ -8,6 +8,9 @@ import { AppService } from './../app.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { CartService } from './../items/cart.service';
 import { ItemsService } from './../services/items.service';
+import { AuthService } from './../services/auth.service';
+
+import { UserService } from './../services/user.service';
 
 @Component({
   selector: 'app-addresses',
@@ -18,7 +21,7 @@ export class AddressesComponent implements OnInit {
 
   address = {};
   addresses = [];
-  isLoading = true;
+  isLoading = false;
   isEditing = false;
   geolocationPosition: any;
 
@@ -42,12 +45,16 @@ export class AddressesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: Http,
     public toast: ToastComponent,
-    public router: Router) { }
+    public router: Router,
+    private userService: UserService,
+    private auth: AuthService
+  ) { }
 
   ngOnInit() {
     this.addAddressForm = this.formBuilder.group({
       name: this.name
     });
+    debugger;
     this.getAddresses();
   }
 
@@ -72,20 +79,42 @@ export class AddressesComponent implements OnInit {
   }
 
   getAddresses() {
-    this.addressService.getAddresses().subscribe(
-      data => {
-        this.addresses = data;
-      },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
+    if (this.appService.currentUser.userDetails.status) {
+      this.addresses = this.appService.currentUser.userDetails.data['addresses'];
+    } else {
+      this.isLoading = true;
+      this.userService.getUser(this.auth.currentUser).subscribe(
+        data => {
+          this.appService.currentUser.userDetails.status = true;
+          this.appService.currentUser.userDetails.data = data;
+          debugger;
+          this.addresses = this.appService.currentUser.userDetails.data['addresses']
+          this.isLoading = false;
+        },
+        error => console.log(error),
+        () => {
+          this.isLoading = false;
+        }
+      );
+    }
   }
 
   addAddress() {
-    this.addressService.addAddress(this.addAddressForm.value).subscribe(
+    let address = {
+      name: this.addAddressForm.value.name,
+      value: {
+        HNo: 'dhdhdhdhh',
+        StreetNo: 'yyeueueueuueue',
+        AreaName: 'Bowenpally',
+        LandMark: 'assdsddjjdjdjdjdjjdjd'
+      }
+    };
+    let user = this.auth.currentUser;
+    user.addresses.push(address);
+    this.userService.editUser(user).subscribe(
       res => {
-        const newAddress = res.json();
-        this.addresses.push(newAddress);
+        const newAddresses = res.json();
+        this.addresses = newAddresses.addresses;
         this.addAddressForm.reset();
         this.toast.setMessage('Address added successfully.', 'success');
       },
@@ -94,7 +123,10 @@ export class AddressesComponent implements OnInit {
   }
 
   addCurrentAddress(address) {
-    this.addressService.addAddress(address).subscribe(
+    let user = this.auth.currentUser;
+    user.addresses.push(address);
+
+    this.userService.editUser(user).subscribe(
       res => {
         const newAddress = res.json();
         this.addresses.push(newAddress);
@@ -117,11 +149,17 @@ export class AddressesComponent implements OnInit {
   }
 
   editAddress(address) {
-    this.addressService.editAddress(address).subscribe(
+    let user = this.auth.currentUser;
+    for (var i = 0; i < user.addresses.length; i++) {
+      if (user.addresses[i].name == address.name) {
+        user.addresses[i].value = address;
+      }
+    }
+    this.userService.editUser(user).subscribe(
       res => {
         this.isEditing = false;
-        this.address = address;
-        this.toast.setMessage('Address edited successfully.', 'success');
+        this.address = res;
+        this.toast.setMessage('Address Edited successfully.', 'success');
       },
       error => console.log(error)
     );
@@ -129,6 +167,24 @@ export class AddressesComponent implements OnInit {
 
   deleteAddress(address) {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
+
+      let user = this.auth.currentUser;
+      for (var i = 0; i < user.addresses.length; i++) {
+        if (user.addresses[i].name == address.name) {
+          user.addresses.splice(i, 1);
+          break;
+        }
+      }
+      this.userService.editUser(user).subscribe(
+        res => {
+          const pos = this.addresses.map(elem => elem._id).indexOf(address._id);
+          this.isEditing = false;
+          debugger;
+          // this.addresses = res['']
+          this.toast.setMessage('Address deleted successfully.', 'success');
+        },
+        error => console.log(error)
+      );
       this.addressService.deleteAddress(address).subscribe(
         res => {
           const pos = this.addresses.map(elem => elem._id).indexOf(address._id);
@@ -147,11 +203,9 @@ export class AddressesComponent implements OnInit {
     for (var i = 0; i < prod.length; i++) {
       newProd.push({ '_id': prod[i]['product']['_id'] });
     }
-
     let cartProducts = {
       products: newProd
     };
-
     this.loadWholeScreen = true;
 
     if (this.appService.currentUser.locationInfo.status) {

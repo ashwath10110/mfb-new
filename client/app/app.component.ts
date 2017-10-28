@@ -14,6 +14,7 @@ import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.co
 export class AppComponent implements OnInit {
 
 	constructor(public auth: AuthService) {
+
 		if (window["Worker"]) {
 
 			console.log('available');

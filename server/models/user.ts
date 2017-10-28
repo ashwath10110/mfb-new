@@ -3,9 +3,12 @@ import * as mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   username: String,
-  email: { type: String, unique: true, lowercase: true, trim: true },
   password: String,
-  role: String
+  email: { type: String, unique: true, lowercase: true, trim: true },
+  role: String,
+  addresses: [],
+  orders: [],
+  contactDetails: {}
 });
 
 // Before saving the user, hash the password
