@@ -246,6 +246,7 @@
       bottom: 3%;
       right: 5%;
       width: 13%;
+      z-index: 99999;
       @include transition-fade-circ(0.3s);
       .fill{
         box-shadow: 0 2px 13px rgba(93, 78, 240, 0.75);
