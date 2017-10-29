@@ -70,7 +70,7 @@ export class AuthService {
 
     this.cartService.removeFromLocalStorage();
     this.appService.isCartPrepared = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/items']);
   }
 
   decodeUserFromToken(token) {

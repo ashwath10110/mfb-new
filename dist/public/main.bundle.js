@@ -3604,7 +3604,7 @@ var AuthService = (function () {
         this.cartService.flushCart();
         this.cartService.removeFromLocalStorage();
         this.appService.isCartPrepared = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/items']);
     };
     AuthService.prototype.decodeUserFromToken = function (token) {
         return this.jwtHelper.decodeToken(token).user;
