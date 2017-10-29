@@ -332,7 +332,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/addresses/addresses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div> -->\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\"> \n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div> -->\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" (ngSubmit)=\"addAddress()\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div> -->\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\"> \n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div> -->\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" (click)=\"addAddress()\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
 
 /***/ }),
 
@@ -435,6 +435,7 @@ var AddressesComponent = (function () {
             };
             if (_this.appService.currentUser.distanceFromShop.status == 1) {
                 _this.isAddressValidInDistance = true;
+                // this.addUserHelper(address);
             }
             _this.isLoading = false;
         }, function () {
@@ -480,7 +481,9 @@ var AddressesComponent = (function () {
         this.userService.editUser(User).subscribe(function (res) {
             var updatedUser = res.json();
             _this.appService.currentUser.userData.data = updatedUser;
+            _this.appService.currentUser.userData.status = false;
             _this.addAddressForm.reset();
+            _this.addresses = _this.appService.currentUser.userData.data['addresses'];
             _this.isLoading = true;
             _this.toast.setMessage('Address added successfully.', 'success');
         }, function (error) { return console.log(error); });
@@ -505,7 +508,6 @@ var AddressesComponent = (function () {
         this.userService.editUser(user).subscribe(function (res) {
             _this.addresses = _this.appService.currentUser.userDetails.addresses.data['addresses'];
             var newAddresses = res.json();
-            debugger;
             _this.appService.currentUser.userDetails.addresses.status = true;
             _this.appService.currentUser.userDetails.addresses.data = res;
             _this.addresses = newAddresses.addresses;
@@ -549,9 +551,10 @@ var AddressesComponent = (function () {
             products: newProd
         };
         this.loadWholeScreen = true;
-        if (this.appService.currentUser.locationInfo.status) {
-            this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
-        }
+        // if (this.appService.currentUser.locationInfo.status) {
+        //   this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
+        // }
+        this.addUserHelper({ name: 'sample' });
         this.itemsService.isCartValid(cartProducts).subscribe(function (res) {
             _this.loadWholeScreen = false;
             if (res['status']) {
@@ -1412,29 +1415,20 @@ var CheckoutComponent = (function () {
     };
     CheckoutComponent.prototype.addOrder = function (order) {
         var _this = this;
-        var user = this.auth.currentUser;
-        user.orders.push(order);
+        var user = this.appService.currentUser.userData['data'];
+        user['orders'].push(order);
         this.userService.editUser(user).subscribe(function (res) {
             if (res.status == 200) {
                 _this.toast.setMessage('Order added successfully.', 'success');
                 _this.cartService.flushCart();
-                var newAddresses = res.json();
-                // this.appService.currentUser.userDetails.data['orders'].push(order);
-                _this.appService.currentUser.userDetails.orders.data = newAddresses.orders;
-                _this.appService.currentUser.userDetails.orders.status = true;
+                var newUser = res.json();
+                _this.appService.currentUser.userData = {
+                    status: true,
+                    data: newUser
+                };
                 _this.router.navigate(['/order-success']);
             }
         }, function (error) { return console.log(error); });
-        // this.userOrdersService.addUserOrder(order).subscribe(
-        // 	res => {
-        // 		if (res.status == 200) {
-        // 			this.toast.setMessage('Order added successfully.', 'success');
-        // 			this.cartService.flushCart();
-        // 			this.router.navigate(['/order-success']);
-        // 		}
-        // 	},
-        // 	error => console.log(error)
-        // );
     };
     return CheckoutComponent;
 }());

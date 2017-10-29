@@ -77,11 +77,11 @@
   <div class="card" *ngIf="!isEditing">
     <h4 class="card-header">Add new address</h4>
     <div class="card-block">
-      <form class="form-inline" [formGroup]="addAddressForm" (ngSubmit)="addAddress()" style="text-align:center">
+      <form class="form-inline" [formGroup]="addAddressForm" style="text-align:center">
         <div class="form-group">
             <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!addAddressForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+        <button class="btn btn-primary" type="submit" (click)="addAddress()" [disabled]="!addAddressForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
       </form>
     </div>
   </div>

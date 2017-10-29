@@ -38,17 +38,18 @@ abstract class BaseCtrl {
   get = (req, res) => {
     this.model.findOne({ _id: req.params.id }, (err, obj) => {
       if (err) { return console.error(err); }
+      console.log(obj);
       res.json(obj);
     });
   }
 
   // Update by id
   update = (req, res) => {
-    console.log(req.body);
-    console.log(req.body);
-    console.log('End------------------');
+    // console.log(req.body);
+    // console.log(req.body);
+    // console.log('End------------------');
     this.model.update({ _id: req.params.id }, { $set: req.body }, (err, item) => {
-      console.log(item);
+      // console.log(item);
       if (err) {
         return console.error(err);
       }

@@ -57,32 +57,23 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	addOrder(order) {
-		let user = this.auth.currentUser;
-		user.orders.push(order);
+		let user = this.appService.currentUser.userData['data'];
+		user['orders'].push(order);
 		this.userService.editUser(user).subscribe(
 			res => {
 				if (res.status == 200) {
 					this.toast.setMessage('Order added successfully.', 'success');
 					this.cartService.flushCart();
-					const newAddresses = res.json();
-					// this.appService.currentUser.userDetails.data['orders'].push(order);
-					this.appService.currentUser.userDetails.orders.data = newAddresses.orders;
-					this.appService.currentUser.userDetails.orders.status = true;
+					const newUser = res.json();
+					this.appService.currentUser.userData = {
+						status: true,
+						data: newUser
+					};
 					this.router.navigate(['/order-success']);
 				}
 			},
 			error => console.log(error)
 		);
-		// this.userOrdersService.addUserOrder(order).subscribe(
-		// 	res => {
-		// 		if (res.status == 200) {
-		// 			this.toast.setMessage('Order added successfully.', 'success');
-		// 			this.cartService.flushCart();
-		// 			this.router.navigate(['/order-success']);
-		// 		}
-		// 	},
-		// 	error => console.log(error)
-		// );
 	}
 
 }

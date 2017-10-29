@@ -70,6 +70,7 @@ export class AddressesComponent implements OnInit {
       };
       if (this.appService.currentUser.distanceFromShop.status == 1) {
         this.isAddressValidInDistance = true;
+        // this.addUserHelper(address);
       }
       this.isLoading = false;
     }, () => {
@@ -120,7 +121,9 @@ export class AddressesComponent implements OnInit {
       res => {
         const updatedUser = res.json();
         this.appService.currentUser.userData.data = updatedUser;
+        this.appService.currentUser.userData.status = false;
         this.addAddressForm.reset();
+        this.addresses = this.appService.currentUser.userData.data['addresses'];
         this.isLoading = true;
         this.toast.setMessage('Address added successfully.', 'success');
       },
@@ -150,7 +153,6 @@ export class AddressesComponent implements OnInit {
       res => {
         this.addresses = this.appService.currentUser.userDetails.addresses.data['addresses']
         const newAddresses = res.json();
-        debugger;
         this.appService.currentUser.userDetails.addresses.status = true;
         this.appService.currentUser.userDetails.addresses.data = res;
         this.addresses = newAddresses.addresses;
@@ -208,9 +210,11 @@ export class AddressesComponent implements OnInit {
 
     this.loadWholeScreen = true;
 
-    if (this.appService.currentUser.locationInfo.status) {
-      this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
-    }
+    // if (this.appService.currentUser.locationInfo.status) {
+    //   this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
+    // }
+
+    this.addUserHelper({ name: 'sample' });
 
     this.itemsService.isCartValid(cartProducts).subscribe(
       res => {

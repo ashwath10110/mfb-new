@@ -42,16 +42,17 @@ var BaseCtrl = (function () {
                 if (err) {
                     return console.error(err);
                 }
+                console.log(obj);
                 res.json(obj);
             });
         };
         // Update by id
         this.update = function (req, res) {
-            console.log(req.body);
-            console.log(req.body);
-            console.log('End------------------');
+            // console.log(req.body);
+            // console.log(req.body);
+            // console.log('End------------------');
             _this.model.update({ _id: req.params.id }, { $set: req.body }, function (err, item) {
-                console.log(item);
+                // console.log(item);
                 if (err) {
                     return console.error(err);
                 }
