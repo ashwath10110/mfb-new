@@ -1,4 +1,4 @@
-System.register(["@angular/core", "@angular/router", "../services/user-orders.service", "../shared/toast/toast.component", "./../items/cart.service"], function (exports_1, context_1) {
+System.register(["@angular/core", "@angular/router", "../services/user-orders.service", "../services/user.service", "../shared/toast/toast.component", "./../items/cart.service", "../services/auth.service", "./../app.service"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,7 +10,7 @@ System.register(["@angular/core", "@angular/router", "../services/user-orders.se
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, user_orders_service_1, toast_component_1, cart_service_1, CheckoutComponent;
+    var core_1, router_1, user_orders_service_1, user_service_1, toast_component_1, cart_service_1, auth_service_1, app_service_1, CheckoutComponent;
     return {
         setters: [
             function (core_1_1) {
@@ -22,20 +22,32 @@ System.register(["@angular/core", "@angular/router", "../services/user-orders.se
             function (user_orders_service_1_1) {
                 user_orders_service_1 = user_orders_service_1_1;
             },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
+            },
             function (toast_component_1_1) {
                 toast_component_1 = toast_component_1_1;
             },
             function (cart_service_1_1) {
                 cart_service_1 = cart_service_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
+            },
+            function (app_service_1_1) {
+                app_service_1 = app_service_1_1;
             }
         ],
         execute: function () {
             CheckoutComponent = /** @class */ (function () {
-                function CheckoutComponent(userOrdersService, toast, cartService, router) {
+                function CheckoutComponent(userOrdersService, userService, toast, cartService, router, auth, appService) {
                     this.userOrdersService = userOrdersService;
+                    this.userService = userService;
                     this.toast = toast;
                     this.cartService = cartService;
                     this.router = router;
+                    this.auth = auth;
+                    this.appService = appService;
                 }
                 CheckoutComponent.prototype.ngOnInit = function () {
                 };
@@ -67,13 +79,29 @@ System.register(["@angular/core", "@angular/router", "../services/user-orders.se
                 };
                 CheckoutComponent.prototype.addOrder = function (order) {
                     var _this = this;
-                    this.userOrdersService.addUserOrder(order).subscribe(function (res) {
+                    var user = this.auth.currentUser;
+                    user.orders.push(order);
+                    this.userService.editUser(user).subscribe(function (res) {
                         if (res.status == 200) {
                             _this.toast.setMessage('Order added successfully.', 'success');
                             _this.cartService.flushCart();
+                            var newAddresses = res.json();
+                            // this.appService.currentUser.userDetails.data['orders'].push(order);
+                            _this.appService.currentUser.userDetails.orders.data = newAddresses.orders;
+                            _this.appService.currentUser.userDetails.orders.status = true;
                             _this.router.navigate(['/order-success']);
                         }
                     }, function (error) { return console.log(error); });
+                    // this.userOrdersService.addUserOrder(order).subscribe(
+                    // 	res => {
+                    // 		if (res.status == 200) {
+                    // 			this.toast.setMessage('Order added successfully.', 'success');
+                    // 			this.cartService.flushCart();
+                    // 			this.router.navigate(['/order-success']);
+                    // 		}
+                    // 	},
+                    // 	error => console.log(error)
+                    // );
                 };
                 CheckoutComponent = __decorate([
                     core_1.Component({
@@ -82,9 +110,12 @@ System.register(["@angular/core", "@angular/router", "../services/user-orders.se
                         styleUrls: ['./checkout.component.css']
                     }),
                     __metadata("design:paramtypes", [user_orders_service_1.UserOrdersService,
+                        user_service_1.UserService,
                         toast_component_1.ToastComponent,
                         cart_service_1.CartService,
-                        router_1.Router])
+                        router_1.Router,
+                        auth_service_1.AuthService,
+                        app_service_1.AppService])
                 ], CheckoutComponent);
                 return CheckoutComponent;
             }());

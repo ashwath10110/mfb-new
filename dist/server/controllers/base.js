@@ -47,11 +47,21 @@ var BaseCtrl = (function () {
         };
         // Update by id
         this.update = function (req, res) {
-            _this.model.findOneAndUpdate({ _id: req.params.id }, req.body, function (err, item) {
+            console.log(req.body);
+            console.log(req.body);
+            console.log('End------------------');
+            _this.model.update({ _id: req.params.id }, { $set: req.body }, function (err, item) {
+                console.log(item);
                 if (err) {
                     return console.error(err);
                 }
-                res.status(200).json(item);
+                _this.model.findOne({ _id: req.params.id }, function (err, obj) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    res.status(200).json(obj);
+                });
+                // res.status(200).json(item);
             });
         };
         // Delete by id

@@ -30,6 +30,7 @@ System.register(["@angular/core", "@angular/http", "rxjs/add/operator/map"], fun
                     this.options = new http_1.RequestOptions({ headers: this.headers });
                 }
                 UserService.prototype.register = function (user) {
+                    debugger;
                     return this.http.post('/api/user', JSON.stringify(user), this.options);
                 };
                 UserService.prototype.login = function (credentials) {

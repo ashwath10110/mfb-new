@@ -54,7 +54,6 @@ export class AddressesComponent implements OnInit {
     this.addAddressForm = this.formBuilder.group({
       name: this.name
     });
-    debugger;
     this.getAddresses();
   }
 
@@ -79,16 +78,17 @@ export class AddressesComponent implements OnInit {
   }
 
   getAddresses() {
-    if (this.appService.currentUser.userDetails.status) {
-      this.addresses = this.appService.currentUser.userDetails.data['addresses'];
+    if (this.appService.currentUser.userData.status) {
+      this.addresses = this.appService.currentUser.userData.data['addresses'];
     } else {
       this.isLoading = true;
       this.userService.getUser(this.auth.currentUser).subscribe(
         data => {
-          this.appService.currentUser.userDetails.status = true;
-          this.appService.currentUser.userDetails.data = data;
-          debugger;
-          this.addresses = this.appService.currentUser.userDetails.data['addresses']
+          this.addresses = data['addresses'];
+          this.appService.currentUser.userData = {
+            status: true,
+            data: data
+          };
           this.isLoading = false;
         },
         error => console.log(error),
@@ -109,28 +109,19 @@ export class AddressesComponent implements OnInit {
         LandMark: 'assdsddjjdjdjdjdjjdjd'
       }
     };
-    let user = this.auth.currentUser;
-    user.addresses.push(address);
-    this.userService.editUser(user).subscribe(
-      res => {
-        const newAddresses = res.json();
-        this.addresses = newAddresses.addresses;
-        this.addAddressForm.reset();
-        this.toast.setMessage('Address added successfully.', 'success');
-      },
-      error => console.log(error)
-    );
+    this.addUserHelper(address);
   }
 
-  addCurrentAddress(address) {
-    let user = this.auth.currentUser;
-    user.addresses.push(address);
-
-    this.userService.editUser(user).subscribe(
+  addUserHelper(address) {
+    let User = this.appService.currentUser.userData.data;
+    User['addresses'].push(address);
+    this.isLoading = false;
+    this.userService.editUser(User).subscribe(
       res => {
-        const newAddress = res.json();
-        this.addresses.push(newAddress);
+        const updatedUser = res.json();
+        this.appService.currentUser.userData.data = updatedUser;
         this.addAddressForm.reset();
+        this.isLoading = true;
         this.toast.setMessage('Address added successfully.', 'success');
       },
       error => console.log(error)
@@ -149,16 +140,24 @@ export class AddressesComponent implements OnInit {
   }
 
   editAddress(address) {
-    let user = this.auth.currentUser;
-    for (var i = 0; i < user.addresses.length; i++) {
-      if (user.addresses[i].name == address.name) {
-        user.addresses[i].value = address;
+    let user = this.appService.currentUser.userDetails.addresses.data;
+    for (var i = 0; i < user['addresses'].length; i++) {
+      if (user['addresses'][i].name == address.name) {
+        user['addresses'][i].value = address;
       }
     }
     this.userService.editUser(user).subscribe(
       res => {
+        this.addresses = this.appService.currentUser.userDetails.addresses.data['addresses']
+        const newAddresses = res.json();
+        debugger;
+        this.appService.currentUser.userDetails.addresses.status = true;
+        this.appService.currentUser.userDetails.addresses.data = res;
+        this.addresses = newAddresses.addresses;
+        // this.addAddressForm.reset();
+
         this.isEditing = false;
-        this.address = res;
+        // this.address = res;
         this.toast.setMessage('Address Edited successfully.', 'success');
       },
       error => console.log(error)
@@ -179,7 +178,6 @@ export class AddressesComponent implements OnInit {
         res => {
           const pos = this.addresses.map(elem => elem._id).indexOf(address._id);
           this.isEditing = false;
-          debugger;
           // this.addresses = res['']
           this.toast.setMessage('Address deleted successfully.', 'success');
         },
@@ -203,13 +201,15 @@ export class AddressesComponent implements OnInit {
     for (var i = 0; i < prod.length; i++) {
       newProd.push({ '_id': prod[i]['product']['_id'] });
     }
+
     let cartProducts = {
       products: newProd
     };
+
     this.loadWholeScreen = true;
 
     if (this.appService.currentUser.locationInfo.status) {
-      this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
+      this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
     }
 
     this.itemsService.isCartValid(cartProducts).subscribe(

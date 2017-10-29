@@ -64,7 +64,10 @@ export class CheckoutComponent implements OnInit {
 				if (res.status == 200) {
 					this.toast.setMessage('Order added successfully.', 'success');
 					this.cartService.flushCart();
-					this.appService.currentUser.userDetails.data['orders'].push(order);
+					const newAddresses = res.json();
+					// this.appService.currentUser.userDetails.data['orders'].push(order);
+					this.appService.currentUser.userDetails.orders.data = newAddresses.orders;
+					this.appService.currentUser.userDetails.orders.status = true;
 					this.router.navigate(['/order-success']);
 				}
 			},

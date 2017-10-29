@@ -46,6 +46,17 @@ System.register(["@angular/core", "@angular/http", "rxjs/Observable", "rxjs/add/
                     this.currentUser = {
                         name: 'Ashwath',
                         userDetails: {
+                            addresses: {
+                                status: false,
+                                data: []
+                            },
+                            orders: {
+                                status: false,
+                                data: []
+                            },
+                            otherData: {}
+                        },
+                        userData: {
                             status: false,
                             data: {}
                         },

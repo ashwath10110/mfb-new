@@ -92,12 +92,6 @@ System.register(["@angular/core", "@angular/router", "@angular/forms", "../servi
                 RegisterComponent.prototype.register = function () {
                     var _this = this;
                     var user = this.registerForm.value;
-                    user.addresses = [];
-                    user.orders = [];
-                    user.contactDetails = {
-                        Name: '987654321',
-                        phone: '987654321'
-                    };
                     this.userService.register(user).subscribe(function (res) {
                         _this.toast.setMessage('you successfully registered!', 'success');
                         _this.localStorageService.clearLocalStorageItem();

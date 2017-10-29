@@ -419,7 +419,6 @@ var AddressesComponent = (function () {
         this.addAddressForm = this.formBuilder.group({
             name: this.name
         });
-        debugger;
         this.getAddresses();
     };
     AddressesComponent.prototype.getLocationData = function () {
@@ -444,16 +443,17 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.getAddresses = function () {
         var _this = this;
-        if (this.appService.currentUser.userDetails.status) {
-            this.addresses = this.appService.currentUser.userDetails.data['addresses'];
+        if (this.appService.currentUser.userData.status) {
+            this.addresses = this.appService.currentUser.userData.data['addresses'];
         }
         else {
             this.isLoading = true;
             this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
-                _this.appService.currentUser.userDetails.status = true;
-                _this.appService.currentUser.userDetails.data = data;
-                debugger;
-                _this.addresses = _this.appService.currentUser.userDetails.data['addresses'];
+                _this.addresses = data['addresses'];
+                _this.appService.currentUser.userData = {
+                    status: true,
+                    data: data
+                };
                 _this.isLoading = false;
             }, function (error) { return console.log(error); }, function () {
                 _this.isLoading = false;
@@ -461,7 +461,6 @@ var AddressesComponent = (function () {
         }
     };
     AddressesComponent.prototype.addAddress = function () {
-        var _this = this;
         var address = {
             name: this.addAddressForm.value.name,
             value: {
@@ -471,23 +470,18 @@ var AddressesComponent = (function () {
                 LandMark: 'assdsddjjdjdjdjdjjdjd'
             }
         };
-        var user = this.auth.currentUser;
-        user.addresses.push(address);
-        this.userService.editUser(user).subscribe(function (res) {
-            var newAddresses = res.json();
-            _this.addresses = newAddresses.addresses;
-            _this.addAddressForm.reset();
-            _this.toast.setMessage('Address added successfully.', 'success');
-        }, function (error) { return console.log(error); });
+        this.addUserHelper(address);
     };
-    AddressesComponent.prototype.addCurrentAddress = function (address) {
+    AddressesComponent.prototype.addUserHelper = function (address) {
         var _this = this;
-        var user = this.auth.currentUser;
-        user.addresses.push(address);
-        this.userService.editUser(user).subscribe(function (res) {
-            var newAddress = res.json();
-            _this.addresses.push(newAddress);
+        var User = this.appService.currentUser.userData.data;
+        User['addresses'].push(address);
+        this.isLoading = false;
+        this.userService.editUser(User).subscribe(function (res) {
+            var updatedUser = res.json();
+            _this.appService.currentUser.userData.data = updatedUser;
             _this.addAddressForm.reset();
+            _this.isLoading = true;
             _this.toast.setMessage('Address added successfully.', 'success');
         }, function (error) { return console.log(error); });
     };
@@ -502,15 +496,22 @@ var AddressesComponent = (function () {
     };
     AddressesComponent.prototype.editAddress = function (address) {
         var _this = this;
-        var user = this.auth.currentUser;
-        for (var i = 0; i < user.addresses.length; i++) {
-            if (user.addresses[i].name == address.name) {
-                user.addresses[i].value = address;
+        var user = this.appService.currentUser.userDetails.addresses.data;
+        for (var i = 0; i < user['addresses'].length; i++) {
+            if (user['addresses'][i].name == address.name) {
+                user['addresses'][i].value = address;
             }
         }
         this.userService.editUser(user).subscribe(function (res) {
+            _this.addresses = _this.appService.currentUser.userDetails.addresses.data['addresses'];
+            var newAddresses = res.json();
+            debugger;
+            _this.appService.currentUser.userDetails.addresses.status = true;
+            _this.appService.currentUser.userDetails.addresses.data = res;
+            _this.addresses = newAddresses.addresses;
+            // this.addAddressForm.reset();
             _this.isEditing = false;
-            _this.address = res;
+            // this.address = res;
             _this.toast.setMessage('Address Edited successfully.', 'success');
         }, function (error) { return console.log(error); });
     };
@@ -527,7 +528,6 @@ var AddressesComponent = (function () {
             this.userService.editUser(user).subscribe(function (res) {
                 var pos = _this.addresses.map(function (elem) { return elem._id; }).indexOf(address._id);
                 _this.isEditing = false;
-                debugger;
                 // this.addresses = res['']
                 _this.toast.setMessage('Address deleted successfully.', 'success');
             }, function (error) { return console.log(error); });
@@ -550,7 +550,7 @@ var AddressesComponent = (function () {
         };
         this.loadWholeScreen = true;
         if (this.appService.currentUser.locationInfo.status) {
-            this.addCurrentAddress({ name: this.appService.currentUser.locationInfo.value });
+            this.addUserHelper({ name: this.appService.currentUser.locationInfo.value });
         }
         this.itemsService.isCartValid(cartProducts).subscribe(function (res) {
             _this.loadWholeScreen = false;
@@ -980,6 +980,17 @@ var AppService = (function () {
         this.currentUser = {
             name: 'Ashwath',
             userDetails: {
+                addresses: {
+                    status: false,
+                    data: []
+                },
+                orders: {
+                    status: false,
+                    data: []
+                },
+                otherData: {}
+            },
+            userData: {
                 status: false,
                 data: {}
             },
@@ -1407,7 +1418,10 @@ var CheckoutComponent = (function () {
             if (res.status == 200) {
                 _this.toast.setMessage('Order added successfully.', 'success');
                 _this.cartService.flushCart();
-                _this.appService.currentUser.userDetails.data['orders'].push(order);
+                var newAddresses = res.json();
+                // this.appService.currentUser.userDetails.data['orders'].push(order);
+                _this.appService.currentUser.userDetails.orders.data = newAddresses.orders;
+                _this.appService.currentUser.userDetails.orders.status = true;
                 _this.router.navigate(['/order-success']);
             }
         }, function (error) { return console.log(error); });
@@ -3596,7 +3610,6 @@ var AuthService = (function () {
         return this.jwtHelper.decodeToken(token).user;
     };
     AuthService.prototype.setCurrentUser = function (decodedUser) {
-        debugger;
         this.loggedIn = true;
         this.currentUser = decodedUser;
         decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
@@ -4369,15 +4382,17 @@ var UserOrdersComponent = (function () {
     };
     UserOrdersComponent.prototype.getUserOrders = function () {
         var _this = this;
-        if (this.appService.currentUser.userDetails.status) {
-            this.userOrders = this.appService.currentUser.userDetails.data['orders'];
+        if (this.appService.currentUser.userData.status) {
+            this.userOrders = this.appService.currentUser.userData.data['orders'];
         }
         else {
             this.isLoading = true;
             this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
-                _this.appService.currentUser.userDetails.status = true;
-                _this.appService.currentUser.userDetails.data = data;
-                _this.userOrders = _this.appService.currentUser.userDetails.data['orders'];
+                _this.userOrders = data['orders'];
+                _this.appService.currentUser.userData = {
+                    status: true,
+                    data: data
+                };
                 _this.isLoading = false;
             }, function (error) { return console.log(error); }, function () {
                 _this.isLoading = false;

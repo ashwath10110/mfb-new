@@ -91,7 +91,6 @@ System.register(["@angular/core", "@angular/router", "angular2-jwt", "../service
                     return this.jwtHelper.decodeToken(token).user;
                 };
                 AuthService.prototype.setCurrentUser = function (decodedUser) {
-                    debugger;
                     this.loggedIn = true;
                     this.currentUser = decodedUser;
                     decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;

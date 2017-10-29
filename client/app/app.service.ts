@@ -22,6 +22,17 @@ export class AppService {
   public currentUser = {
     name: 'Ashwath',
     userDetails: {
+      addresses: {
+        status: false,
+        data: []
+      },
+      orders: {
+        status: false,
+        data: []
+      },
+      otherData: {}
+    },
+    userData: {
       status: false,
       data: {}
     },

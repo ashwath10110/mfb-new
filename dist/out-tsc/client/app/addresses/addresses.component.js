@@ -62,7 +62,7 @@ System.register(["@angular/core", "@angular/http", "@angular/forms", "@angular/r
                     this.auth = auth;
                     this.address = {};
                     this.addresses = [];
-                    this.isLoading = true;
+                    this.isLoading = false;
                     this.isEditing = false;
                     this.name = new forms_1.FormControl('', forms_1.Validators.required);
                     this.showLocationDataFlag = false;
@@ -100,42 +100,58 @@ System.register(["@angular/core", "@angular/http", "@angular/forms", "@angular/r
                     });
                 };
                 AddressesComponent.prototype.getAddresses = function () {
-                    this.address = this.auth.currentUser.addresses;
-                    // this.addressService.getAddresses().subscribe(
-                    //   data => {
-                    //     this.addresses = data;
-                    //   },
-                    //   error => console.log(error),
-                    //   () => this.isLoading = false
-                    // );
-                };
-                AddressesComponent.prototype.addAddress = function () {
                     var _this = this;
-                    debugger;
-                    var address = {
-                        name: this.addAddressForm.value.name,
-                        value: {
-                            HNo: 'dhdhdhdhh',
-                            StreetNo: 'yyeueueueuueue',
-                            AreaName: 'Bowenpally',
-                            LandMark: 'assdsddjjdjdjdjdjjdjd'
-                        }
-                    };
-                    var user = this.auth.currentUser;
-                    user.addresses.push(address);
-                    this.userService.editUser(user).subscribe(function (res) {
-                        _this.addresses.push(address);
+                    if (this.appService.currentUser.userData.status) {
+                        this.addresses = this.appService.currentUser.userData.data['addresses'];
+                    }
+                    else {
+                        this.isLoading = true;
+                        this.userService.getUser(this.auth.currentUser).subscribe(function (data) {
+                            _this.addresses = data['addresses'];
+                            _this.appService.currentUser.userData = {
+                                status: true,
+                                data: data
+                            };
+                            _this.isLoading = false;
+                        }, function (error) { return console.log(error); }, function () {
+                            _this.isLoading = false;
+                        });
+                    }
+                };
+                AddressesComponent.prototype.addAddress = function (address) {
+                    // let address = {
+                    //   name: this.addAddressForm.value.name,
+                    //   value: {
+                    //     HNo: 'dhdhdhdhh',
+                    //     StreetNo: 'yyeueueueuueue',
+                    //     AreaName: 'Bowenpally',
+                    //     LandMark: 'assdsddjjdjdjdjdjjdjd'
+                    //   }
+                    // };
+                    var _this = this;
+                    var User = this.appService.currentUser.userData.data;
+                    User['address'].push(address);
+                    this.userService.editUser(User).subscribe(function (res) {
+                        var updatedUser = res.json();
+                        _this.appService.currentUser.userData.data = updatedUser;
                         _this.addAddressForm.reset();
                         _this.toast.setMessage('Address added successfully.', 'success');
                     }, function (error) { return console.log(error); });
                 };
+                AddressesComponent.prototype.addUserHelper = function (typeOfAddress, address) {
+                    if (typeOfAddress == 'locationAddress') {
+                        this.addAddress(address);
+                    }
+                    else {
+                    }
+                };
                 AddressesComponent.prototype.addCurrentAddress = function (address) {
                     var _this = this;
-                    var user = this.auth.currentUser;
-                    user.addresses.push(address);
-                    this.userService.editUser(user).subscribe(function (res) {
-                        var newAddress = res.json();
-                        _this.addresses.push(newAddress);
+                    var User = this.appService.currentUser.userData.data;
+                    User['address'].push(address);
+                    this.userService.editUser(User).subscribe(function (res) {
+                        var updatedUser = res.json();
+                        _this.appService.currentUser.userData.data = updatedUser;
                         _this.addAddressForm.reset();
                         _this.toast.setMessage('Address added successfully.', 'success');
                     }, function (error) { return console.log(error); });
@@ -151,15 +167,22 @@ System.register(["@angular/core", "@angular/http", "@angular/forms", "@angular/r
                 };
                 AddressesComponent.prototype.editAddress = function (address) {
                     var _this = this;
-                    var user = this.auth.currentUser;
-                    for (var i = 0; i < user.addresses.length; i++) {
-                        if (user.addresses[i].name == address.name) {
-                            user.addresses[i].value = address;
+                    var user = this.appService.currentUser.userDetails.addresses.data;
+                    for (var i = 0; i < user['addresses'].length; i++) {
+                        if (user['addresses'][i].name == address.name) {
+                            user['addresses'][i].value = address;
                         }
                     }
                     this.userService.editUser(user).subscribe(function (res) {
+                        _this.addresses = _this.appService.currentUser.userDetails.addresses.data['addresses'];
+                        var newAddresses = res.json();
+                        debugger;
+                        _this.appService.currentUser.userDetails.addresses.status = true;
+                        _this.appService.currentUser.userDetails.addresses.data = res;
+                        _this.addresses = newAddresses.addresses;
+                        // this.addAddressForm.reset();
                         _this.isEditing = false;
-                        _this.address = res;
+                        // this.address = res;
                         _this.toast.setMessage('Address Edited successfully.', 'success');
                     }, function (error) { return console.log(error); });
                 };
@@ -176,7 +199,6 @@ System.register(["@angular/core", "@angular/http", "@angular/forms", "@angular/r
                         this.userService.editUser(user).subscribe(function (res) {
                             var pos = _this.addresses.map(function (elem) { return elem._id; }).indexOf(address._id);
                             _this.isEditing = false;
-                            debugger;
                             // this.addresses = res['']
                             _this.toast.setMessage('Address deleted successfully.', 'success');
                         }, function (error) { return console.log(error); });

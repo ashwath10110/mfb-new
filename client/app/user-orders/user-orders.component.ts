@@ -44,15 +44,17 @@ export class UserOrdersComponent implements OnInit {
   }
 
   getUserOrders() {
-    if (this.appService.currentUser.userDetails.status) {
-      this.userOrders = this.appService.currentUser.userDetails.data['orders'];
+    if (this.appService.currentUser.userData.status) {
+      this.userOrders = this.appService.currentUser.userData.data['orders'];
     } else {
       this.isLoading = true;
       this.userService.getUser(this.auth.currentUser).subscribe(
         data => {
-          this.appService.currentUser.userDetails.status = true;
-          this.appService.currentUser.userDetails.data = data;
-          this.userOrders = this.appService.currentUser.userDetails.data['orders'];
+          this.userOrders = data['orders'];
+          this.appService.currentUser.userData = {
+            status: true,
+            data: data
+          };
           this.isLoading = false;
         },
         error => console.log(error),
@@ -68,65 +70,5 @@ export class UserOrdersComponent implements OnInit {
     this.cartService.addProductsToCart(order.cartDetails.items);
     this.router.navigate(['/addresses']);
   }
-
-  // addCat() {
-  //   let user = this.auth.currentUser;
-  //   user.orders.push(order);
-  //   this.userService.editUser(user).subscribe(
-  //     res => {
-  //       if (res.status == 200) {
-  //         this.toast.setMessage('Order added successfully.', 'success');
-  //         this.cartService.flushCart();
-  //         this.router.navigate(['/order-success']);
-  //       }
-  //     },
-  //     error => console.log(error)
-  //   );
-  //   // this.userOrdersService.addUserOrder(this.addCatForm.value).subscribe(
-  //   //   res => {
-  //   //     const newUserOrder = res.json();
-  //   //     this.userOrders.push(newUserOrder);
-  //   //     this.addCatForm.reset();
-  //   //     this.toast.setMessage('Order added successfully.', 'success');
-  //   //   },
-  //   //   error => console.log(error)
-  //   // );
-  // }
-
-  // enableEditing(userOrder) {
-  //   this.isEditing = true;
-  //   this.userOrder = userOrder;
-  // }
-
-  // cancelEditing() {
-  //   this.isEditing = false;
-  //   this.userOrder = {};
-  //   this.toast.setMessage('Order editing cancelled.', 'warning');
-  //   this.getUserOrders();
-  // }
-
-  // editCat(userOrder) {
-  //   this.userOrdersService.editUserOrder(userOrder).subscribe(
-  //     res => {
-  //       this.isEditing = false;
-  //       this.userOrder = userOrder;
-  //       this.toast.setMessage('Order edited successfully.', 'success');
-  //     },
-  //     error => console.log(error)
-  //   );
-  // }
-
-  // deleteCat(userOrder) {
-  //   if (window.confirm('Are you sure you want to permanently delete this Order?')) {
-  //     this.userOrdersService.deleteUserOrder(userOrder).subscribe(
-  //       res => {
-  //         const pos = this.userOrders.map(elem => elem._id).indexOf(userOrder._id);
-  //         this.userOrders.splice(pos, 1);
-  //         this.toast.setMessage('Order deleted successfully.', 'success');
-  //       },
-  //       error => console.log(error)
-  //     );
-  //   }
-  // }
 
 }
