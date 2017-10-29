@@ -79,7 +79,9 @@ export class CartService {
 
   addProductsToCart(products) {
     for (var i = 0; i < products.length; i++) {
-      this.addProductToCart(products[i].product);
+      for (var j = 0; j < products[i].quantity; j++) {
+        this.addProductToCart(products[i].product);
+      }
     }
   }
 

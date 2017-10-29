@@ -168,7 +168,6 @@ export class AddressesComponent implements OnInit {
 
   deleteAddress(address) {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
-
       let user = this.auth.currentUser;
       for (var i = 0; i < user.addresses.length; i++) {
         if (user.addresses[i].name == address.name) {
