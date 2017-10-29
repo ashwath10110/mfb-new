@@ -1,4 +1,4 @@
-@mixin ellipsis(){
+/*@mixin ellipsis(){
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -107,14 +107,24 @@
     }
   }
 }
+*/
 
+.affix {
+      top: 0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
+
+  .affix + .container-fluid {
+      padding-top: 70px;
+  }
 
 
 /**
  * Demo Styles
  */
 
-.wrapper {
+/*.wrapper {
   padding: 15px 0;
 }
 
@@ -126,4 +136,4 @@
   #narrow-browser-alert {
     display: none;
   }
-}
+}*/

@@ -23,7 +23,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ItemsComponent },
   { path: 'checkout-payu', component: PaymentCheckoutComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'about', component: AboutComponent },
