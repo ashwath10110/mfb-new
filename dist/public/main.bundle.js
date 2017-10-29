@@ -1819,6 +1819,9 @@ var CartService = (function () {
         this.updateLocalStorage();
         this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
     };
+    CartService.prototype.removeFromLocalStorage = function () {
+        this.localStorageService.clearLocalStorageItem();
+    };
     CartService.prototype.flushCart = function () {
         this.products = [];
         this.cartTotal = 0;
@@ -3599,6 +3602,7 @@ var AuthService = (function () {
         this.isAdmin = false;
         this.freshUser();
         this.cartService.flushCart();
+        this.cartService.removeFromLocalStorage();
         this.appService.isCartPrepared = false;
         this.router.navigate(['/']);
     };

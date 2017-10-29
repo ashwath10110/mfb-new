@@ -67,6 +67,8 @@ export class AuthService {
 
     this.freshUser();
     this.cartService.flushCart();
+
+    this.cartService.removeFromLocalStorage();
     this.appService.isCartPrepared = false;
     this.router.navigate(['/']);
   }

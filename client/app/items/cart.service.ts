@@ -108,10 +108,15 @@ export class CartService {
     this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
   }
 
+  removeFromLocalStorage() {
+    this.localStorageService.clearLocalStorageItem();
+  }
+
   flushCart() {
     this.products = [];
     this.cartTotal = 0;
     this.updateLocalStorage();
     this.productAddedSource.next({ products: this.products, cartTotal: this.cartTotal });
   }
+
 }
