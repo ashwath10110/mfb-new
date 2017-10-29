@@ -21,12 +21,12 @@
           </a>
         </li>
         <li>
-          <a routerLink="/addresses" routerLinkActive="active">
+          <a routerLink="/addresses" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-lock"></i> Addresses
           </a>
         </li>
         <li>
-          <a routerLink="/user-orders" routerLinkActive="active">
+          <a routerLink="/user-orders" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-lock"></i> User Orders
           </a>
         </li>
@@ -47,7 +47,7 @@
           </a>
         </li>
         <li>
-          <a routerLink="/orders" routerLinkActive="active" *ngIf="auth.loggedIn">
+          <a routerLink="/orders" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
             <i class="fa fa-user"></i> Orders
           </a>
         </li>
