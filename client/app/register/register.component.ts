@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required,
   Validators.minLength(6)]);
 
+  itemTypes = ['exotic-vegetables', 'leafy-green-vegetables', 'fresh-vegetables', 'fresh-fruits'];
+
   role = new FormControl('', [Validators.required]);
 
   captchaFlag = '';
@@ -63,11 +65,12 @@ export class RegisterComponent implements OnInit {
   }
 
   prepareForRegister() {
-    if (this.captchaValid) {
-      this.register();
-    } else {
-      this.toast.setMessage('Press the captcha!', 'warning');
-    }
+    this.register();
+    // if (this.captchaValid) {
+    //   this.register();
+    // } else {
+    //   this.toast.setMessage('Press the captcha!', 'warning');
+    // }
   }
 
   refresh(): void {
@@ -76,6 +79,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     let user = this.registerForm.value;
+    user.role = 'admin';
     this.userService.register(user).subscribe(
       res => {
         this.toast.setMessage('you successfully registered!', 'success');

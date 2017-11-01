@@ -1,39 +1,42 @@
-<app-toast [message]="toast.message"></app-toast>
+  <div id="login-page" class="row">
+    <div class="col s12 z-depth-4 card-panel">
+      <form class="login-form" [formGroup]="registerForm">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <h4>Register</h4>
+            <p class="center">Join to our community now !</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input id="username" class="form-control" type="text" name="username" formControlName="username" placeholder="Username" autofocus>
+            <label for="username" class="center-align">Username</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-communication-email prefix"></i>
+            <input id="email" class="form-control" type="email" name="email" formControlName="email" placeholder="Email">
+            <label for="email" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="password" class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
 
-<div class="card">
-  <h4 class="card-header">Register</h4>
-  <div class="card-block">
-    <form [formGroup]="registerForm">
-      <div class="input-group" [ngClass]="setClassUsername()">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-        <input class="form-control" type="text" name="username" formControlName="username" placeholder="Username" autofocus>
-      </div>
-      <div class="input-group" [ngClass]="setClassEmail()">
-        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-        <input class="form-control" type="email" name="email" formControlName="email" placeholder="Email">
-      </div>
-      <div class="input-group" [ngClass]="setClassPassword()">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-        <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-black-tie"></i></span>
-        <select class="form-control" name="role" formControlName="role">
-          <option value="" selected disabled>Role</option>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <re-captcha
-        [(ngModel)]="captchaFlag"
-        name="captcha"
-        [ngModelOptions]="{standalone: true}"
-        (resolved)="resolved($event)"
-        required
-        [siteKey]="appService.googleCaptchaKey"
-      ></re-captcha>
-      <button class="btn btn-primary" type="submit" (click)="prepareForRegister()" [disabled]="!((registerForm.valid)&&(captchaValid==true))"><i class="fa fa-user-plus"></i> Register</button>
-    </form>
-
+            <button (click)="prepareForRegister()" [disabled]="!(registerForm.valid)" class="btn waves-effect waves-light col s12">Register Now</button>
+          </div>
+          <!-- <div class="input-field col s12">
+            <p class="margin center medium-small sign-up">Already have an account? <a href="page-login.html">Login</a></p>
+          </div> -->
+        </div>
+      </form>
+    </div>
   </div>
-</div>

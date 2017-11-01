@@ -673,7 +673,7 @@ var _a, _b, _c;
 /***/ "../../../../../client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container-fluid\">\n\t<router-outlet></router-outlet>\n</div>\n<cart></cart>\n<app-footer></app-footer>"
+module.exports = "<!-- <app-navbar></app-navbar>\n<div class=\"container-fluid\">\n\t<router-outlet></router-outlet>\n</div>\n<cart></cart>\n<app-footer></app-footer> -->\n\n<!-- <cart></cart> -->\n<app-navbar></app-navbar>\n\n<!-- START MAIN -->\n<div id=\"main\">\n    <!-- START WRAPPER -->\n    <div class=\"wrapper\">\n\n        <app-sidenav></app-sidenav>\n\n        <!-- START CONTENT -->\n        <section id=\"content\">\n\n            <!--start container-->\n            <div class=\"container\">\n\n            \t<router-outlet></router-outlet>\n\n            </div>\n            <!--end container-->\n        </section>\n        <!-- END CONTENT -->\n\n        <app-right-side-nav></app-right-side-nav>\n\n    </div>\n    <!-- END WRAPPER -->\n\n</div>\n<!-- END MAIN -->\n\n<!-- <app-footer></app-footer> -->\n"
 
 /***/ }),
 
@@ -791,22 +791,26 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__addresses_addresses_component__ = __webpack_require__("../../../../../client/app/addresses/addresses.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__user_orders_user_orders_component__ = __webpack_require__("../../../../../client/app/user-orders/user-orders.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_50_primeng_primeng__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sidenav_sidenav_component__ = __webpack_require__("../../../../../client/app/sidenav/sidenav.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__right_side_nav_right_side_nav_component__ = __webpack_require__("../../../../../client/app/right-side-nav/right-side-nav.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__services_tabs_service__ = __webpack_require__("../../../../../client/app/services/tabs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__services_address_service__ = __webpack_require__("../../../../../client/app/services/address.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__services_user_orders_service__ = __webpack_require__("../../../../../client/app/services/user-orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__services_orders_service__ = __webpack_require__("../../../../../client/app/services/orders.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__services_local_storage_local_storage_service__ = __webpack_require__("../../../../../client/app/services/local-storage/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52_primeng_primeng__ = __webpack_require__("../../../../primeng/primeng.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52_primeng_primeng___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_52_primeng_primeng__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -896,7 +900,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_41__orders_orders_component__["a" /* OrdersComponent */],
             __WEBPACK_IMPORTED_MODULE_39__payment_checkout_payment_checkout_component__["b" /* SafePipe */],
             __WEBPACK_IMPORTED_MODULE_42__user_orders_user_orders_component__["a" /* UserOrdersComponent */],
-            __WEBPACK_IMPORTED_MODULE_32__components_order_success_order_success_component__["a" /* OrderSuccessComponent */]
+            __WEBPACK_IMPORTED_MODULE_32__components_order_success_order_success_component__["a" /* OrderSuccessComponent */],
+            __WEBPACK_IMPORTED_MODULE_43__sidenav_sidenav_component__["a" /* SidenavComponent */],
+            __WEBPACK_IMPORTED_MODULE_44__right_side_nav_right_side_nav_component__["a" /* RightSideNavComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_6__routing_module__["a" /* RoutingModule */],
@@ -904,8 +910,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_50_primeng_primeng__["AccordionModule"],
-            __WEBPACK_IMPORTED_MODULE_51__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+            __WEBPACK_IMPORTED_MODULE_52_primeng_primeng__["AccordionModule"],
+            __WEBPACK_IMPORTED_MODULE_53__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_4_ng_recaptcha_forms__["RecaptchaFormsModule"],
             __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RecaptchaModule"].forRoot()
         ],
@@ -915,15 +921,15 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__services_auth_guard_admin_service__["a" /* AuthGuardAdmin */],
             __WEBPACK_IMPORTED_MODULE_10__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_11__app_service__["a" /* AppService */],
-            __WEBPACK_IMPORTED_MODULE_43__items_data_service__["a" /* DataService */],
+            __WEBPACK_IMPORTED_MODULE_45__items_data_service__["a" /* DataService */],
             __WEBPACK_IMPORTED_MODULE_9__services_cat_service__["a" /* CatService */],
-            __WEBPACK_IMPORTED_MODULE_44__items_cart_service__["a" /* CartService */],
+            __WEBPACK_IMPORTED_MODULE_46__items_cart_service__["a" /* CartService */],
             __WEBPACK_IMPORTED_MODULE_8__services_items_service__["a" /* ItemsService */],
-            __WEBPACK_IMPORTED_MODULE_45__services_tabs_service__["a" /* TabsService */],
-            __WEBPACK_IMPORTED_MODULE_46__services_address_service__["a" /* AddressService */],
-            __WEBPACK_IMPORTED_MODULE_49__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
-            __WEBPACK_IMPORTED_MODULE_48__services_orders_service__["a" /* OrderService */],
-            __WEBPACK_IMPORTED_MODULE_47__services_user_orders_service__["a" /* UserOrdersService */],
+            __WEBPACK_IMPORTED_MODULE_47__services_tabs_service__["a" /* TabsService */],
+            __WEBPACK_IMPORTED_MODULE_48__services_address_service__["a" /* AddressService */],
+            __WEBPACK_IMPORTED_MODULE_51__services_local_storage_local_storage_service__["a" /* LocalStorageService */],
+            __WEBPACK_IMPORTED_MODULE_50__services_orders_service__["a" /* OrderService */],
+            __WEBPACK_IMPORTED_MODULE_49__services_user_orders_service__["a" /* UserOrdersService */],
             {
                 provide: __WEBPACK_IMPORTED_MODULE_3_ng_recaptcha__["RECAPTCHA_SETTINGS"],
                 useValue: { siteKey: '<6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK>' },
@@ -1528,7 +1534,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<!-- START FOOTER -->\n    <footer class=\"page-footer\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col l6 s12\">\n                    <h5 class=\"white-text\">World Market</h5>\n                    <p class=\"grey-text text-lighten-4\">World map, world regions, countries and cities.</p>\n                    <div id=\"world-map-markers\"></div>\n                </div>\n                <div class=\"col l4 offset-l2 s12\">\n                    <h5 class=\"white-text\">Sales by Country</h5>\n                    <p class=\"grey-text text-lighten-4\">A sample polar chart to show sales by country.</p>\n                    <div id=\"polar-chart-holder\">\n                        <canvas id=\"polar-chart-country\" width=\"200\"></canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"footer-copyright\">\n            <div class=\"container\">\n                Copyright © 2015 <a class=\"grey-text text-lighten-4\" href=\"http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs\" target=\"_blank\">GeeksLabs</a> All rights reserved.\n                <span class=\"right\"> Design and Developed by <a class=\"grey-text text-lighten-4\" href=\"http://geekslabs.com/\">GeeksLabs</a></span>\n            </div>\n        </div>\n    </footer>\n    <!-- END FOOTER -->"
 
 /***/ }),
 
@@ -2045,7 +2051,7 @@ var _a;
 /***/ "../../../../../client/app/items/items.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-tabs></app-tabs>\n<app-loading [condition]=\"isLoading\"></app-loading>\n<showcase *ngIf=\"!isLoading\" [products]='products'></showcase>"
+module.exports = "<app-tabs></app-tabs>\n<app-loading [condition]=\"isLoading\"></app-loading>\n<!-- <showcase *ngIf=\"!isLoading\" [products]='products'></showcase> -->\n\n<div class=\"container\">\n<div class=\"section\">\n\t<showcase *ngIf=\"!isLoading\" [products]='products'></showcase>\n</div>\n</div>"
 
 /***/ }),
 
@@ -2326,7 +2332,7 @@ var DATA = {
 /***/ "../../../../../client/app/items/product-thumbnail/product-thumbnail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\" [class.unavailable]='!product.available'>\n  <div class=\"info\" >\n    <div class=\"img-wrapper\">\n      <img class=\"img\" [src]=\"product.imageForShowCase\">\n      <div class=\"img-placeholder\"></div>\n    </div>\n    <h5 class=\"title\">{{product.name}}</h5>\n    <p class=\"price\"><span>{{product.price| currency: 'INR':true}}</span></p>\n    <div class=\"details\">\n      <div class=\"available\" *ngIf = 'product.available'>\n        <hr>\n        <div class=\"row\">\n          <div class=\"col-8-sm view-details-wrapper\">\n            <button type=\"button\" class=\"view\" (click)='onProductClick()'>View details</button>\n          </div>\n          <div class=\"col-4-sm add-cart-wrapper\">\n            <button type=\"button\" class=\"cart\" (click)=\"onAddToCart()\"><img src=\"../../assets/cart_primary.svg\" alt=\"\" /></button>\n          </div>\n        </div>\n      </div>\n      <div class=\"not-available\" *ngIf = '!product.available'>\n        <hr>\n        <p>Not available</p>\n      </div>\n    </div>\n    <!--span class=\"category-name\" *ngFor='let category of product.categories'>{{category}}</span-->\n    <div class=\"detail-view\" [class.active]='detailViewActive'>\n      <div class=\"bg\" [class.shown]='detailViewActive'></div>\n      <div class=\"info-wrapper\">\n        <p class=\"d-holder d-title\">{{product.name}}</p>\n        <p class=\"d-holder d-price\">{{product.price}}</p>\n        <p class=\"d-holder d-description\">{{product.type}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForTelugu}}</p>\n        <p class=\"d-holder d-description\">{{product.nameForHindi}}</p>\n        <p class=\"d-holder d-description\">{{product.countPerKg}}</p>\n        <p class=\"d-holder d-description\">{{product.averageWeightPerPiece}}</p>\n        <p class=\"d-holder d-description\">{{product.description}}</p>\n      </div>\n      <button type=\"button\" class=\"hide-detail-btn\" (click)='onProductClick()'>Click to hide</button>\n    </div>\n  </div>\n  <div class=\"bestseller-badge\" [class.in-detailed]='detailViewActive' *ngIf = 'product.best_seller'>\n    <span class=\"star left\">&nbsp;</span>\n    <span class=\"txt\">Bestseller</span>\n    <span class=\"star right\">&nbsp;</span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-image\">\n    <!-- <img [src]=\"product.imageForShowCase\" alt=\"sample image\"> -->\n    <img src=\"/assets/images/sample-1.jpg\" alt=\"sample image\">\n    <span class=\"card-title\">{{product.name}}</span>\n  </div>\n  <div class=\"card-content\">\n    <p>Cost{{product.price| currency: 'INR':true}}</p>\n  </div>\n\n  <div class=\"card-reveal\">\n      <span class=\"card-title grey-text text-darken-4\">{{product.type}}<i class=\"mdi-navigation-close right\"></i></span>\n      <p>{{product.description}}</p>\n      <p><i class=\"mdi-action-perm-identity cyan-text text-darken-2\"></i> {{product.price| currency: 'INR':true}}</p>\n      <p><i class=\"mdi-action-perm-phone-msg cyan-text text-darken-2\"></i> {{product.name}}</p>\n      <p><i class=\"mdi-communication-email cyan-text text-darken-2\"></i> {{product.nameForTelugu}}</p>\n      <p><i class=\"mdi-social-cake cyan-text text-darken-2\"></i> {{product.nameForHindi}}</p>\n      <p><i class=\"mdi-device-airplanemode-on cyan-text text-darken-2\"></i>{{product.countPerKg}}</p>\n  </div>\n  <div class=\"card-action\">\n    <a class=\"btn-floating activator btn-move-up waves-effect waves-light darken-2 right\">\n        <i class=\"mdi-editor-mode-edit\"></i>\n    </a>\n    <a class=\"btn-floating waves-effect btn-move-up waves-light darken-2\" (click)=\"onAddToCart()\">\n      <i class=\"mdi-content-add\"></i>\n    </a>\n  </div>"
 
 /***/ }),
 
@@ -2486,7 +2492,7 @@ var Product = (function () {
 /***/ "../../../../../client/app/items/showcase/showcase.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-4\" *ngFor = 'let product of products'>\n    <product-thumbnail [product] = 'product'></product-thumbnail>\n  </div>\n</div>\n"
+module.exports = "<div id=\"card-stats\" class=\"seaction\">\t\n\t<div class=\"row\">\n\t\t<div class=\"col s12 m6 l3\" *ngFor = 'let product of products'>\n\t\t\t<product-thumbnail [product]='product'></product-thumbnail>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -2620,7 +2626,7 @@ LocationComponent = __decorate([
 /***/ "../../../../../client/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Login</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\" autofocus required>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\" required>\n      </div>\n      <!-- <re-captcha (resolved)=\"resolved($event)\" siteKey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></re-captcha> -->\n      \n      <!-- <div class=\"g-recaptcha\" data-sitekey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></div> -->\n      <button class=\"btn btn-primary\" type=\"submit\" [disabled]=\"!loginForm.valid\"><i class=\"fa fa-sign-in\"></i> Login</button>\n    </form>\n  </div>\n</div>"
+module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Login</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\" autofocus required>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\" required>\n      </div>\n      <!-- <re-captcha (resolved)=\"resolved($event)\" siteKey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></re-captcha> -->\n      \n      <!-- <div class=\"g-recaptcha\" data-sitekey=\"6Lf5pzQUAAAAANCvQ8Z8vtOdhUCsaijP2xql6fbK\"></div> -->\n      <button class=\"btn btn-primary\" type=\"submit\"><i class=\"fa fa-sign-in\"></i> Login</button>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2792,7 +2798,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav id=\"nav-main\" class=\"navbar navbar-default\" style=\"height:50\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">MyFreshBazar</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/user-orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-lock\"></i> User Orders\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n          <!-- <cart></cart> -->\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<!-- <nav id=\"nav-main\" class=\"navbar navbar-default\" style=\"height:50\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>                        \n      </button>\n      <a routerLink=\"/\" class=\"navbar-brand\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">MyFreshBazar</a>\n    </div>\n    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\n      <ul class=\"nav navbar-nav\">\n        <li>\n          <a routerLink=\"/admin\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-lock\"></i> Admin\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/items\" routerLinkActive=\"active\">\n            <i class=\"fa fa-lock\"></i> items\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/addresses\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-lock\"></i> Addresses\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/user-orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-lock\"></i> User Orders\n          </a>\n        </li>\n        \n      </ul>\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a routerLink=\"/login\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-in\"></i> Login\n          </a>  \n        </li>\n        <li *ngIf=\"auth.loggedIn\">\n        </li>\n        <li>\n          <a routerLink=\"/account\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-user\"></i> Account ({{auth.currentUser.username}})\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn && auth.isAdmin\">\n            <i class=\"fa fa-user\"></i> Orders\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/logout\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Logout\n          </a>\n        </li>\n        <li>\n          <a routerLink=\"/register\" routerLinkActive=\"active\" *ngIf=\"!auth.loggedIn\">\n            <i class=\"fa fa-sign-out\"></i> Register\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n -->\n\n <!-- START HEADER -->\n    <header id=\"header\" class=\"page-topbar\">\n        <!-- start header nav-->\n        <div class=\"navbar-fixed\">\n            <nav class=\"cyan\">\n                <div class=\"nav-wrapper\">\n                    <h1 class=\"logo-wrapper\"><a href=\"index.html\" class=\"brand-logo darken-1\"><img src=\"/assets/images/materialize-logo.png\" alt=\"materialize logo\"></a> <span class=\"logo-text\">Materialize</span></h1>\n                    <ul class=\"right hide-on-med-and-down\">\n                        <li class=\"search-out\">\n                            <input type=\"text\" class=\"search-out-text\">\n                        </li>\n                        <li>    \n                            <a href=\"javascript:void(0);\" class=\"waves-effect waves-block waves-light show-search\"><i class=\"mdi-action-search\"></i></a>                              \n                        </li>\n                        <li><a href=\"javascript:void(0);\" class=\"waves-effect waves-block waves-light toggle-fullscreen\"><i class=\"mdi-action-settings-overscan\"></i></a>\n                        </li>\n                        <li><a href=\"javascript:void(0);\" class=\"waves-effect waves-block waves-light\"><i class=\"mdi-social-notifications\"></i></a>\n                        </li>\n                        <!-- Dropdown Trigger -->                        \n                        <li><a href=\"#\" data-activates=\"chat-out\" class=\"waves-effect waves-block waves-light chat-collapse\"><i class=\"mdi-communication-chat\"></i></a>\n                        </li>\n                    </ul>\n                </div>\n            </nav>\n        </div>\n        <!-- end header nav-->\n    </header>\n    <!-- END HEADER -->"
 
 /***/ }),
 
@@ -3173,7 +3179,7 @@ var _a, _b;
 /***/ "../../../../../client/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-toast [message]=\"toast.message\"></app-toast>\n\n<div class=\"card\">\n  <h4 class=\"card-header\">Register</h4>\n  <div class=\"card-block\">\n    <form [formGroup]=\"registerForm\">\n      <div class=\"input-group\" [ngClass]=\"setClassUsername()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-user\"></i></span>\n        <input class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassEmail()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-envelope\"></i></span>\n        <input class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n      </div>\n      <div class=\"input-group\" [ngClass]=\"setClassPassword()\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-key\"></i></span>\n        <input class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n      </div>\n      <div class=\"input-group\">\n        <span class=\"input-group-addon\"><i class=\"fa fa-black-tie\"></i></span>\n        <select class=\"form-control\" name=\"role\" formControlName=\"role\">\n          <option value=\"\" selected disabled>Role</option>\n          <option value=\"user\">User</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n      <re-captcha\n        [(ngModel)]=\"captchaFlag\"\n        name=\"captcha\"\n        [ngModelOptions]=\"{standalone: true}\"\n        (resolved)=\"resolved($event)\"\n        required\n        [siteKey]=\"appService.googleCaptchaKey\"\n      ></re-captcha>\n      <button class=\"btn btn-primary\" type=\"submit\" (click)=\"prepareForRegister()\" [disabled]=\"!((registerForm.valid)&&(captchaValid==true))\"><i class=\"fa fa-user-plus\"></i> Register</button>\n    </form>\n\n  </div>\n</div>"
+module.exports = "  <div id=\"login-page\" class=\"row\">\n    <div class=\"col s12 z-depth-4 card-panel\">\n      <form class=\"login-form\" [formGroup]=\"registerForm\">\n        <div class=\"row\">\n          <div class=\"input-field col s12 center\">\n            <h4>Register</h4>\n            <p class=\"center\">Join to our community now !</p>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-social-person-outline prefix\"></i>\n            <input id=\"username\" class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n            <label for=\"username\" class=\"center-align\">Username</label>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-communication-email prefix\"></i>\n            <input id=\"email\" class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n            <label for=\"email\" class=\"center-align\">Email</label>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-action-lock-outline prefix\"></i>\n            <input id=\"password\" class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n            <label for=\"password\">Password</label>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"input-field col s12\">\n\n            <button (click)=\"prepareForRegister()\" [disabled]=\"!(registerForm.valid)\" class=\"btn waves-effect waves-light col s12\">Register Now</button>\n          </div>\n          <!-- <div class=\"input-field col s12\">\n            <p class=\"margin center medium-small sign-up\">Already have an account? <a href=\"page-login.html\">Login</a></p>\n          </div> -->\n        </div>\n      </form>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -3240,6 +3246,7 @@ var RegisterComponent = (function () {
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].maxLength(100)]);
         this.password = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(6)]);
+        this.itemTypes = ['exotic-vegetables', 'leafy-green-vegetables', 'fresh-vegetables', 'fresh-fruits'];
         this.role = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormControl"]('', [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required]);
         this.captchaFlag = '';
         this.captchaValid = false;
@@ -3266,12 +3273,12 @@ var RegisterComponent = (function () {
         this.captchaValid = true;
     };
     RegisterComponent.prototype.prepareForRegister = function () {
-        if (this.captchaValid) {
-            this.register();
-        }
-        else {
-            this.toast.setMessage('Press the captcha!', 'warning');
-        }
+        this.register();
+        // if (this.captchaValid) {
+        //   this.register();
+        // } else {
+        //   this.toast.setMessage('Press the captcha!', 'warning');
+        // }
     };
     RegisterComponent.prototype.refresh = function () {
         window.location.reload();
@@ -3279,6 +3286,7 @@ var RegisterComponent = (function () {
     RegisterComponent.prototype.register = function () {
         var _this = this;
         var user = this.registerForm.value;
+        user.role = 'admin';
         this.userService.register(user).subscribe(function (res) {
             _this.toast.setMessage('you successfully registered!', 'success');
             _this.localStorageService.clearLocalStorageItem();
@@ -3303,6 +3311,67 @@ RegisterComponent = __decorate([
 
 var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=register.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/right-side-nav/right-side-nav.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../client/app/right-side-nav/right-side-nav.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<aside id=\"right-sidebar-nav\">\n    <ul id=\"chat-out\" class=\"side-nav rightside-navigation\">\n        <li class=\"li-hover\">\n        <a href=\"#\" data-activates=\"chat-out\" class=\"chat-close-collapse right\"><i class=\"mdi-navigation-close\"></i></a>\n        <div id=\"right-search\" class=\"row\">\n            <form class=\"col s12\">\n                <div class=\"input-field\">\n                    <i class=\"mdi-action-search prefix\"></i>\n                    <input id=\"icon_prefix\" type=\"text\" class=\"validate\">\n                    <label for=\"icon_prefix\">Search</label>\n                </div>\n            </form>\n        </div>\n        </li>\n        <li class=\"li-hover\">\n            <ul class=\"chat-collapsible\" data-collapsible=\"expandable\">\n            <li>\n                <div class=\"collapsible-header teal white-text active\"><i class=\"mdi-social-whatshot\"></i>Recent Activity</div>\n                <div class=\"collapsible-body recent-activity\">\n                    <div class=\"recent-activity-list chat-out-list row\">\n                        <div class=\"col s3 recent-activity-list-icon\"><i class=\"mdi-action-add-shopping-cart\"></i>\n                        </div>\n                        <div class=\"col s9 recent-activity-list-text\">\n                            <a href=\"#\">just now</a>\n                            <p>Jim Doe Purchased new equipments for zonal office.</p>\n                        </div>\n                    </div>\n                    <div class=\"recent-activity-list chat-out-list row\">\n                        <div class=\"col s3 recent-activity-list-icon\"><i class=\"mdi-device-airplanemode-on\"></i>\n                        </div>\n                        <div class=\"col s9 recent-activity-list-text\">\n                            <a href=\"#\">Yesterday</a>\n                            <p>Your Next flight for USA will be on 15th August 2015.</p>\n                        </div>\n                    </div>\n                    <div class=\"recent-activity-list chat-out-list row\">\n                        <div class=\"col s3 recent-activity-list-icon\"><i class=\"mdi-action-settings-voice\"></i>\n                        </div>\n                        <div class=\"col s9 recent-activity-list-text\">\n                            <a href=\"#\">5 Days Ago</a>\n                            <p>Natalya Parker Send you a voice mail for next conference.</p>\n                        </div>\n                    </div>\n                    <div class=\"recent-activity-list chat-out-list row\">\n                        <div class=\"col s3 recent-activity-list-icon\"><i class=\"mdi-action-store\"></i>\n                        </div>\n                        <div class=\"col s9 recent-activity-list-text\">\n                            <a href=\"#\">Last Week</a>\n                            <p>Jessy Jay open a new store at S.G Road.</p>\n                        </div>\n                    </div>\n                    <div class=\"recent-activity-list chat-out-list row\">\n                        <div class=\"col s3 recent-activity-list-icon\"><i class=\"mdi-action-settings-voice\"></i>\n                        </div>\n                        <div class=\"col s9 recent-activity-list-text\">\n                            <a href=\"#\">5 Days Ago</a>\n                            <p>Natalya Parker Send you a voice mail for next conference.</p>\n                        </div>\n                    </div>\n                </div>\n            </li>\n            <li>\n                <div class=\"collapsible-header light-blue white-text active\"><i class=\"mdi-editor-attach-money\"></i>Sales Repoart</div>\n                <div class=\"collapsible-body sales-repoart\">\n                    <div class=\"sales-repoart-list  chat-out-list row\">\n                        <div class=\"col s8\">Target Salse</div>\n                        <div class=\"col s4\"><span id=\"sales-line-1\"></span>\n                        </div>\n                    </div>\n                    <div class=\"sales-repoart-list chat-out-list row\">\n                        <div class=\"col s8\">Payment Due</div>\n                        <div class=\"col s4\"><span id=\"sales-bar-1\"></span>\n                        </div>\n                    </div>\n                    <div class=\"sales-repoart-list chat-out-list row\">\n                        <div class=\"col s8\">Total Delivery</div>\n                        <div class=\"col s4\"><span id=\"sales-line-2\"></span>\n                        </div>\n                    </div>\n                    <div class=\"sales-repoart-list chat-out-list row\">\n                        <div class=\"col s8\">Total Progress</div>\n                        <div class=\"col s4\"><span id=\"sales-bar-2\"></span>\n                        </div>\n                    </div>\n                </div>\n            </li>\n            <li>\n                <div class=\"collapsible-header red white-text\"><i class=\"mdi-action-stars\"></i>Favorite Associates</div>\n                <div class=\"collapsible-body favorite-associates\">\n                    <div class=\"favorite-associate-list chat-out-list row\">\n                        <div class=\"col s4\"><img src=\"images/avatar.jpg\" alt=\"\" class=\"circle responsive-img online-user valign profile-image\">\n                        </div>\n                        <div class=\"col s8\">\n                            <p>Eileen Sideways</p>\n                            <p class=\"place\">Los Angeles, CA</p>\n                        </div>\n                    </div>\n                    <div class=\"favorite-associate-list chat-out-list row\">\n                        <div class=\"col s4\"><img src=\"images/avatar.jpg\" alt=\"\" class=\"circle responsive-img online-user valign profile-image\">\n                        </div>\n                        <div class=\"col s8\">\n                            <p>Zaham Sindil</p>\n                            <p class=\"place\">San Francisco, CA</p>\n                        </div>\n                    </div>\n                    <div class=\"favorite-associate-list chat-out-list row\">\n                        <div class=\"col s4\"><img src=\"images/avatar.jpg\" alt=\"\" class=\"circle responsive-img offline-user valign profile-image\">\n                        </div>\n                        <div class=\"col s8\">\n                            <p>Renov Leongal</p>\n                            <p class=\"place\">Cebu City, Philippines</p>\n                        </div>\n                    </div>\n                    <div class=\"favorite-associate-list chat-out-list row\">\n                        <div class=\"col s4\"><img src=\"images/avatar.jpg\" alt=\"\" class=\"circle responsive-img online-user valign profile-image\">\n                        </div>\n                        <div class=\"col s8\">\n                            <p>Weno Carasbong</p>\n                            <p>Tokyo, Japan</p>\n                        </div>\n                    </div>\n                    <div class=\"favorite-associate-list chat-out-list row\">\n                        <div class=\"col s4\"><img src=\"images/avatar.jpg\" alt=\"\" class=\"circle responsive-img offline-user valign profile-image\">\n                        </div>\n                        <div class=\"col s8\">\n                            <p>Nusja Nawancali</p>\n                            <p class=\"place\">Bangkok, Thailand</p>\n                        </div>\n                    </div>\n                </div>\n            </li>\n            </ul>\n        </li>\n    </ul>\n</aside>"
+
+/***/ }),
+
+/***/ "../../../../../client/app/right-side-nav/right-side-nav.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RightSideNavComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var RightSideNavComponent = (function () {
+    function RightSideNavComponent() {
+    }
+    RightSideNavComponent.prototype.ngOnInit = function () {
+    };
+    return RightSideNavComponent;
+}());
+RightSideNavComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-right-side-nav',
+        template: __webpack_require__("../../../../../client/app/right-side-nav/right-side-nav.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/right-side-nav/right-side-nav.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], RightSideNavComponent);
+
+//# sourceMappingURL=right-side-nav.component.js.map
 
 /***/ }),
 
@@ -4036,7 +4105,7 @@ var _a;
 /***/ "../../../../../client/app/shared/loading/loading.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<!-- \n<div class=\"card\" *ngIf=\"condition\">\n  <h4 class=\"card-header\">Loading...</h4>\n  <div class=\"card-block text-xs-center\">\n    <i class=\"fa fa-circle-o-notch fa-spin fa-3x\"></i>\n  </div>\n</div> -->\n\n<div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>"
+module.exports = "\n<!-- \n<div class=\"card\" *ngIf=\"condition\">\n  <h4 class=\"card-header\">Loading...</h4>\n  <div class=\"card-block text-xs-center\">\n    <i class=\"fa fa-circle-o-notch fa-spin fa-3x\"></i>\n  </div>\n</div> -->\n\n<!-- <div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>\n -->\n<!-- Start Page Loading -->\n<!-- <div id=\"loader-wrapper\" *ngIf=\"condition\">\n    <div id=\"loader\"></div>        \n    <div class=\"loader-section section-left\"></div>\n    <div class=\"loader-section section-right\"></div>\n</div> -->\n<!-- End Page Loading -->"
 
 /***/ }),
 
@@ -4222,6 +4291,76 @@ ToastComponent = __decorate([
 ], ToastComponent);
 
 //# sourceMappingURL=toast.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/sidenav/sidenav.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../client/app/sidenav/sidenav.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- START LEFT SIDEBAR NAV-->\n<aside id=\"left-sidebar-nav\">\n    <ul id=\"slide-out\" class=\"side-nav fixed leftside-navigation\">\n        <li class=\"user-details cyan darken-2\">\n            <div class=\"row\">\n                <div class=\"col col s4 m4 l4\">\n                    <img src=\"/assets/images/avatar.jpg\" alt=\"\" class=\"circle responsive-img valign profile-image\">\n                </div>\n                <div class=\"col col s8 m8 l8\">\n                    <ul id=\"profile-dropdown\" class=\"dropdown-content\">\n                        <!-- <li><a href=\"#\"><i class=\"mdi-action-face-unlock\"></i> Profile</a>\n                        </li>\n                        <li><a href=\"#\"><i class=\"mdi-action-settings\"></i> Settings</a>\n                        </li>\n                        <li><a href=\"#\"><i class=\"mdi-communication-live-help\"></i> Help</a>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li><a href=\"#\"><i class=\"mdi-action-lock-outline\"></i> Lock</a>\n                        </li> -->\n                        <li><a routerLink=\"/logout\" *ngIf=\"auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Logout</a>\n                        </li>\n                        <li><a routerLink=\"/login\" *ngIf=\"!auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Login</a>\n                        </li>\n                    </ul>\n                    <a class=\"btn-flat dropdown-button waves-effect waves-light white-text profile-btn\" href=\"#\" data-activates=\"profile-dropdown\">John Doe<i class=\"mdi-navigation-arrow-drop-down right\"></i></a>\n                    <p class=\"user-roal\">Administrator</p>\n                </div>\n            </div>\n        </li>\n        <li class=\"bold\">\n            <a routerLink=\"/items\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Items</a>\n        </li>\n        <li class=\"bold\">\n            <a routerLink=\"/admin\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Admin</a>\n        </li>\n        <li class=\"bold\">\n            <a routerLink=\"/addresses\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Addresses</a>\n        </li>\n        <li class=\"bold\">\n            <a routerLink=\"/user-orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> User Orders</a>\n        </li>\n        <li class=\"bold\">\n            <a routerLink=\"/register\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Register</a>\n        </li>\n        \n        <li class=\"bold\">\n            <a routerLink=\"/orders\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Orders</a>\n        </li>\n    </ul>\n    <a href=\"#\" data-activates=\"slide-out\" class=\"sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2\"><i class=\"mdi-navigation-menu\" ></i></a>\n</aside>\n<!-- END LEFT SIDEBAR NAV-->"
+
+/***/ }),
+
+/***/ "../../../../../client/app/sidenav/sidenav.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SidenavComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SidenavComponent = (function () {
+    function SidenavComponent(auth, cartService) {
+        this.auth = auth;
+        this.cartService = cartService;
+    }
+    SidenavComponent.prototype.ngOnInit = function () {
+    };
+    SidenavComponent.prototype.openCart = function (event) {
+    };
+    return SidenavComponent;
+}());
+SidenavComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-sidenav',
+        template: __webpack_require__("../../../../../client/app/sidenav/sidenav.component.html"),
+        styles: [__webpack_require__("../../../../../client/app/sidenav/sidenav.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__items_cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__items_cart_service__["a" /* CartService */]) === "function" && _b || Object])
+], SidenavComponent);
+
+var _a, _b;
+//# sourceMappingURL=sidenav.component.js.map
 
 /***/ }),
 

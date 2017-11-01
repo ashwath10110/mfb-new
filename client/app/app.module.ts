@@ -50,6 +50,9 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { RightSideNavComponent } from './right-side-nav/right-side-nav.component';
+
 import { DataService } from './items/data.service';
 import { CartService } from './items/cart.service';
 import { TabsService } from './services/tabs.service';
@@ -91,7 +94,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         OrdersComponent,
         SafePipe,
         UserOrdersComponent,
-        OrderSuccessComponent
+        OrderSuccessComponent,
+        SidenavComponent,
+        RightSideNavComponent
     ],
     imports: [
         RoutingModule,

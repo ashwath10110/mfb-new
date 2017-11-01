@@ -1,6 +1,39 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <div class="container-fluid">
 	<router-outlet></router-outlet>
 </div>
 <cart></cart>
-<app-footer></app-footer>
+<app-footer></app-footer> -->
+
+<!-- <cart></cart> -->
+<app-navbar></app-navbar>
+
+<!-- START MAIN -->
+<div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+        <app-sidenav></app-sidenav>
+
+        <!-- START CONTENT -->
+        <section id="content">
+
+            <!--start container-->
+            <div class="container">
+
+            	<router-outlet></router-outlet>
+
+            </div>
+            <!--end container-->
+        </section>
+        <!-- END CONTENT -->
+
+        <app-right-side-nav></app-right-side-nav>
+
+    </div>
+    <!-- END WRAPPER -->
+
+</div>
+<!-- END MAIN -->
+
+<!-- <app-footer></app-footer> -->
