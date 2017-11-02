@@ -4119,7 +4119,7 @@ var _a;
 /***/ "../../../../../client/app/shared/loading/loading.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>\n -->\n<!-- <div id=\"loader-wrapper\" *ngIf=\"condition\">\n    <div id=\"loader\"></div>        \n    <div class=\"loader-section section-left\"></div>\n    <div class=\"loader-section section-right\"></div>\n</div> -->"
+module.exports = "<!-- <div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>\n -->\n<div id=\"loader-wrapper\" *ngIf=\"condition\">\n    <div id=\"loader\"></div>        \n    <div class=\"loader-section section-left\"></div>\n    <div class=\"loader-section section-right\"></div>\n</div>"
 
 /***/ }),
 
