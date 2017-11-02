@@ -591,7 +591,7 @@ var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 /***/ "../../../../../client/app/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<p-accordion [activeIndex]=\"index\">\n    <p-accordionTab header=\"User Management\">\n      <div class=\"card\" *ngIf=\"!isLoading\">\n        <h4 class=\"card-header\">Registered users ({{users.length}})</h4>\n        <div class=\"card-block\">\n          <table class=\"table table-bordered table-striped\">\n            <thead class=\"thead-default\">\n              <tr>\n                <th>Username</th>\n                <th>Email</th>\n                <th>Role</th>\n                <th>Actions</th>\n              </tr>\n            </thead>\n            <tbody *ngIf=\"users.length === 0\">\n              <tr>\n                <td colspan=\"4\">There are no registered users.</td>\n              </tr>  \n            </tbody>\n            <tbody>\n              <tr *ngFor=\"let user of users\">\n                <td>{{user.username}}</td>\n                <td>{{user.email}}</td>\n                <td>{{user.role}}</td>\n                <td>\n                  <button class=\"btn btn-sm btn-danger\" (click)=\"deleteUser(user)\" [disabled]=\"auth.currentUser._id === user._id\">\n                    <i class=\"fa fa-trash\"></i>\n                  </button>\n                </td>\n              </tr>  \n            </tbody>\n          </table>\n        </div>\n      </div>\n    </p-accordionTab>\n    <p-accordionTab header=\"Items Management\">\n      <app-add-items></app-add-items>\n    </p-accordionTab>\n    <p-accordionTab header=\"Order Management\">\n    </p-accordionTab>\n</p-accordion>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<p-accordion [activeIndex]=\"index\">\n    <p-accordionTab header=\"User Management\">\n      <div class=\"card\" *ngIf=\"!isLoading\">\n        <h4 class=\"card-header\">Registered users ({{users.length}})</h4>\n        <div class=\"card-block\">\n          <table class=\"table table-bordered table-striped\">\n            <thead class=\"thead-default\">\n              <tr>\n                <th>Username</th>\n                <th>Email</th>\n                <th>Role</th>\n                <th>Actions</th>\n              </tr>\n            </thead>\n            <tbody *ngIf=\"users.length === 0\">\n              <tr>\n                <td colspan=\"4\">There are no registered users.</td>\n              </tr>  \n            </tbody>\n            <tbody>\n              <tr *ngFor=\"let user of users\">\n                <td>{{user.username}}</td>\n                <td>{{user.email}}</td>\n                <td>{{user.role}}</td>\n                <td>\n                  <button class=\"btn btn-sm btn-danger\" (click)=\"deleteUser(user)\" [disabled]=\"auth.currentUser._id === user._id\">\n                    <i class=\"fa fa-trash\"></i>\n                  </button>\n                </td>\n              </tr>  \n            </tbody>\n          </table>\n        </div>\n      </div>\n    </p-accordionTab>\n    <p-accordionTab header=\"Items Management\">\n      <app-add-items></app-add-items>\n    </p-accordionTab>\n    <p-accordionTab header=\"Order Management\">\n      Still coming\n    </p-accordionTab>\n</p-accordion>"
 
 /***/ }),
 
@@ -673,7 +673,7 @@ var _a, _b, _c;
 /***/ "../../../../../client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <cart></cart> -->\n<app-navbar></app-navbar>\n<div id=\"main\">\n    <div class=\"wrapper\">\n        <app-sidenav></app-sidenav>\n        <section id=\"content\">\n            <div class=\"container\">\n            \t<router-outlet></router-outlet>\n            </div>\n        </section>\n    </div>\n</div>\n\n<!-- <app-footer></app-footer> -->"
+module.exports = "<app-navbar></app-navbar>\n<div id=\"main\">\n    <div class=\"wrapper\">\n        <app-sidenav></app-sidenav>\n        <section id=\"content\">\n            <div class=\"container\">\n            \t<router-outlet></router-outlet>\n            </div>\n        </section>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -717,10 +717,10 @@ var AppComponent = (function () {
     function AppComponent(auth) {
         this.auth = auth;
         if (window["Worker"]) {
-            console.log('available');
+            console.log('Service worker available');
         }
         else {
-            console.log("NA");
+            console.log("Service worker NA");
         }
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -792,7 +792,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__orders_orders_component__ = __webpack_require__("../../../../../client/app/orders/orders.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__user_orders_user_orders_component__ = __webpack_require__("../../../../../client/app/user-orders/user-orders.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sidenav_sidenav_component__ = __webpack_require__("../../../../../client/app/sidenav/sidenav.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shared_book_filter_pipe__ = __webpack_require__("../../../../../client/app/shared/book-filter.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__shared_my_filter_pipe__ = __webpack_require__("../../../../../client/app/shared/my-filter.pipe.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__right_side_nav_right_side_nav_component__ = __webpack_require__("../../../../../client/app/right-side-nav/right-side-nav.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__items_data_service__ = __webpack_require__("../../../../../client/app/items/data.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__items_cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
@@ -905,7 +905,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_32__components_order_success_order_success_component__["a" /* OrderSuccessComponent */],
             __WEBPACK_IMPORTED_MODULE_43__sidenav_sidenav_component__["a" /* SidenavComponent */],
             __WEBPACK_IMPORTED_MODULE_45__right_side_nav_right_side_nav_component__["a" /* RightSideNavComponent */],
-            __WEBPACK_IMPORTED_MODULE_44__shared_book_filter_pipe__["a" /* FilterPipe */]
+            __WEBPACK_IMPORTED_MODULE_44__shared_my_filter_pipe__["a" /* FilterPipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_6__routing_module__["a" /* RoutingModule */],
@@ -2055,7 +2055,7 @@ var _a;
 /***/ "../../../../../client/app/items/items.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-tabs></app-tabs>\n<app-loading [condition]=\"isLoading\"></app-loading>\n<!-- <showcase *ngIf=\"!isLoading\" [products]='products'></showcase> -->\n{{appService.searchParams}}\n<div class=\"container\">\n\t<div class=\"section\">\n\t\t<showcase *ngIf=\"!isLoading\" [products]='products'></showcase>\n\t</div>\n</div>"
+module.exports = "<app-tabs></app-tabs>\n<app-loading [condition]=\"isLoading\"></app-loading>\n<div class=\"container\">\n\t<div class=\"section\">\n\t\t<showcase *ngIf=\"!isLoading\" [products]='products'></showcase>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -2496,7 +2496,7 @@ var Product = (function () {
 /***/ "../../../../../client/app/items/showcase/showcase.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"card-stats\" class=\"seaction\">\t\n\t<div class=\"row\">\n\t\tHi\n\t\t<input type=\"text\" [(ngModel)]=\"filter.name\"/>\n\t\t<div class=\"col s12 m6 l3\" *ngFor = 'let product of products| bookfilter:filter'>\n\t\t\t<product-thumbnail [product]='product'></product-thumbnail>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div id=\"card-stats\" class=\"seaction\">\t\n\t<div class=\"row\">\n\t\t<input type=\"text\" [(ngModel)]=\"filter.name\"/>\n\t\t<div class=\"col s12 m6 l3\" *ngFor = 'let product of products| bookfilter:filter'>\n\t\t\t<product-thumbnail [product]='product'></product-thumbnail>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -2808,7 +2808,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"header\" class=\"page-topbar\">\n    <div class=\"navbar-fixed\">\n        <nav class=\"cyan\">\n            <div class=\"nav-wrapper\">\n                <h1 class=\"logo-wrapper\"><a href=\"index.html\" class=\"brand-logo darken-1\"><img src=\"/assets/images/materialize-logo.png\" alt=\"materialize logo\"></a> <span class=\"logo-text\">Materialize</span></h1>\n                <ul class=\"right\">\n                    <li>\n                        <cart></cart>\n                    </li>\n                    <li>\n                        <!-- <input type=\"text\" [(ngModel)]=\"appService.searchParams\"/> -->\n                    </li>\n                </ul>\n            </div>\n        </nav>\n    </div>\n</header>"
+module.exports = "<header id=\"header\" class=\"page-topbar\">\n    <div class=\"navbar-fixed\">\n        <nav class=\"cyan\">\n            <div class=\"nav-wrapper\">\n                <h1 class=\"logo-wrapper\">\n                    <a class=\"brand-logo darken-1\">\n                        <img src=\"\" alt=\"MFB\">\n                    </a>\n                    <span class=\"logo-text\">Materialize</span></h1>\n                <cart></cart>\n            </div>\n        </nav>\n    </div>\n</header>"
 
 /***/ }),
 
@@ -4116,82 +4116,10 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../client/app/shared/book-filter.pipe.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FilterPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var FilterPipe = (function () {
-    function FilterPipe() {
-    }
-    // transform(items: any[], filter: any): any[] {
-    //   if (!items || !filter) {
-    //     return items;
-    //   }
-    //   // filter items array, items which match and return true will be kept, false will be filtered out
-    //   return items.filter((item: any) => this.applyFilter(item, filter));
-    // }
-    FilterPipe.prototype.transform = function (value, filter) {
-        filter = filter ? filter.toLocaleLowerCase() : '';
-        return filter && value ?
-            value.filter(function (product) {
-                return (product.name.toLocaleLowerCase().indexOf(filter) !== -1) ||
-                    (product.nameForTelugu.toLocaleLowerCase().indexOf(filter) !== -1) ||
-                    (product.nameForHindi.toLocaleLowerCase().indexOf(filter) !== -1);
-            }) :
-            value;
-    };
-    /**
-     * Perform the filtering.
-     *
-     * @param {Book} book The book to compare to the filter.
-     * @param {Book} filter The filter to apply.
-     * @return {boolean} True if book satisfies filters, false if not.
-     */
-    FilterPipe.prototype.applyFilter = function (book, filter) {
-        debugger;
-        for (var field in filter) {
-            if (filter[field]) {
-                if (typeof filter[field] === 'string') {
-                    debugger;
-                    if (book[field].toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {
-                        return false;
-                    }
-                }
-                else if (typeof filter[field] === 'number') {
-                    if (book[field] !== filter[field]) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    };
-    return FilterPipe;
-}());
-FilterPipe = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-        name: 'bookfilter',
-        pure: false
-    })
-], FilterPipe);
-
-//# sourceMappingURL=book-filter.pipe.js.map
-
-/***/ }),
-
 /***/ "../../../../../client/app/shared/loading/loading.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<!-- \n<div class=\"card\" *ngIf=\"condition\">\n  <h4 class=\"card-header\">Loading...</h4>\n  <div class=\"card-block text-xs-center\">\n    <i class=\"fa fa-circle-o-notch fa-spin fa-3x\"></i>\n  </div>\n</div> -->\n\n<!-- <div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>\n -->\n<!-- Start Page Loading -->\n<!-- <div id=\"loader-wrapper\" *ngIf=\"condition\">\n    <div id=\"loader\"></div>        \n    <div class=\"loader-section section-left\"></div>\n    <div class=\"loader-section section-right\"></div>\n</div> -->\n<!-- End Page Loading -->"
+module.exports = "<!-- <div class=\"cssload-loader\" *ngIf=\"condition\">\n\t<div class=\"cssload-inner cssload-one\"></div>\n\t<div class=\"cssload-inner cssload-two\"></div>\n\t<div class=\"cssload-inner cssload-three\"></div>\n</div>\n -->\n<!-- <div id=\"loader-wrapper\" *ngIf=\"condition\">\n    <div id=\"loader\"></div>        \n    <div class=\"loader-section section-left\"></div>\n    <div class=\"loader-section section-right\"></div>\n</div> -->"
 
 /***/ }),
 
@@ -4247,6 +4175,67 @@ LoadingComponent = __decorate([
 ], LoadingComponent);
 
 //# sourceMappingURL=loading.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../client/app/shared/my-filter.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FilterPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var FilterPipe = (function () {
+    function FilterPipe() {
+    }
+    FilterPipe.prototype.transform = function (items, filter) {
+        var _this = this;
+        if (!items || !filter) {
+            return items;
+        }
+        // filter items array, items which match and return true will be kept, false will be filtered out
+        return items.filter(function (item) { return _this.applyFilter(item, filter); });
+    };
+    /**
+     * Perform the filtering.
+     *
+     * @param {Book} book The book to compare to the filter.
+     * @param {Book} filter The filter to apply.
+     * @return {boolean} True if book satisfies filters, false if not.
+     */
+    FilterPipe.prototype.applyFilter = function (book, filter) {
+        for (var field in filter) {
+            if (filter[field]) {
+                if (typeof filter[field] === 'string') {
+                    if (book[field].toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {
+                        return false;
+                    }
+                }
+                else if (typeof filter[field] === 'number') {
+                    if (book[field] !== filter[field]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    };
+    return FilterPipe;
+}());
+FilterPipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+        name: 'bookfilter',
+        pure: false
+    })
+], FilterPipe);
+
+//# sourceMappingURL=my-filter.pipe.js.map
 
 /***/ }),
 
@@ -4401,7 +4390,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/sidenav/sidenav.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<aside id=\"left-sidebar-nav\">\n    <ul id=\"slide-out\" class=\"side-nav fixed leftside-navigation sideNaveClose_\">\n        <li class=\"user-details cyan darken-2\">\n            <div class=\"row\">\n                <div class=\"col col s4 m4 l4\">\n                    <img src=\"/assets/images/avatar.jpg\" alt=\"\" class=\"circle responsive-img valign profile-image\">\n                </div>\n                <div class=\"col col s8 m8 l8\">\n                    <ul id=\"profile-dropdown\" class=\"dropdown-content\">\n                        <li><a (click)=\"processSideBar()\" routerLink=\"/logout\" *ngIf=\"auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Logout</a>\n                        </li>\n                        <li><a (click)=\"processSideBar()\" routerLink=\"/login\" *ngIf=\"!auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Login</a>\n                        </li>\n                    </ul>\n                    <a class=\"btn-flat dropdown-button waves-effect waves-light white-text profile-btn\" href=\"#\" data-activates=\"profile-dropdown\">John Doe<i class=\"mdi-navigation-arrow-drop-down right\"></i></a>\n                    <p class=\"user-roal\">Administrator</p>\n                </div>\n            </div>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/items\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Items</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/admin\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Admin</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/addresses\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Addresses</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/user-orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> User Orders</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/register\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Register</a>\n        </li>\n        \n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/orders\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Orders</a>\n        </li>\n    </ul>\n    <a (click)=\"processSideBar($event)\" data-activates=\"slide-out\" class=\"sideNaveClose sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2\"><i class=\"mdi-navigation-menu\" ></i></a>\n</aside>"
+module.exports = "<aside id=\"left-sidebar-nav\">\n    <ul id=\"slide-out\" class=\"side-nav fixed leftside-navigation sideNaveClose_\">\n        <li class=\"user-details cyan darken-2\">\n            <div class=\"row\">\n                <div class=\"col col s4 m4 l4\">\n                    <img src=\"/assets/images/avatar.jpg\" alt=\"\" class=\"circle responsive-img valign profile-image\">\n                </div>\n                <div class=\"col col s8 m8 l8\">\n                    <ul id=\"profile-dropdown\" class=\"dropdown-content\">\n                        <li><a (click)=\"processSideBar()\" routerLink=\"/account\" *ngIf=\"auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i>Settings</a>\n                        </li>\n                        <li><a (click)=\"processSideBar()\" routerLink=\"/logout\" *ngIf=\"auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Logout</a>\n                        </li>\n                        <li><a (click)=\"processSideBar()\" routerLink=\"/login\" *ngIf=\"!auth.loggedIn\"><i class=\"mdi-hardware-keyboard-tab\"></i> Login</a>\n                        </li>\n                    </ul>\n                    <a class=\"btn-flat dropdown-button waves-effect waves-light white-text profile-btn\" href=\"#\" data-activates=\"profile-dropdown\">John Doe<i class=\"mdi-navigation-arrow-drop-down right\"></i></a>\n                    <p class=\"user-roal\">Administrator</p>\n                </div>\n            </div>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/items\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Items</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/admin\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Admin</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/addresses\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Addresses</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/user-orders\" routerLinkActive=\"active\" *ngIf=\"auth.loggedIn\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> User Orders</a>\n        </li>\n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/register\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Register</a>\n        </li>\n        \n        <li class=\"bold\">\n            <a (click)=\"processSideBar()\" routerLink=\"/orders\" *ngIf=\"!auth.loggedIn\" routerLinkActive=\"active\" class=\"waves-effect waves-cyan\"><i class=\"mdi-action-dashboard\"></i> Orders</a>\n        </li>\n    </ul>\n    <a (click)=\"processSideBar($event)\" data-activates=\"slide-out\" class=\"sideNaveClose sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2\"><i class=\"mdi-navigation-menu\" ></i></a>\n</aside>"
 
 /***/ }),
 
@@ -4492,7 +4481,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/tabs/tabs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\" data-spy=\"affix\" data-offset-top=\"50\">\n  <ul id=\"myTab\" class=\"nav nav-tabs nav-tabs-responsive\" role=\"tablist\">\n    <li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>Exotic Vegetables</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>Leafy Vegetables</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>Fresh Fruits</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>Fresh Vegetables</a></li>\n  </ul>\n</nav>"
+module.exports = "<nav>\n  <ul>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='exotic-vegetables')}\" (click)=\"openTab($event, 'exotic-vegetables')\"><a>Exotic Vegetables</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='leafy-green-vegetables')}\" (click)=\"openTab($event, 'leafy-green-vegetables')\"><a>Leafy Vegetables</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='fresh-fruits')}\" (click)=\"openTab($event, 'fresh-fruits')\"><a>Fresh Fruits</a></li>\n    <li [ngClass]=\"{'active': (appService.selectedTab=='fresh-vegetables')}\" (click)=\"openTab($event, 'fresh-vegetables')\"><a>Fresh Vegetables</a></li>\n  </ul>\n</nav>"
 
 /***/ }),
 

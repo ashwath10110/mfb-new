@@ -51,7 +51,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { FilterPipe } from './shared/book-filter.pipe';
+import { FilterPipe } from './shared/my-filter.pipe';
 import { RightSideNavComponent } from './right-side-nav/right-side-nav.component';
 
 import { DataService } from './items/data.service';

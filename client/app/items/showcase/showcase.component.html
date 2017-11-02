@@ -1,6 +1,5 @@
 <div id="card-stats" class="seaction">	
 	<div class="row">
-		Hi
 		<input type="text" [(ngModel)]="filter.name"/>
 		<div class="col s12 m6 l3" *ngFor = 'let product of products| bookfilter:filter'>
 			<product-thumbnail [product]='product'></product-thumbnail>

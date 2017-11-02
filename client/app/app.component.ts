@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
 
 		if (window["Worker"]) {
 
-			console.log('available');
+			console.log('Service worker available');
 
 		} else {
-			console.log("NA");
+			console.log("Service worker NA");
 		}
 	}
 

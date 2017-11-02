@@ -3,7 +3,7 @@ import { Product } from '../shared/product.model'
 import { CartService } from '../cart.service';
 import { AppService } from './../../app.service';
 
-import { FilterPipe } from './../../shared/book-filter.pipe';
+import { FilterPipe } from './../../shared/my-filter.pipe';
 
 @Component({
 	selector: 'showcase',

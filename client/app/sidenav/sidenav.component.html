@@ -7,6 +7,8 @@
                 </div>
                 <div class="col col s8 m8 l8">
                     <ul id="profile-dropdown" class="dropdown-content">
+                        <li><a (click)="processSideBar()" routerLink="/account" *ngIf="auth.loggedIn"><i class="mdi-hardware-keyboard-tab"></i>Settings</a>
+                        </li>
                         <li><a (click)="processSideBar()" routerLink="/logout" *ngIf="auth.loggedIn"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                         </li>
                         <li><a (click)="processSideBar()" routerLink="/login" *ngIf="!auth.loggedIn"><i class="mdi-hardware-keyboard-tab"></i> Login</a>

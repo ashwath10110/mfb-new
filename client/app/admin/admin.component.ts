@@ -4,6 +4,7 @@ import { ToastComponent } from '../shared/toast/toast.component';
 import { AddItemsComponent } from '../add-items/add-items.component';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import {AccordionModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-admin',

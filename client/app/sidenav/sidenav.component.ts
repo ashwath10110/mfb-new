@@ -20,9 +20,7 @@ export class SidenavComponent implements OnInit {
 		public router: Router,
 	) { }
 
-
 	ngOnInit() {
-
 	}
 
 	openCart(event) {
