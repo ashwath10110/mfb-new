@@ -332,7 +332,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../client/app/addresses/addresses.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div> -->\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\"> \n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div> -->\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" (click)=\"addAddress()\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
+module.exports = "<app-loading [condition]=\"isLoading\"></app-loading>\n\n<app-toast [message]=\"toast.message\"></app-toast>\n\n<app-loading [condition]=\"loadWholeScreen\"></app-loading>\n\n<div *ngIf=\"!loadWholeScreen\">\n\n  <button class=\"btn btn-sm btn-warning\" [disabled]=\"!showLocationButton\" (click)=\"getLocationData()\">Use My Current Location</button>\n\n  <div class=\"card\" *ngIf=\"!isLoading\">\n    <h4 class=\"card-header\">Current Addresses ({{addresses.length}})</h4>\n    <div class=\"card-block\">\n      <table class=\"table table-bordered table-striped\">\n        <thead class=\"thead-default\">\n          <tr>\n            <th>Select Address to use</th>\n            <th>Name</th>\n            <th>Actions</th>\n          </tr>\n        </thead>\n        <tbody *ngIf=\"addresses.length === 0\">\n          <tr>\n            <td colspan=\"4\">There are no addresses in the DB. Add a new address below.</td>\n          </tr>\n        </tbody>\n        <tbody *ngIf=\"!isEditing\">\n          <tr *ngFor=\"let address of addresses\">\n            <td *ngIf=\"address._id\">\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\">              \n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                NA\n              </div> -->\n              <input class=\"form-check-input\" type=\"radio\" name=\"address\" [value]=\"address.name\" [(ngModel)]=\"addressSelected\"> \n            </td>\n            <td>{{address.name}}</td>\n            <td *ngIf=\"address._id\">\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n            <td *ngIf=\"!address._id\">\n              <!-- <div *ngIf=\"isAddressValidInDistance\">\n                <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n              </div>\n              <div *ngIf=\"!isAddressValidInDistance\">\n                <div>Address not in range of Delivery which is ({{appService.shopDetails.validDistanceAllowedInKm}}Km)</div>\n              </div> -->\n              <button class=\"btn btn-sm btn-warning\" (click)=\"enableEditing(address)\"><i class=\"fa fa-pencil\"></i> Edit</button>\n              <button class=\"btn btn-sm btn-danger\" (click)=\"deleteAddress(address)\"><i class=\"fa fa-trash\"></i> Delete</button>\n            </td>\n          </tr>  \n        </tbody>\n        <tbody *ngIf=\"isEditing\">\n          <tr>\n            <td colspan=\"4\">\n              <form class=\"form-inline\" #form=\"ngForm\" (ngSubmit)=\"editAddress(address)\" style=\"display:inline\">\n                <div class=\"form-group\">\n                    <input class=\"form-control\" type=\"text\" name=\"name\" [(ngModel)]=\"address.name\" placeholder=\"Name\" required>\n                </div>\n                 <button class=\"btn btn-sm btn-primary\" type=\"submit\" [disabled]=\"!form.form.valid\"><i class=\"fa fa-floppy-o\"></i> Save</button>\n              </form>\n              <button class=\"btn btn-sm btn-warning\" (click)=\"cancelEditing()\"><i class=\"fa fa-times\"></i> Cancel</button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n  <div class=\"card\" *ngIf=\"!isEditing\">\n    <h4 class=\"card-header\">Add new address</h4>\n    <div class=\"card-block\">\n      <form class=\"form-inline\" [formGroup]=\"addAddressForm\" style=\"text-align:center\">\n        <div class=\"form-group\">\n            <input class=\"form-control\" type=\"text\" name=\"name\" formControlName=\"name\" placeholder=\"Name\">\n        </div>\n        <button class=\"btn btn-primary\" type=\"submit\" (click)=\"addAddress()\" [disabled]=\"!addAddressForm.valid\"><i class=\"fa fa-floppy-o\"></i> Add</button>\n      </form>\n    </div>\n  </div>\n\n   <button class=\"btn btn-primary\" (click)=\"proceedToPay()\" [disabled]=\"addressSelected==''\">Proceed to Pay {{cartService.cartTotal}}</button>\n</div>\n\n<div *ngIf=\"loadWholeScreen\">  \n</div>"
 
 /***/ }),
 
@@ -1883,8 +1883,9 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__("../../../../../client/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1899,15 +1900,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OFFSET_HEIGHT = 170;
 var PRODUCT_HEIGHT = 48;
 var CartComponent = (function () {
-    function CartComponent(cartService, changeDetectorRef, route, router, appService, auth) {
+    function CartComponent(cartService, changeDetectorRef, route, router, appService, auth, toast) {
         this.cartService = cartService;
         this.route = route;
         this.router = router;
         this.appService = appService;
         this.auth = auth;
+        this.toast = toast;
         this.products = [];
         this.numProducts = 0;
         this.animatePlop = false;
@@ -1948,10 +1951,12 @@ var CartComponent = (function () {
         });
     };
     CartComponent.prototype.deleteProduct = function (product) {
+        this.toast.setMessage('Removed ' + product.name, 'success');
         this.cartService.deleteProductFromCart(product);
     };
     CartComponent.prototype.flushCart = function () {
         this.cartService.flushCart();
+        this.toast.setMessage('Cart Emptied!', 'success');
         this.router.navigate(['/items']);
     };
     CartComponent.prototype.checkout = function () {
@@ -1976,10 +1981,10 @@ CartComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/items/cart/cart.component.html"),
         styles: [__webpack_require__("../../../../../client/app/items/cart/cart.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__cart_service__["a" /* CartService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["ActivatedRoute"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_service__["a" /* AppService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_auth_service__["a" /* AuthService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _g || Object])
 ], CartComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=cart.component.js.map
 
 /***/ }),
@@ -2336,7 +2341,7 @@ var DATA = {
 /***/ "../../../../../client/app/items/product-thumbnail/product-thumbnail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-image\">\n    <!-- <img [src]=\"product.imageForShowCase\" alt=\"sample image\"> -->\n    <img src=\"/assets/images/sample-1.jpg\" alt=\"sample image\">\n    <span class=\"card-title\">{{product.name}}</span>\n  </div>\n  <div class=\"card-content\">\n    <p>Cost{{product.price| currency: 'INR':true}}</p>\n  </div>\n\n  <div class=\"card-reveal\">\n      <span class=\"card-title grey-text text-darken-4\">{{product.type}}<i class=\"mdi-navigation-close right\"></i></span>\n      <p>{{product.description}}</p>\n      <p><i class=\"mdi-action-perm-identity cyan-text text-darken-2\"></i> {{product.price| currency: 'INR':true}}</p>\n      <p><i class=\"mdi-action-perm-phone-msg cyan-text text-darken-2\"></i> {{product.name}}</p>\n      <p><i class=\"mdi-communication-email cyan-text text-darken-2\"></i> {{product.nameForTelugu}}</p>\n      <p><i class=\"mdi-social-cake cyan-text text-darken-2\"></i> {{product.nameForHindi}}</p>\n      <p><i class=\"mdi-device-airplanemode-on cyan-text text-darken-2\"></i>{{product.countPerKg}}</p>\n  </div>\n  <div class=\"card-action\">\n    <a class=\"btn-floating activator btn-move-up waves-effect waves-light darken-2 right\">\n        <i class=\"mdi-editor-mode-edit\"></i>\n    </a>\n    <a class=\"btn-floating waves-effect btn-move-up waves-light darken-2\" (click)=\"onAddToCart()\">\n      <i class=\"mdi-content-add\"></i>\n    </a>\n  </div>"
+module.exports = "<div class=\"card\">\n  <div class=\"card-image\">\n    <img src=\"/assets/images/sample-1.jpg\" alt=\"sample image\">\n    <span class=\"card-title\">{{product.name}}</span>\n  </div>\n  <div class=\"card-content\">\n    <p>Cost{{product.price| currency: 'INR':true}}</p>\n  </div>\n\n  <div class=\"card-reveal\">\n      <span class=\"card-title grey-text text-darken-4\">{{product.type}}<i class=\"mdi-navigation-close right\"></i></span>\n      <p>{{product.description}}</p>\n      <p><i class=\"mdi-action-perm-identity cyan-text text-darken-2\"></i> {{product.price| currency: 'INR':true}}</p>\n      <p><i class=\"mdi-action-perm-phone-msg cyan-text text-darken-2\"></i> {{product.name}}</p>\n      <p><i class=\"mdi-communication-email cyan-text text-darken-2\"></i> {{product.nameForTelugu}}</p>\n      <p><i class=\"mdi-social-cake cyan-text text-darken-2\"></i> {{product.nameForHindi}}</p>\n      <p><i class=\"mdi-device-airplanemode-on cyan-text text-darken-2\"></i>{{product.countPerKg}}</p>\n  </div>\n  <div class=\"card-action\">\n    <a class=\"btn-floating activator btn-move-up waves-effect waves-light darken-2 right\">\n        <i class=\"mdi-editor-mode-edit\"></i>\n    </a>\n    <a class=\"btn-floating waves-effect btn-move-up waves-light darken-2\" (click)=\"onAddToCart()\">\n      <i class=\"mdi-content-add\"></i>\n    </a>\n  </div>"
 
 /***/ }),
 
@@ -2367,6 +2372,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_product_model__ = __webpack_require__("../../../../../client/app/items/shared/product.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cart_service__ = __webpack_require__("../../../../../client/app/items/cart.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service__ = __webpack_require__("../../../../../client/app/app.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__ = __webpack_require__("../../../../../client/app/shared/toast/toast.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2380,12 +2386,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProductThumbnailComponent = (function () {
-    function ProductThumbnailComponent(cartService, appService) {
+    function ProductThumbnailComponent(cartService, appService, toast) {
         this.cartService = cartService;
         this.appService = appService;
+        this.toast = toast;
         this.rupeeSymbol = 'Rs.';
-        // this.rupeeSymbol = this.appService.currentUser.toUseForRupeeSymbol.hindiRupees;
     }
     ProductThumbnailComponent.prototype.ngOnInit = function () {
         this.detailViewActive = false;
@@ -2396,6 +2403,7 @@ var ProductThumbnailComponent = (function () {
     };
     ProductThumbnailComponent.prototype.onAddToCart = function () {
         this.cartService.addProductToCart(this.product);
+        this.toast.setMessage('Added! ' + this.product.name, 'success');
     };
     return ProductThumbnailComponent;
 }());
@@ -2409,10 +2417,10 @@ ProductThumbnailComponent = __decorate([
         template: __webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.html"),
         styles: [__webpack_require__("../../../../../client/app/items/product-thumbnail/product-thumbnail.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__cart_service__["a" /* CartService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__shared_toast_toast_component__["a" /* ToastComponent */]) === "function" && _d || Object])
 ], ProductThumbnailComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=product-thumbnail.component.js.map
 
 /***/ }),
@@ -3193,7 +3201,7 @@ var _a, _b;
 /***/ "../../../../../client/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <div id=\"login-page\" class=\"row\">\n    <div class=\"col s12 z-depth-4 card-panel\">\n      <form class=\"login-form\" [formGroup]=\"registerForm\">\n        <div class=\"row\">\n          <div class=\"input-field col s12 center\">\n            <h4>Register</h4>\n            <p class=\"center\">Join to our community now !</p>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-social-person-outline prefix\"></i>\n            <input id=\"username\" class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n            <label for=\"username\" class=\"center-align\">Username</label>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-communication-email prefix\"></i>\n            <input id=\"email\" class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n            <label for=\"email\" class=\"center-align\">Email</label>\n          </div>\n        </div>\n        <div class=\"row margin\">\n          <div class=\"input-field col s12\">\n            <i class=\"mdi-action-lock-outline prefix\"></i>\n            <input id=\"password\" class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n            <label for=\"password\">Password</label>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"input-field col s12\">\n\n            <button (click)=\"prepareForRegister()\" [disabled]=\"!(registerForm.valid)\" class=\"btn waves-effect waves-light col s12\">Register Now</button>\n          </div>\n          <!-- <div class=\"input-field col s12\">\n            <p class=\"margin center medium-small sign-up\">Already have an account? <a href=\"page-login.html\">Login</a></p>\n          </div> -->\n        </div>\n      </form>\n    </div>\n  </div>"
+module.exports = "<div id=\"login-page\" class=\"row\">\n  <div class=\"col s12 z-depth-4 card-panel\">\n    <form class=\"login-form\" [formGroup]=\"registerForm\">\n      <div class=\"row\">\n        <div class=\"input-field col s12 center\">\n          <h4>Register</h4>\n          <p class=\"center\">Join to our community now !</p>\n        </div>\n      </div>\n      <div class=\"row margin\">\n        <div class=\"input-field col s12\">\n          <i class=\"mdi-social-person-outline prefix\"></i>\n          <input id=\"username\" class=\"form-control\" type=\"text\" name=\"username\" formControlName=\"username\" placeholder=\"Username\" autofocus>\n          <label for=\"username\" class=\"center-align\">Username</label>\n        </div>\n      </div>\n      <div class=\"row margin\">\n        <div class=\"input-field col s12\">\n          <i class=\"mdi-communication-email prefix\"></i>\n          <input id=\"email\" class=\"form-control\" type=\"email\" name=\"email\" formControlName=\"email\" placeholder=\"Email\">\n          <label for=\"email\" class=\"center-align\">Email</label>\n        </div>\n      </div>\n      <div class=\"row margin\">\n        <div class=\"input-field col s12\">\n          <i class=\"mdi-action-lock-outline prefix\"></i>\n          <input id=\"password\" class=\"form-control\" type=\"password\" name=\"password\" formControlName=\"password\" placeholder=\"Password\">\n          <label for=\"password\">Password</label>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"input-field col s12\">\n\n          <button (click)=\"prepareForRegister()\" [disabled]=\"!(registerForm.valid)\" class=\"btn waves-effect waves-light col s12\">Register Now</button>\n        </div>\n        <!-- <div class=\"input-field col s12\">\n          <p class=\"margin center medium-small sign-up\">Already have an account? <a href=\"page-login.html\">Login</a></p>\n        </div> -->\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -3269,8 +3277,8 @@ var RegisterComponent = (function () {
         this.registerForm = this.formBuilder.group({
             username: this.username,
             email: this.email,
-            password: this.password,
-            role: this.role
+            password: this.password
+            // role: this.role
         });
     };
     RegisterComponent.prototype.setClassUsername = function () {
@@ -4349,7 +4357,10 @@ var ToastComponent = (function () {
         if (time === void 0) { time = 3000; }
         this.message.body = body;
         this.message.type = type;
-        setTimeout(function () { _this.message.body = ''; }, time);
+        window['growlMessages'](this.message.body);
+        setTimeout(function () {
+            _this.message.body = '';
+        }, time);
     };
     return ToastComponent;
 }());

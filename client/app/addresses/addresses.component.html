@@ -4,7 +4,6 @@
 
 <app-loading [condition]="loadWholeScreen"></app-loading>
 
-
 <div *ngIf="!loadWholeScreen">
 
   <button class="btn btn-sm btn-warning" [disabled]="!showLocationButton" (click)="getLocationData()">Use My Current Location</button>

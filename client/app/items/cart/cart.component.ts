@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { ToastComponent } from './../../shared/toast/toast.component';
 import { AppService } from './../../app.service';
 import { AuthService } from './../../services/auth.service';
 
@@ -33,6 +34,7 @@ export class CartComponent implements OnInit {
     public router: Router,
     public appService: AppService,
     public auth: AuthService,
+    public toast: ToastComponent
   ) {
     this.changeDetectorRef = changeDetectorRef;
   }
@@ -69,11 +71,13 @@ export class CartComponent implements OnInit {
   }
 
   deleteProduct(product) {
+    this.toast.setMessage('Removed ' + product.name, 'success');
     this.cartService.deleteProductFromCart(product);
   }
 
-  flushCart(){
+  flushCart() {
     this.cartService.flushCart();
+    this.toast.setMessage('Cart Emptied!', 'success');
     this.router.navigate(['/items']);
   }
 
@@ -82,11 +86,11 @@ export class CartComponent implements OnInit {
 
     if (this.auth.loggedIn) {
       this.router.navigate(['/addresses']);
-    }else{
+    } else {
       this.appService.isCartPrepared = true;
       this.router.navigate(['/login']);
     }
-    
+
     console.log("To Checkout");
   }
 
