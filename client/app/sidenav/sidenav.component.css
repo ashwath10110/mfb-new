@@ -1,0 +1,9 @@
+.sideNaveClose_{
+	/*left: -240px;*/
+    position: fixed;
+}
+
+.sideNaveOpen_{
+	left: 0;
+    position: fixed;
+}

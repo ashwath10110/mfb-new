@@ -1,9 +1,9 @@
 <app-tabs></app-tabs>
 <app-loading [condition]="isLoading"></app-loading>
 <!-- <showcase *ngIf="!isLoading" [products]='products'></showcase> -->
-
+{{appService.searchParams}}
 <div class="container">
-<div class="section">
-	<showcase *ngIf="!isLoading" [products]='products'></showcase>
-</div>
+	<div class="section">
+		<showcase *ngIf="!isLoading" [products]='products'></showcase>
+	</div>
 </div>

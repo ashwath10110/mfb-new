@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { CartService } from './../items/cart.service';
 import { CartComponent } from './../items/cart/cart.component';
+import { AppService } from './../app.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,13 @@ import { CartComponent } from './../items/cart/cart.component';
 export class NavbarComponent implements OnInit {
 
   showCart = false;
+  searchParams = '';
 
   constructor(
     public router: Router,
     public auth: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private appService: AppService
   ) {
   }
 

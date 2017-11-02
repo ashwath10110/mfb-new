@@ -68,6 +68,7 @@ export class AppService {
   };
 
   isCartPrepared = false;
+  searchParams = '';
 
   public shopDetails = {
     name: '',
