@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
-import { TabsComponent } from './tabs/tabs.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { CartComponent } from './items//cart/cart.component';
-import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.component';
+import { AuthService } from './auth/auth.service';
 
 @Component({
 	selector: 'app-root',
@@ -13,18 +8,19 @@ import { PaymentCheckoutComponent } from './payment-checkout/payment-checkout.co
 })
 export class AppComponent implements OnInit {
 
-	constructor(public auth: AuthService) {
+	constructor(
+		public auth: AuthService,
+	) {
+		this.auth.handleAuthentication();
 
 		if (window["Worker"]) {
-
 			console.log('Service worker available');
-
 		} else {
 			console.log("Service worker NA");
 		}
 	}
 
 	ngOnInit() {
-  	}
+	}
 
 }

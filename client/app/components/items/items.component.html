@@ -1,0 +1,7 @@
+<app-tabs></app-tabs>
+<app-loading [condition]="isLoading"></app-loading>
+<div class="container">
+	<div class="section">
+		<showcase *ngIf="!isLoading" [products]='products'></showcase>
+	</div>
+</div>
