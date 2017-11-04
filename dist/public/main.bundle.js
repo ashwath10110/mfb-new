@@ -770,7 +770,7 @@ var _a;
 var AUTH_CONFIG = {
     clientID: 'QkYKIsJTGPZnLYVBOw6bVLmE2ZyhDaDp',
     domain: 'ashwathb.auth0.com',
-    callbackURL: 'http://localhost:4200/callback',
+    callbackURL: 'http://mfb-css.herokuapp.com/callback',
     apiUrl: 'https://ashwathb.auth0.com/api/v2/'
 };
 //# sourceMappingURL=auth0-variables.js.map
