@@ -1,11 +1,11 @@
 {
-    "name": "mean",
+    "name": "mfb",
     "version": "0.0.0",
     "license": "MIT",
     "angular-cli": {},
     "engines": {
-        "node": "4.1.1",
-        "npm": "3.10.10"
+        "node": "v7.10.0",
+        "npm": "4.2.0"
     },
     "scripts": {
         "build": "ng build",
