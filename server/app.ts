@@ -25,6 +25,7 @@ let passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', express.static(path.join(__dirname, '../client')));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://admin:admin@ds111895.mlab.com:11895/mfb-db', { useMongoClient: true });
 const db = mongoose.connection;

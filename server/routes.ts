@@ -2,7 +2,7 @@
 import * as path from 'path';
 import * as express from 'express';
 
-export default function (app) {
+export default function(app) {
   app.use('/api/customers', require('./api/customer'));
   app.use('/api/contacts', require('./api/contact'));
   // app.use('/api/sendmail', require('./api/sendmail'));
@@ -22,7 +22,7 @@ export default function (app) {
   // app.use('/api/pay', require('./api/pay'));
   app.use('/auth', require('./auth'));
 
-  app.use(express.static('public'));
+  app.use(express.static('client'));
   // app.use('/', express.static(path.join(__dirname, './public')));
   app.use('/uploads', express.static('uploads'));
 
@@ -31,8 +31,8 @@ export default function (app) {
   //   .get(errors[404]);
 
   // All other routes should redirect to the index.html
-  app.route('/*')
-    .get((req, res) => {
-      res.sendFile(path.resolve(`./../index.html`));
-    });
+  app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+  });
+
 }

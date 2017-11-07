@@ -1,14 +1,149 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mean</title>
-  <base href="/">
 
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="Order Fresh Fruits and Vegetables from the comfort of your home.">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    .news {
+      height: 60px;
+      margin: 10% auto;
+      overflow: hidden;
+      border-radius: 4px;
+      padding: 3px;
+      display: flex;
+      justify-content: center;
+      -webkit-user-select: none;
+    }
+
+    .news span {
+      float: left;
+      padding: 6px;
+      position: relative;
+      top: 1%;
+      border-radius: 4px;
+      font: 16px 'Source Sans Pro', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-user-select: none;
+      cursor: pointer
+    }
+
+    .news ul {
+      float: left;
+      padding-left: 20px;
+      animation: ticker 10s cubic-bezier(1, 0, .5, 0) infinite;
+      -webkit-user-select: none
+    }
+
+    .news ul li {
+      line-height: 60px;
+      list-style: none
+    }
+
+    .news ul li a {
+      color: #999;
+      text-decoration: none;
+      font: 28px Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-user-select: none
+    }
+
+    @-webkit-keyframes ticker {
+      0% {
+        margin-top: 0
+      }
+      25% {
+        margin-top: -60px
+      }
+      50% {
+        margin-top: -120px
+      }
+      75% {
+        margin-top: -180px
+      }
+      100% {
+        margin-top: 0
+      }
+    }
+
+    @-moz-keyframes ticker {
+      0% {
+        margin-top: 0
+      }
+      25% {
+        margin-top: -60px
+      }
+      50% {
+        margin-top: -120px
+      }
+      75% {
+        margin-top: -180px
+      }
+      100% {
+        margin-top: 0
+      }
+    }
+
+    @-ms-keyframes ticker {
+      0% {
+        margin-top: 0
+      }
+      25% {
+        margin-top: -60px
+      }
+      50% {
+        margin-top: -120px
+      }
+      75% {
+        margin-top: -180px
+      }
+      100% {
+        margin-top: 0
+      }
+    }
+
+    @keyframes ticker {
+      0% {
+        margin-top: 0
+      }
+      25% {
+        margin-top: -60px
+      }
+      50% {
+        margin-top: -120px
+      }
+      75% {
+        margin-top: -180px
+      }
+      100% {
+        margin-top: 0
+      }
+    }
+  </style>
+  <!-- <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,"> -->
+  <title>MFB</title>
+
 </head>
 <body>
-  <app-root></app-root>
+  <app>
+    <div class="news">
+      <span></span>
+      <ul>
+        <li><a href="#">Contacting Server...</a></li>
+        <li><a href="#">Loading CSS...</a></li>
+        <li><a href="#">Loading Javascript...</a></li>
+        <li><a href="#">Preparing Application...</a></li>
+      </ul>
+    </div>
+  </app>
 </body>
 </html>
