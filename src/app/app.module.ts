@@ -65,7 +65,7 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 // import 'owl.carousel';
 import 'jquery';
 import 'hammerjs';
-import './../styles/styles.scss';
+// import './../styles/styles.scss';
 
 // Application wide providers
 const APP_PROVIDERS = [
