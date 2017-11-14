@@ -10,8 +10,8 @@ let compression = require('compression');
 const app = express();
 app.use(compression());
 dotenv.load({ path: '.env' });
-app.set('port', (process.env.PORT || 3000));
-
+// app.set('port', (process.env.PORT || 3000));
+app.set('port', (3000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

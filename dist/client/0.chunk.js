@@ -1898,6 +1898,7 @@ var OrdersComponent = (function (_super) {
                 _this.message = 'Please tell us why you want to cancel the order';
                 return;
             }
+            debugger;
             order.status = 'Cancellation Requested';
             order.comment = data.comment;
             _this.crud.patch('orders', order._id, order).subscribe(function (data) {
